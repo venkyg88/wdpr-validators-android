@@ -1,6 +1,6 @@
 # WDPR-Validators-Android
 
-The following library block performs validation for primitive methods and complex methods like Credit Card
+The following library block performs email validation.
 
 # Why?
 
