@@ -36,18 +36,17 @@ This function help to verify whether input is a valid email or not, if its not v
   <p><code>admin@mailserver1 (local domain name with no TLD)</code></p>
   <p><code>#!$%&'*+-/=?^_`{}|~@example.org</code></p>
   <p><code>"()<>[]:,;@\\\"!#$%&'*+-/=?^_`{}| ~.a"@example.org</code></p>
-  <p><code>" "@example.org (space between the quotes)</code></p>
-  <p><code>üñîçøðé@example.com (Unicode characters in local part)</code></p>
-  <p><code>üñîçøðé@üñîçøðé.com (Unicode characters in domain part)</code></p>
-- <p>Invalid email addresses[edit]</p>
-  <p><code>Abc.example.com (an @ character must separate the local and domain parts)</code></p>
-  <p><code>A@b@c@example.com (only one @ is allowed outside quotation marks)</code></p>
-  <p><code>a"b(c)d,e:f;g<h>i[j\k]l@example.com (none of the special characters in this local part is allowed outside quotation marks)</code></p>
-  <p><code>just"not"right@example.com (quoted strings must be dot separated or the only element making up the local-part)</code></p>
-  <p><code>this is"not\allowed@example.com (spaces, quotes, and backslashes may only exist when within quoted strings and preceded by a backslash)</code></p>
-  <p><code>this\ still\"not\\allowed@example.com (even if escaped (preceded by a backslash), spaces, quotes, and backslashes must still be contained by quotes)</code></p>
+  <p><code>" "@example.org </p>
+  <p><code>üñîçøðé@example.com </code></p>
+  <p><code>üñîçøðé@üñîçøðé.com /code></p>
+- <p>Invalid email addresses</p>
+  <p><code>Abc.example.com</code></p>
+  <p><code>A@b@c@example.com</code></p>
+  <p><code>a"b(c)d,e:f;g<h>i[j\k]l@example.com </code></p>
+  <p><code>just"not"right@example.com </code></p>
+  <p><code>this is"not\allowed@example.com </code></p>
+  <p><code>this\ still\"not\\allowed@example.com </code></p>
   <p><code>john..doe@example.com (double dot before @)</code></p>
-  <p><code>with caveat: Gmail lets this through, ignoring the dots altogether</code></p>
   <p><code>john.doe@example..com (double dot after @)</code></p>
 
 **Returns**: `String`
