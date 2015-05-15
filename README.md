@@ -8,7 +8,9 @@ The following library block provides the email validation which cover most of th
 
 ## Getting Started
 
-# Installing
+#Consuming the API.
+1. Need to include the particular package in dependencies block under build.gradle.
+2. Yet to decide on how to include the packages in the repository and where?
 
 
 # Demo
@@ -17,6 +19,8 @@ The following library block provides the email validation which cover most of th
 3. Once you have the project you can run the application using either from an emulator or a real device.
 4. Instructions for running the demo on [Real Device.](http://developer.android.com/training/basics/firstapp/running-app.html#RealDevice)
 5. Instructions for running the demo on [Emulator](http://developer.android.com/training/basics/firstapp/running-app.html#Emulator)
+6. For testing, go the respective folder in terminal and type './gradlew connectedcheck'.
+7. Then open the index.html file in reports folder, you can see the report of test cases failed/passed/percentage.
 
 ## API Methods
 
