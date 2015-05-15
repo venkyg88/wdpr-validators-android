@@ -12,7 +12,11 @@ The following library block provides the email validation which cover most of th
 
 
 # Demo
-Download a 
+1. Open Android Studio, Select File -> New -> Import Project from Version Control -> Git.</p>
+2. Enter Git Repository URL, Parent Directory and Directory Name and then Clone.
+3. Once you have the project you can run the application using either from an emulator or a real device.
+4. Instructions for running the demo on [Real Device.](http://developer.android.com/training/basics/firstapp/running-app.html#RealDevice)
+5. Instructions for running the demo on [Emulator](http://developer.android.com/training/basics/firstapp/running-app.html#Emulator)
 
 ## API Methods
 
