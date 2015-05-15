@@ -4,7 +4,7 @@ The following library block performs email validation.
 
 # Why?
 
-The following library block provides both basic and complex methods for input validation enabling diffenent teams in Disney to use the feature they require for the appilcation instead of writing the boilerplate. This helps to maintian consistency across different teams working on different applications.
+The following library block provides the email validation which cover most of the Invalid email messages enabling diffenent teams in Disney to use the feature they require for the appilcation instead of writing the boilerplate. This helps to maintian consistency across different teams working on different applications.
 
 ## Getting Started
 
@@ -12,7 +12,7 @@ The following library block provides both basic and complex methods for input va
 
 
 # Demo
-Once the block has been installed and set up on your system (build in local/server), run the web application in your web browser. As per the various input fields available, you will be able to enter information and submit. The validation results will be displayed as output on the web page.
+Download a 
 
 ## API Methods
 
