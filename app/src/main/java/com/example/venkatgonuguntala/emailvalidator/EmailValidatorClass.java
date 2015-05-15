@@ -2,8 +2,6 @@ package com.example.venkatgonuguntala.emailvalidator;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.widget.Toast;
 
 import java.util.regex.Pattern;
 
@@ -34,73 +32,67 @@ public class EmailValidatorClass implements TextWatcher {
         return emailPattern.matcher(email).matches();
     }
 
-    public static String checkEmail(CharSequence email){
+    public static String checkEmail(CharSequence email) {
 
         //code to check for email containing more than one consecutive '.'s.
-        //-----------------------------------
-        if (email.toString().contains("..")){ //Email cannot have two repeating adjacent .(dots)
+        if (email.toString().contains("..")) { //Email cannot have two repeating adjacent .(dots)
             return "112";
         }
 
-        //-----------------------------------
         //code to check for email starting with or ending with '.'.
-        if (email.toString().startsWith(".") || email.toString().endsWith(".")){
+        if (email.toString().startsWith(".") || email.toString().endsWith(".")) {
             return "111";
         }
 
-        //-----------------------------------
+
         //If there are not more than one '@' then the below part will be executed.
         //handles the empty local part.
-        if(email.toString().startsWith("@")){
+        if (email.toString().startsWith("@")) {
             return "107";
-        }
-        else{
+        } else {
             String arryval[] = email.toString().split("@");
-            if(arryval[0].length() > 64){
+            if (arryval[0].length() > 64) {
                 return "108";
             }
         }
 
         //code to check whether email is valid or not using pre-defined function.
-        //-----------------------------------
-        if(isValidEmail(android.util.Patterns.EMAIL_ADDRESS, email)){//return message on valid email.
+        if (isValidEmail(android.util.Patterns.EMAIL_ADDRESS, email)) {//return message on valid email.
             return "200";
         }
 
 
-
-        //------------------------------------
         //check whether the email is empty.
-        if(email == ""){
+        if (email == "") {
             return "100";
         }
 
-        if (email.length()>254){
-                return "105";
+        if (email.length() > 254) {
+            return "105";
         }
 
         //code to check for more than one '@'.
-        //------------------------------------
+
         int count = email.toString().length() - email.toString().replaceAll("@", "").length();
-        if(count > 1){
+        if (count > 1) {
             return "106";
-        }else {
+        } else {
             if (count == 0) {
                 return "110";
             }
         }
-        //------------------------------------
+
         //For all other invalid email entries show below msg.
         return "113";
 
-            //steps to do
-            //Identify the length of the email to be no more than 254 characters long.
-            //
-            //Identify '@' symbols in the email,
-            //if only one '@' symbol is present, perform split else return the error msg.
-            // -Now check the local and check the domain part.
-            //local and domain - No two consecutive .(dot)  Eg: venky..gonu@example.com
-            //      - No first and last dots.    Eg: venky.@example.com  or .venky@example.com
+        //steps to do
+        //Identify the length of the email to be no more than 254 characters long.
+        //
+        //Identify '@' symbols in the email,
+        //if only one '@' symbol is present, perform split else return the error msg.
+        // -Now check the local and check the domain part.
+        //local and domain - No two consecutive .(dot)  Eg: venky..gonu@example.com
+        //      - No first and last dots.    Eg: venky.@example.com  or .venky@example.com
     }
 
 }

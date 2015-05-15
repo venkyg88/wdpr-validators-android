@@ -1,17 +1,10 @@
 package com.example.venkatgonuguntala.emailvalidator;
 
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.Calendar;
 
 /**
  * Created by venkatgonuguntala on 5/6/15.
@@ -35,10 +28,9 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         mEmailText = (EditText) findViewById(R.id.emailInput);
-        //String email = mEmailText.getText().toString();
 
         mResultText = (TextView) findViewById(R.id.show_text_view);
-        
+
         emailValidatorClass = new EmailValidatorClass();
         mEmailText.addTextChangedListener(emailValidatorClass);
     }
@@ -49,14 +41,13 @@ public class MainActivity extends Activity {
      */
     public void onValidateClick(View view) {
         String email = mEmailText.getText().toString();
-            String result = emailValidatorClass.checkEmail(email);
-            if (result=="200"){
-                mResultText.setText("Email format is good");
-            }
-            else {
-                mEmailText.setError((CharSequence) HashMapValues.hashMethod().get(result));
-                mResultText.setText("");
-            }
+        String result = emailValidatorClass.checkEmail(email);
+        if (result == "200") {
+            mResultText.setText("Email format is good");
+        } else {
+            mEmailText.setError((CharSequence) HashMapValues.hashMethod().get(result));
+            mResultText.setText("");
+        }
     }
 
 

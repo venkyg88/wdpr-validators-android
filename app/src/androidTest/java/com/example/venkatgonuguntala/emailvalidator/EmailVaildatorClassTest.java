@@ -9,11 +9,11 @@ import junit.framework.TestCase;
  */
 public class EmailVaildatorClassTest extends TestCase{
 
-    static final String samEmail ="vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv@vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv" +
+    static final String invalidLengthEmail ="vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv@vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv" +
             "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeennnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn" +
             "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkakaaaakaaaaaaaaaaaaaaaaaaaaaaa.ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt";
 
-    static final String invalidDomain = "vvvvvvvvvvvvvvveeeeeeeeeeeennnnnnnnnnnnnnnnnkkkkkkkkkkkkkkkkkkkkkaaaaaaaaaaaaaaattttttttttttttttttttttttttttttttttttttttttttttttttttttttvip@gmail.com";
+    static final String invalidLenghtDomain = "vvvvvvvvvvvvvvveeeeeeeeeeeennnnnnnnnnnnnnnnnkkkkkkkkkkkkkkkkkkkkkaaaaaaaaaaaaaaattttttttttttttttttttttttttttttttttttttttttttttttttttttttvip@gmail.com";
     @Override
     protected void setUp() throws Exception {
         super.setUp();
@@ -62,7 +62,7 @@ public class EmailVaildatorClassTest extends TestCase{
 
     @SmallTest
     public void test9(){
-        assertEquals("108",EmailValidatorClass.checkEmail(invalidDomain));
+        assertEquals("108",EmailValidatorClass.checkEmail(invalidLenghtDomain));
     }
 
     @SmallTest
@@ -72,7 +72,7 @@ public class EmailVaildatorClassTest extends TestCase{
 
     @SmallTest
     public void test11(){
-        assertEquals("105",EmailValidatorClass.checkEmail(samEmail));
+        assertEquals("105",EmailValidatorClass.checkEmail(invalidLengthEmail));
     }
 
     @SmallTest
