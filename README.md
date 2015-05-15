@@ -27,31 +27,7 @@ The WDPR Validators have the following methods.
 This function help to verify whether input is a valid email or not, if its not valid it will throw error codes of the respective messages.
 
 **Params**
-- email `String` - Email should follow RFC standards. 
-- <p>Valid email addresses</p>
-<p><code>niceandsimple@example.com</code></p>
-<p><code>very.common@example.com</code></p>
-<p><code>a.little.lengthy.but.fine@dept.example.com</code></p>
-<p><code>disposable.style.email.with+symbol@example.com</code></p>
-<p><code>other.email-with-dash@example.com</code></p>
-<p><code>"much.more unusual"@example.com</code></p>
-<p><code>"very.unusual.@.unusual.com"@example.com</code></p>
-<p><code>"very.(),:;<>[]\".VERY.\"very@\\ \"very\".unusual"@strange.example.com</code></p>
-<p><code>admin@mailserver1 (local domain name with no TLD)</code></p>
-<p><code>#!$%&'*+-/=?^_`{}|~@example.org</code></p>
-<p><code>"()<>[]:,;@\\\"!#$%&'*+-/=?^_`{}| ~.a"@example.org</code></p>
-<p><code>" "@example.org </p>
-<p><code>üñîçøðé@example.com </code></p>
-<p><code>üñîçøðé@üñîçøðé.com /code></p>
-- <p>Invalid email addresses</p>
-<p><code>Abc.example.com</code></p>
-<p><code>A@b@c@example.com</code></p>
-<p><code>a"b(c)d,e:f;g<h>i[j\k]l@example.com </code></p>
-<p><code>just"not"right@example.com </code></p>
-<p><code>this is"not\allowed@example.com </code></p>
-<p><code>this\ still\"not\\allowed@example.com </code></p>
-<p><code>john..doe@example.com (double dot before @)</code></p>
-<p><code>john.doe@example..com (double dot after @)</code></p>
+- email `String` - Email should follow RFC standards.
 
 **Returns**: `String`
 
