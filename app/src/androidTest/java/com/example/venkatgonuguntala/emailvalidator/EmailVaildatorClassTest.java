@@ -20,63 +20,58 @@ public class EmailVaildatorClassTest extends TestCase{
     }
 
     @SmallTest
-    public void test1(){
+    public void testForValidEmail(){
        String result = EmailValidatorClass.checkEmail("venkyg@gmail.com");
         assertEquals("200", result);
     }
 
     @SmallTest
-    public void test2(){
+    public void testForEmptyLocal(){
         assertEquals("107", EmailValidatorClass.checkEmail("@gmail.com"));
     }
 
     @SmallTest
-    public void test3(){
+    public void testForMultipleAtTheRateSymbols(){
         assertEquals("106", EmailValidatorClass.checkEmail("venky@vip@xsm.com"));
     }
 
     @SmallTest
-    public void test4(){
+    public void testForEmailEndingWithDot(){
         assertEquals("111",EmailValidatorClass.checkEmail("venky@xsm.com."));
     }
 
     @SmallTest
-    public void test5(){
+    public void testForEmailStartingWithDot(){
         assertEquals("111",EmailValidatorClass.checkEmail(".venky@vip@xsm.com"));
     }
 
     @SmallTest
-    public void test6(){
-        assertEquals("111",EmailValidatorClass.checkEmail("venky@xsm.com."));
-    }
-
-    @SmallTest
-    public void test7(){
+    public void testForRepeatingDots(){
         assertEquals("112",EmailValidatorClass.checkEmail("venky..vip@xsm.com"));
     }
 
     @SmallTest
-    public void test8(){
+    public void testForEmailWithSubdomain(){
         assertEquals("200",EmailValidatorClass.checkEmail("example@domain.subdomain.com"));
     }
 
     @SmallTest
-    public void test9(){
+    public void testForInvalidDomainLenth(){
         assertEquals("108",EmailValidatorClass.checkEmail(invalidLenghtDomain));
     }
 
     @SmallTest
-    public void test10(){
+    public void testForEmptyEmail(){
         assertEquals("100",EmailValidatorClass.checkEmail(""));
     }
 
     @SmallTest
-    public void test11(){
+    public void testForInvalidEmailLenth(){
         assertEquals("105",EmailValidatorClass.checkEmail(invalidLengthEmail));
     }
 
     @SmallTest
-    public void test12(){
+    public void testForMissingAtTheRateSymbol(){
         assertEquals("110",EmailValidatorClass.checkEmail("venkygmail.com"));
     }
 
