@@ -1,2 +1,0 @@
-wdpr-validators-android
-=======================
