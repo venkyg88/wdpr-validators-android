@@ -47,16 +47,3 @@ This function will throw error codes of the respective messages, if isValidEmail
 **Returns:** `String`
 
 
-> **OUTPUT:**<br>
-> **200** (Valid Email)<br>
-> **100** (Email is empty)<br>
-> **105** (Email length exceeds the limit)<br>
-> **106** (Email has more than one '@')<br>
-> **107** (Email Cannot start with '@')<br>
-> **108** (Local-part length exceeds the limit)<br>
-> **109** (Domain length exceeds the limit)<br>
-> **110** (Valid Email has both local and domain)<br>
-> **111** (Email cannot start of End with '.')<br>
-> **112** (Email cannot have two repeating dots)<br>
-> **113** (Email not in proper format)
-
