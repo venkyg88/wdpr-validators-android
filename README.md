@@ -26,25 +26,26 @@ The following library block provides the email validation which cover most of th
 
 The WDPR Validators have the following methods.
 
-## checkEmail(email)
+## isValidEmail(emailPattern, email)
 
-This function help to verify whether input is a valid email or not, if its not valid it will throw error codes of the respective messages.
+This function returns a boolean, checking whether it is valid email or Invalid email.
 
 **Params**
-- email `String` - Email should follow RFC standards.
+- emailPattern 'Pattern' predefined email pattern.
+- email 'String'
 
-**Returns**: `String`
+**Returns:** `Boolean`
 
-**Usage:**
 
-String result = emailValidatorClass.checkEmail(email);
-if (result=="200"){
-mResultText.setText("Email format is good");
-}
-else {
-mEmailText.setError((CharSequence) HashMapValues.hashMethod().get(result));
-mResultText.setText("");
-}
+## checkEmail(email)
+
+This function will throw error codes of the respective messages, if isValidEmail funtion returns false.
+
+**Params**
+- email `String` Email should follow RFC standards.
+
+**Returns:** `String`
+
 
 > **OUTPUT:**<br>
 > **200** (Valid Email)<br>
