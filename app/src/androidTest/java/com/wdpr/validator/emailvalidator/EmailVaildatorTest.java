@@ -1,4 +1,4 @@
-package com.example.venkatgonuguntala.emailvalidator;
+package com.wdpr.validator.emailvalidator;
 
 import android.test.suitebuilder.annotation.SmallTest;
 
@@ -7,7 +7,7 @@ import junit.framework.TestCase;
 /**
  * Created by venkatgonuguntala on 5/13/15.
  */
-public class EmailVaildatorClassTest extends TestCase{
+public class EmailVaildatorTest extends TestCase{
 
     static final String invalidLengthEmail ="vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv@vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv" +
             "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeennnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn" +

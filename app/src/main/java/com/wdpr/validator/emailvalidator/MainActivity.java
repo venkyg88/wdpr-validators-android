@@ -1,4 +1,4 @@
-package com.example.venkatgonuguntala.emailvalidator;
+package com.wdpr.validator.emailvalidator;
 
 import android.app.Activity;
 import android.os.Bundle;

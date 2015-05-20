@@ -1,14 +1,15 @@
-package com.example.venkatgonuguntala.emailvalidator;
+package com.wdpr.validator.emailvalidator;
 
 import android.text.Editable;
 import android.text.TextWatcher;
 
+import java.lang.String;
 import java.util.regex.Pattern;
 
 /**
  * Created by venkatgonuguntala on 5/6/15.
  */
-public class EmailValidatorClass implements TextWatcher {
+public class EmailValidator implements TextWatcher {
 
     @Override
     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -32,25 +33,25 @@ public class EmailValidatorClass implements TextWatcher {
         return emailPattern.matcher(email).matches();
     }
 
-    public static String checkEmail(CharSequence email) {
+    public static String checkEmail(String email) {
 
         //code to check for email containing more than one consecutive '.'s.
-        if (email.toString().contains("..")) { //Email cannot have two repeating adjacent .(dots)
+        if (email.contains("..")) { //Email cannot have two repeating adjacent .(dots)
             return "112";
         }
 
         //code to check for email starting with or ending with '.'.
-        if (email.toString().startsWith(".") || email.toString().endsWith(".")) {
+        if (email.startsWith(".") || email.endsWith(".")) {
             return "111";
         }
 
 
         //If there are not more than one '@' then the below part will be executed.
         //handles the empty local part.
-        if (email.toString().startsWith("@")) {
+        if (email.startsWith("@")) {
             return "107";
         } else {
-            String arryval[] = email.toString().split("@");
+            String arryval[] = email.split("@");
             if (arryval[0].length() > 64) {
                 return "108";
             }
@@ -72,7 +73,6 @@ public class EmailValidatorClass implements TextWatcher {
         }
 
         //code to check for more than one '@'.
-
         int count = email.toString().length() - email.toString().replaceAll("@", "").length();
         if (count > 1) {
             return "106";
