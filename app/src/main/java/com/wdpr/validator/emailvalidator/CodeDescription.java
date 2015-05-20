@@ -6,9 +6,9 @@ import java.util.Map;
 /**
  * Created by venkatgonuguntala on 5/12/15.
  */
-public class HashMapValues {
+class CodeDescription {
 
-    public static Map hashMethod() {
+    public static Map getCodeDescription() {
         Map maps = new HashMap<>();
         maps.put("200", "");
         maps.put("100", "Email is empty");

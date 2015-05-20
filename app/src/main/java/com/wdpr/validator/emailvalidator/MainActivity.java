@@ -9,6 +9,7 @@ import android.widget.TextView;
 /**
  * Created by venkatgonuguntala on 5/6/15.
  */
+
 public class MainActivity extends Activity {
 
     //Logger for this class
@@ -20,7 +21,7 @@ public class MainActivity extends Activity {
     private TextView mResultText;
 
     //The validator for email input field.
-    private EmailValidatorClass emailValidatorClass;
+    private EmailValidator emailValidator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +32,8 @@ public class MainActivity extends Activity {
 
         mResultText = (TextView) findViewById(R.id.show_text_view);
 
-        emailValidatorClass = new EmailValidatorClass();
-        mEmailText.addTextChangedListener(emailValidatorClass);
+        emailValidator = new EmailValidator();
+        mEmailText.addTextChangedListener(emailValidator);
     }
 
 
@@ -41,11 +42,11 @@ public class MainActivity extends Activity {
      */
     public void onValidateClick(View view) {
         String email = mEmailText.getText().toString();
-        String result = emailValidatorClass.checkEmail(email);
+        String result = emailValidator.checkEmail(email);
         if (result == "200") {
             mResultText.setText("Email format is good");
         } else {
-            mEmailText.setError((CharSequence) HashMapValues.hashMethod().get(result));
+            mEmailText.setError((CharSequence) CodeDescription.getCodeDescription().get(result));
             mResultText.setText("");
         }
     }

@@ -45,6 +45,7 @@ public class EmailVaildatorTest extends TestCase{
         assertEquals("111",EmailValidatorClass.checkEmail(".venky@vip@xsm.com"));
     }
 
+
     @SmallTest
     public void testForRepeatingDots(){
         assertEquals("112",EmailValidatorClass.checkEmail("venky..vip@xsm.com"));
@@ -64,6 +65,12 @@ public class EmailVaildatorTest extends TestCase{
     public void testForEmptyEmail(){
         assertEquals("100",EmailValidatorClass.checkEmail(""));
     }
+
+    @SmallTest
+    public void testForNullEmail(){
+        assertEquals("113",EmailValidatorClass.checkEmail(null));
+    }
+
 
     @SmallTest
     public void testForInvalidEmailLenth(){
