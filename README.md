@@ -6,9 +6,9 @@ The following library block performs email validation.
 
 The following library block provides the email validation which cover most of the Invalid email messages enabling diffenent teams in Disney to use the feature they require for the appilcation instead of writing the boilerplate. This helps to maintian consistency across different teams working on different applications.
 
-## Getting Started
+# Getting Started
 
-#Consuming the API.
+## Installing.
 1. Need to include the particular package in dependencies block under build.gradle.
 2. Yet to decide on how to include the packages in the repository and where?
 
