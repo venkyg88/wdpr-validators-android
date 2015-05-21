@@ -1,0 +1,10 @@
+
+.gradle
+local.properties
+.idea/
+.DS_Store
+/build
+build.gradle
+Wdpr-Android-Validators.pub
+Wdpr-Android-Validators
+Wdpr-Android-Validators.iml
