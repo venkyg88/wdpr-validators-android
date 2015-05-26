@@ -47,3 +47,33 @@ This function will throw error codes of the respective messages, if isValidEmail
 **Returns:** `String`
 
 
+## aUnicodeString(Object)
+
+Predicate to determine whether something is a fully nuanced Unicode string with nothing too scary in it.
+
+**Params**
+- Object `String`
+
+**Returns:** `boolean`
+
+## isISO8601(Object)
+
+predicate to determine whether a date meets the basic structure of an ISO 8601 date format.
+
+**Params**
+- Object `String` - date Object to be evaluated
+
+**Returns:** `boolean`
+
+## checkIsoDate(Object)
+
+Checker to determine whether the provided string is a valid ISO8601 date and 
+
+**Parms**
+- Object `String` - date Object to be evaluated
+
+**Returns:** `String` - function that takes a single object for testing Function. This returns a string error message.
+
+
+
+
