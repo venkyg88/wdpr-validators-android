@@ -67,13 +67,20 @@ predicate to determine whether a date meets the basic structure of an ISO 8601 d
 
 ## checkIsoDate(Object)
 
-Checker to determine whether the provided string is a valid ISO8601 date and 
+Checker to determine whether the provided string is a valid ISO8601 date.
 
-**Parms**
+**Params**
 - Object `String` - date Object to be evaluated
 
 **Returns:** `String` - function that takes a single object for testing Function. This returns a string error message.
 
+## isAnArray(Object)
 
+predicate to determine whether the provided Object is an array.
+
+**Params**
+- Object `Object` - array Object to be evaluated
+
+**Returns:" `boolean` 
 
 
