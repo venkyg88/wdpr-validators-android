@@ -21,6 +21,7 @@ class CodeDescription {
         maps.put("111", "Email cannot start or end with '.'");
         maps.put("112", "Email cannot have two repeating dots");
         maps.put("113", "Email not in proper format");
+        maps.put("114", "Enter correct date format");
         return maps;
     }
 }

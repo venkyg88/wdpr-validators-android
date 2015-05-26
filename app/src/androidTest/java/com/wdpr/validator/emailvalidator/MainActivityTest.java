@@ -9,8 +9,6 @@ import android.widget.TextView;
 /**
  * Created by venkatgonuguntala on 5/13/15.
  */
-
-
 public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity> {
 
     MainActivity mainActivity;
@@ -22,10 +20,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-
-
         mainActivity = getActivity();
-
     }
 
     @SmallTest

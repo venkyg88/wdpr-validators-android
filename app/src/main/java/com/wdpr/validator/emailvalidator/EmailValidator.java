@@ -2,6 +2,7 @@ package com.wdpr.validator.emailvalidator;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Patterns;
 
 import java.lang.String;
 import java.util.regex.Pattern;
@@ -56,7 +57,7 @@ public class EmailValidator implements TextWatcher {
         }
 
         //code to check whether email is valid or not using pre-defined function.
-        if (isValidEmail(android.util.Patterns.EMAIL_ADDRESS, email)) {//return message on valid email.
+        if (isValidEmail(Patterns.EMAIL_ADDRESS, email)) {//return message on valid email.
             return "200";
         }
 
