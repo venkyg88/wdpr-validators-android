@@ -39,12 +39,17 @@ public class DateValidator{
      */
 
     public static String checkIsoDate(String date){
-        if(isISO8601(date)) {
-            return "200";
+        if(date != null) {
+            if (isISO8601(date)) {
+                return "200";
+            } else {
+                return "114";
+            }
         }
         else{
             return "114";
         }
+
     }
 
 

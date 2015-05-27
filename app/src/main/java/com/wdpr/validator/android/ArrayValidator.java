@@ -5,9 +5,13 @@ package com.wdpr.validator.android;
  */
 public class ArrayValidator {
 
-    public static boolean isAnArray(Object o){
-        if(o.getClass().isArray()){
-            return true;
+    public static boolean isAnArray(Object arrayObject){
+        if(arrayObject != null) {
+            if (arrayObject.getClass().isArray()) {
+                return true;
+            } else {
+                return false;
+            }
         }
         else{
             return false;
