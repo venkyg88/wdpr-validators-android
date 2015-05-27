@@ -1,10 +1,12 @@
-package com.wdpr.validator.emailvalidator;
+package com.wdpr.validator.android;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.wdpr.validator.android.R;
 
 /**
  * Created by venkatgonuguntala on 5/6/15.

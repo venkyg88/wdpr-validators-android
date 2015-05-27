@@ -1,10 +1,11 @@
-package com.wdpr.validator.emailvalidator;
+package com.wdpr.validator.android;
 
-import android.app.Application;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.ApplicationTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.widget.TextView;
+
+import com.wdpr.validator.android.MainActivity;
+import com.wdpr.validator.android.R;
 
 /**
  * Created by venkatgonuguntala on 5/13/15.

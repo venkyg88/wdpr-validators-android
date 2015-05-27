@@ -1,4 +1,4 @@
-package com.wdpr.validator.emailvalidator;
+package com.wdpr.validator.android;
 
 /**
  * Created by venkatgonuguntala on 5/26/15.

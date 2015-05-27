@@ -6,7 +6,7 @@
     <string name="email_hint">venky@disney.com</string>
     <string name="email_label">Enter you email</string>
     <string name="save">Validate</string>
-    <string name="email_validation">Demo of Email Validation</string>
+    <string name="email_validation">Demo of Validation</string>
     <string name="date_hint">MM/DD/YYYY</string>
     <string name="validateDate">ValidateDate</string>
 

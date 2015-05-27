@@ -1,6 +1,8 @@
-package com.wdpr.validator.emailvalidator;
+package com.wdpr.validator.android;
 
 import android.test.suitebuilder.annotation.SmallTest;
+
+import com.wdpr.validator.android.EmailValidator;
 
 import junit.framework.TestCase;
 

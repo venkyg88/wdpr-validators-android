@@ -1,4 +1,4 @@
-package com.wdpr.validator.emailvalidator;
+package com.wdpr.validator.android;
 
 import java.util.HashMap;
 import java.util.Map;

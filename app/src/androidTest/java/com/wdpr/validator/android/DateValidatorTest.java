@@ -1,10 +1,10 @@
-package com.wdpr.validator.emailvalidator;
+package com.wdpr.validator.android;
 
 import android.test.suitebuilder.annotation.SmallTest;
 
-import junit.framework.TestCase;
+import com.wdpr.validator.android.DateValidator;
 
-import dalvik.annotation.TestTarget;
+import junit.framework.TestCase;
 
 /**
  * Created by venkatgonuguntala on 5/22/15.

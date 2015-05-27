@@ -1,4 +1,4 @@
-package com.wdpr.validator.emailvalidator;
+package com.wdpr.validator.android;
 
 import android.text.Editable;
 import android.text.TextWatcher;
