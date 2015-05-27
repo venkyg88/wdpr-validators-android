@@ -23,7 +23,7 @@ public class DateValidator{
      * @param date date address for validation
      * @return true valid date format, false invalid date format
      */
-    public static boolean isISO8601(final String date){
+    public static boolean isISO8601(String date){
         pattern = Pattern.compile(DATE_PATTERN);
         matcher = pattern.matcher(date);
         if(matcher.matches()){
