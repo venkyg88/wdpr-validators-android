@@ -19,6 +19,8 @@ public class EmailVaildatorTest extends TestCase{
 
     static final String nullString = null;
 
+    EmailValidator emailObj = new EmailValidator();
+
     @Override
     protected void setUp() throws Exception {
         super.setUp();
@@ -26,65 +28,59 @@ public class EmailVaildatorTest extends TestCase{
 
     @SmallTest
     public void testForValidEmail(){
-       String result = EmailValidator.checkEmail("venkyg@gmail.com");
+       String result = emailObj.checkEmail("venkyg@gmail.com");
         assertEquals("200", result);
     }
 
     @SmallTest
     public void testForEmptyLocal(){
-        assertEquals("107", EmailValidator.checkEmail("@gmail.com"));
+        assertEquals("107", emailObj.checkEmail("@gmail.com"));
     }
 
     @SmallTest
     public void testForMultipleAtTheRateSymbols(){
-        assertEquals("106", EmailValidator.checkEmail("venky@vip@xsm.com"));
+        assertEquals("106", emailObj.checkEmail("venky@vip@xsm.com"));
     }
 
     @SmallTest
     public void testForEmailEndingWithDot(){
-        assertEquals("111",EmailValidator.checkEmail("venky@xsm.com."));
+        assertEquals("111",emailObj.checkEmail("venky@xsm.com."));
     }
 
     @SmallTest
     public void testForEmailStartingWithDot(){
-        assertEquals("111",EmailValidator.checkEmail(".venky@vip@xsm.com"));
+        assertEquals("111",emailObj.checkEmail(".venky@vip@xsm.com"));
     }
 
 
     @SmallTest
     public void testForRepeatingDots(){
-        assertEquals("112",EmailValidator.checkEmail("venky..vip@xsm.com"));
+        assertEquals("112",emailObj.checkEmail("venky..vip@xsm.com"));
     }
 
     @SmallTest
     public void testForEmailWithSubdomain(){
-        assertEquals("200",EmailValidator.checkEmail("example@domain.subdomain.com"));
+        assertEquals("200",emailObj.checkEmail("example@domain.subdomain.com"));
     }
 
     @SmallTest
     public void testForInvalidDomainLenth(){
-        assertEquals("108",EmailValidator.checkEmail(invalidLenghtDomain));
+        assertEquals("108",emailObj.checkEmail(invalidLenghtDomain));
     }
 
     @SmallTest
     public void testForEmptyEmail(){
-        assertEquals("100",EmailValidator.checkEmail(""));
+        assertEquals("100",emailObj.checkEmail(""));
     }
-
-   /* @SmallTest
-    public void testForNullEmail(){
-        assertEquals("113",EmailValidator.checkEmail(nullString));
-    }*/
-
 
     @SmallTest
     public void testForInvalidEmailLenth(){
-        assertEquals("105",EmailValidator.checkEmail(invalidLengthEmail));
+        assertEquals("105",emailObj.checkEmail(invalidLengthEmail));
     }
 
     @SmallTest
     public void testForMissingAtTheRateSymbol(){
-        assertEquals("110",EmailValidator.checkEmail("venkygmail.com"));
+        assertEquals("110",emailObj.checkEmail("venkygmail.com"));
     }
 
 

@@ -30,11 +30,11 @@ public class EmailValidator implements TextWatcher {
     /**
      * Validates if the given input is a valid email address.
      */
-    public static boolean isValidEmail(Pattern emailPattern, CharSequence email) {
+    public boolean isValidEmail(Pattern emailPattern, CharSequence email) {
         return emailPattern.matcher(email).matches();
     }
 
-    public static String checkEmail(String email) {
+    public String checkEmail(String email) {
 
         //code to check for email containing more than one consecutive '.'s.
         if (email.contains("..")) { //Email cannot have two repeating adjacent .(dots)

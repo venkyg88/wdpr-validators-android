@@ -11,6 +11,8 @@ import junit.framework.TestCase;
  */
 public class DateValidatorTest extends TestCase{
 
+    DateValidator dateObj= new DateValidator();
+
     String[] arrayForValid = {"2009-12T12:34","2009","2009-05-19","20090519","2009123","2009-05","2009-123","2009-222",
             "2009-001","2009-W01-1","2009-W51-1","2009-W511","2009-W33","2009W511","2009-05-19","2009-05-19 00:00",
             "2009-05-19 14","2009-05-19 14:31","2009-05-19 14:39:22","2009-05-19T14:39Z","2009-W21-2","2009-W21-2T01:22",
@@ -35,7 +37,7 @@ public class DateValidatorTest extends TestCase{
     @SmallTest
     public void testForValidDate() {
         for(int i=0;i<arrayForValid.length;i++){
-            String result2 = DateValidator.checkIsoDate(arrayForValid[i]);
+            String result2 = dateObj.checkIsoDate(arrayForValid[i]);
             assertEquals("200", result2);
         }
 
@@ -44,7 +46,7 @@ public class DateValidatorTest extends TestCase{
     @SmallTest
     public void testForInvalidDate(){
         for(int i=0;i< arrayforInvalid.length;i++) {
-            String result2 = DateValidator.checkIsoDate(arrayforInvalid[i]);
+            String result2 = dateObj.checkIsoDate(arrayforInvalid[i]);
             assertEquals("114", result2);
         }
     }

@@ -5,7 +5,7 @@ package com.wdpr.validator.android;
  */
 public class ArrayValidator {
 
-    public static boolean isAnArray(Object arrayObject){
+    public boolean isAnArray(Object arrayObject){
         if(arrayObject != null) {
             if (arrayObject.getClass().isArray()) {
                 return true;

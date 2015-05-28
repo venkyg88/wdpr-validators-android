@@ -16,6 +16,7 @@ public class ArrayValidatorTest extends TestCase {
     int[] alsoArry = {102,133,345,475};        // It's an array
     double[] anArr = {10.9};                   // It's an array
 
+    ArrayValidator arrayObj = new ArrayValidator();
 
     @Override
     protected void setUp() throws Exception {
@@ -25,14 +26,14 @@ public class ArrayValidatorTest extends TestCase {
 
     @SmallTest
     public void testForArray(){
-        assertEquals(true, ArrayValidator.isAnArray(anArray));
-        assertEquals(true, ArrayValidator.isAnArray(alsoArry));
-        assertEquals(true, ArrayValidator.isAnArray(anArr));
+        assertEquals(true, arrayObj.isAnArray(anArray));
+        assertEquals(true, arrayObj.isAnArray(alsoArry));
+        assertEquals(true, arrayObj.isAnArray(anArr));
     }
 
     @SmallTest
     public void testForNotArray(){
-        assertEquals(false,ArrayValidator.isAnArray(notArray));
+        assertEquals(false,arrayObj.isAnArray(notArray));
     }
 
     @Override
