@@ -1,7 +1,8 @@
-package com.wdpr.validator.emailvalidator;
+package com.wdpr.validator.android;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Patterns;
 
 import java.lang.String;
 import java.util.regex.Pattern;
@@ -29,11 +30,11 @@ public class EmailValidator implements TextWatcher {
     /**
      * Validates if the given input is a valid email address.
      */
-    public static boolean isValidEmail(Pattern emailPattern, CharSequence email) {
+    public boolean isValidEmail(Pattern emailPattern, CharSequence email) {
         return emailPattern.matcher(email).matches();
     }
 
-    public static String checkEmail(String email) {
+    public String checkEmail(String email) {
 
         //code to check for email containing more than one consecutive '.'s.
         if (email.contains("..")) { //Email cannot have two repeating adjacent .(dots)
@@ -56,7 +57,7 @@ public class EmailValidator implements TextWatcher {
         }
 
         //code to check whether email is valid or not using pre-defined function.
-        if (isValidEmail(android.util.Patterns.EMAIL_ADDRESS, email)) {//return message on valid email.
+        if (isValidEmail(Patterns.EMAIL_ADDRESS, email)) {//return message on valid email.
             return "200";
         }
 

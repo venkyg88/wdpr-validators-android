@@ -1,16 +1,15 @@
-package com.wdpr.validator.emailvalidator;
+package com.wdpr.validator.android;
 
-import android.app.Application;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.ApplicationTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.widget.TextView;
+
+import com.wdpr.validator.android.MainActivity;
+import com.wdpr.validator.android.R;
 
 /**
  * Created by venkatgonuguntala on 5/13/15.
  */
-
-
 public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity> {
 
     MainActivity mainActivity;
@@ -22,10 +21,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-
-
         mainActivity = getActivity();
-
     }
 
     @SmallTest
