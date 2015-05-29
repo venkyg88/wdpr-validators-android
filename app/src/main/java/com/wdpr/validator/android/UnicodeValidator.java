@@ -9,7 +9,9 @@ import java.util.regex.Pattern;
 public class UnicodeValidator{
 
     private static final String UNICODE_PATTERN =
-            "^[\\p{L}\\p{M}\\p{N}\\p{Z}\\p{P}]*$/u";
+            "/^[-\' \\p{L}\\p{M}\\p{N}\\p{Z}\\p{P}]+$/u";
+
+    private static Pattern pattern = Pattern.compile(UNICODE_PATTERN);
 
     /**
      * @desc Public method to validate input as Unicode String / Charatcer (TRUE | FALSE). It accepts UTF-8 based chacratcer including international language
@@ -17,8 +19,7 @@ public class UnicodeValidator{
      * @return Boolean (true | false)
      */
 
-    public boolean aUnicodeString(String value){Pattern pattern = Pattern.compile(UNICODE_PATTERN);
-        //Pattern pattern =Pattern.compile("\\w+", Pattern.UNICODE_CHARACTER_CLASS);
+    public boolean aUnicodeString(String value){
         Matcher matcher = pattern.matcher(value);
         if(value!=null) {
             if (matcher.matches()) {

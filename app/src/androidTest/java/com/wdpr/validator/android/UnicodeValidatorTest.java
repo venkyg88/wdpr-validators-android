@@ -11,7 +11,7 @@ import junit.framework.TestCase;
  */
 public class UnicodeValidatorTest extends TestCase{
 
-    String arrayForTrueUnicode[] = {"abcdefghijklmnopqrstuvwxyz0123456789-. ","Wo ist meine SchnÃ¼r weg, groÃŸer ein?","上海迪士尼度假区的人","+^","Z͑ͫ̓ͪ̂ͫ̽͏̴̙̤̞͉̯̞̠͍A̴̵̜̰͔ͫ͗͢L̠ͨͧͩG̴̻͈͍͔̹̑͗̎̅́Ǫ̵̹̻̝̳͂̌̌!͖̬̰̙̗̿̋ͥͥ̂ͣ̐́́͞"};
+    String arrayForTrueUnicode[] = {"abcdefghijklmnopqrstuvwxyz0123456789-. ","Wo ist meine SchnÃ¼r weg, groÃŸer ein?","上海迪士尼度假区的人"};
 
     UnicodeValidator UnicodeObj = new UnicodeValidator();
 
@@ -25,7 +25,7 @@ public class UnicodeValidatorTest extends TestCase{
     public void testForUnicode(){
         for(int i=0;i<arrayForTrueUnicode.length;i++) {
             boolean result3 = UnicodeObj.aUnicodeString(arrayForTrueUnicode[i]);
-            assertEquals(false, result3);
+            assertEquals(true, result3);
         }
     }
 
