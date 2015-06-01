@@ -1,10 +1,10 @@
 # WDPR-Validators-Android
 
-The following library block performs email validation.
+The following library performs validation for primitive methods and complex methods like Credit Cards.
 
 # Why?
 
-The following library block provides the email validation which cover most of the Invalid email messages enabling diffenent teams in Disney to use the feature they require for the appilcation instead of writing the boilerplate. This helps to maintian consistency across different teams working on different applications.
+The following library block provides both basic and complex methods for input validation which is intended to be imported and implemented within Android applications.
 
 # Getting Started
 
