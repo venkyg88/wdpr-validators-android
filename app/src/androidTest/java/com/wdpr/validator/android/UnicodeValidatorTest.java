@@ -20,22 +20,19 @@ public class UnicodeValidatorTest extends TestCase{
         super.setUp();
     }
 
-
     @SmallTest
     public void testForUnicode(){
         for(int i=0;i<arrayForTrueUnicode.length;i++) {
-            boolean result3 = UnicodeObj.aUnicodeString(arrayForTrueUnicode[i]);
-            assertEquals(true, result3);
+            boolean result = UnicodeObj.aUnicodeString(arrayForTrueUnicode[i]);
+            assertEquals(true, result);
         }
     }
 
     @SmallTest
     public void testForNotUnicode(){
-        boolean result3 = UnicodeObj.aUnicodeString("");
-        assertEquals(false,result3);
+        boolean result = UnicodeObj.aUnicodeString("U+F024");
+        assertEquals(false, result);
     }
-
-
 
     @Override
     protected void tearDown() throws Exception {

@@ -8,8 +8,7 @@ import java.util.regex.Pattern;
  */
 public class UnicodeValidator{
 
-    private static final String UNICODE_PATTERN =
-            "/^[-\' \\p{L}\\p{M}\\p{N}\\p{Z}\\p{P}]+$/u";
+    private static final String UNICODE_PATTERN = "^[\\p{L}\\p{M}\\p{N}\\p{Z}\\p{P}]*$";
 
     private static Pattern pattern = Pattern.compile(UNICODE_PATTERN);
 
@@ -18,11 +17,9 @@ public class UnicodeValidator{
      * @param  value
      * @return Boolean (true | false)
      */
-
     public boolean aUnicodeString(String value){
-        Matcher matcher = pattern.matcher(value);
         if(value!=null) {
-            if (matcher.matches()) {
+            if (pattern.matcher(value).matches()) {
                 return true;
             } else {
                 return false;
