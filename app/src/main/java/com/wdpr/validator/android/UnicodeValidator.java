@@ -18,17 +18,10 @@ public class UnicodeValidator{
      * @return Boolean (true | false)
      */
     public boolean aUnicodeString(final String value){
-        if(value!=null) {
-            if (pattern.matcher(value).matches()) {
-                return true;
-            } else {
-                return false;
-            }
+        boolean result = false;
+        if (pattern.matcher(value).matches()) {
+            result=true;
         }
-        else{
-            return false;
-        }
-
+        return result;
     }
-
 }
