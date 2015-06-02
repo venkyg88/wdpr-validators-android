@@ -17,7 +17,7 @@ public class UnicodeValidator{
      * @param  value
      * @return Boolean (true | false)
      */
-    public boolean aUnicodeString(String value){
+    public boolean aUnicodeString(final String value){
         if(value!=null) {
             if (pattern.matcher(value).matches()) {
                 return true;
