@@ -81,6 +81,6 @@ predicate to determine whether the provided Object is an array.
 **Params**
 - Object `Object` - array Object to be evaluated
 
-**Returns:" `boolean` 
+**Returns:** `boolean` 
 
 
