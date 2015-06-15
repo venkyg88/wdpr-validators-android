@@ -26,15 +26,18 @@ The following library block provides both basic and complex methods for input va
 # Demo
 1. Open Android Studio, Select File -> New -> Import Project from Version Control -> Git.</p>
 2. Enter Git Repository URL, Parent Directory and Directory Name and then Clone.
-3. Once you have the project you can run the application using either from an emulator or a real device.
-4. Instructions for running the demo on [Real Device.](http://developer.android.com/training/basics/firstapp/running-app.html#RealDevice)
-5. Instructions for running the demo on [Emulator](http://developer.android.com/training/basics/firstapp/running-app.html#Emulator)
-6. For testing, go the respective folder in terminal and type './gradlew connectedcheck'.
-7. Then open the index.html file in reports folder, you can see the report of test cases failed/passed/percentage.
+3. After you have the project in Android Studio, Under Run/Debug configurations select WDPRValidatorsDemo
+4. Once you have the respective module selected you can run the application using either from an emulator or a real device.
+5. Instructions for running the demo on [Real Device.](http://developer.android.com/training/basics/firstapp/running-app.html#RealDevice)
+6. Instructions for running the demo on [Emulator](http://developer.android.com/training/basics/firstapp/running-app.html#Emulator)
+7. For testing, go the respective folder in terminal and type './gradlew connectedcheck'.
+8. Then open the index.html file in reports folder, you can see the report of test cases failed/passed/percentage.
+
+Note: Alwasys Make sure your emulator/device is up and running before you test.
 
 ## API Methods
 
-The WDPR Validators have the following methods.
+The WDPRValidators have the following methods.
 
 ## isValidEmail(emailPattern, email)
 
