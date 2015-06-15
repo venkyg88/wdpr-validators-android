@@ -96,7 +96,7 @@ predicate to determine whether the provided Object is a String.
 
 ## checkDateRange(Object, Object, Object)
 
-Checker to determine whether user date falls in the range start and end date inclusively.
+Checker to determine whether user date falls in the range of start date and end date inclusively.
 
 **Params**
 - Object `Date` - start date Object
