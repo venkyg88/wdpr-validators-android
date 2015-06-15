@@ -86,7 +86,7 @@ predicate to determine whether the provided Object is an array.
 
 ## isAString(Object)
 
-predicate to determine whether the provided Object is an String.
+predicate to determine whether the provided Object is a String.
 
 **Params**
 - Object `Object` - string Object to be evaluated
