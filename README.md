@@ -9,9 +9,19 @@ The following library block provides both basic and complex methods for input va
 # Getting Started
 
 ## Installing.
-1. Need to include the particular package in dependencies block under build.gradle.
-2. Yet to decide on how to include the packages in the repository and where?
-
+1. After Building the module-WDPRValidators, a jar file of all the source code and resource files is created in the folder.
+   `WDPRValidators/build/intermediates/bundles/debug/res/classes.jar`
+2. You can rename the classes.jar according to your wish(Library.jar). 
+3. Copy that Library in your Module under libs folder.
+4. Now, we need to tell gradle to include this Library during build. So add the line in dependencies of your build.gradle       file.
+   <p>
+   <code>
+    dependencies{
+      
+          compile files('libs/Library.jar')
+    }
+    </code>
+    </p>
 
 # Demo
 1. Open Android Studio, Select File -> New -> Import Project from Version Control -> Git.</p>
