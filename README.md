@@ -81,6 +81,37 @@ predicate to determine whether the provided Object is an array.
 **Params**
 - Object `Object` - array Object to be evaluated
 
-**Returns:" `boolean` 
+**Returns:** `boolean` 
 
 
+## isAString(Object)
+
+predicate to determine whether the provided Object is an String.
+
+**Params**
+- Object `Object` - string Object to be evaluated
+
+**Returns** `boolean`
+
+
+## checkDateRange(Object, Object, Object)
+
+Checker to determine whether user date falls in the range start and end date inclusively.
+
+**Params**
+- Object `Date` - start date Object
+- Object `Date` - end date Object
+- Object `Date` - target date Object to be evaluated with start and end date
+
+**Returns** `String`
+
+## isInRange(Object, Object, Object)
+
+predicate to determine whether the target date is in the range provided.
+
+**Params**
+- Object `Date` - start date Object
+- Object `Date` - end date Object
+- Object `Date` - target date Object to be evaluated with start and end date
+
+**Returns** `boolean`
