@@ -1,10 +1,7 @@
-
+*.iml
 .gradle
 local.properties
-.idea/
-.DS_Store
+.idea
+.idea/workspace.xml
 /build
-build.gradle
-Wdpr-Android-Validators.pub
-Wdpr-Android-Validators
-Wdpr-Android-Validators.iml
+

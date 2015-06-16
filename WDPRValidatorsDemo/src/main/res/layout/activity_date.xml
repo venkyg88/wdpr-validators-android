@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin"
+    tools:context=".DateValidationDemo">
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin"
+        tools:context=".DateValidationDemo">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="@string/date_validation"
+            android:textAllCaps="@bool/abc_config_actionMenuItemAllCaps"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/date_hint"
+            android:inputType="date"
+            android:ems="10"
+            android:id="@+id/dateInput" />
+
+        <TextView
+            android:id="@+id/show_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/result"
+            android:layout_gravity="center"/>
+
+
+        <Button
+            android:id="@+id/dateValidate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/buttonTextSize"
+            android:text="@string/validateDate"
+            android:onClick="onDateValidateClick"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_gravity="center_horizontal"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/rangeHint_userInput"
+            android:inputType="date"
+            android:ems="10"
+            android:id="@+id/dateUserInput" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/rangeHint_StartInput"
+            android:inputType="date"
+            android:ems="10"
+            android:id="@+id/dateStartDate" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/rangeHint_EndInput"
+            android:inputType="date"
+            android:ems="10"
+            android:id="@+id/dateEndDate" />
+        <Button
+            android:id="@+id/rangeValidate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/buttonTextSize"
+            android:text="@string/validateDateRange"
+            android:onClick="onDateRangeValidateClick"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_gravity="center_horizontal"/>
+
+    </LinearLayout>
+
+</ScrollView>
