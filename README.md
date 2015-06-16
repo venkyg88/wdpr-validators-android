@@ -129,6 +129,6 @@ predicate to determine whether the target date is in the range provided.
 - Object `Date` - target date Object to be evaluated with start and end date
 
 **Returns** `boolean`
-=======
+
 
 >>>>>>> develop
