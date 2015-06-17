@@ -12,8 +12,10 @@ public class PrimitiveValidator {
      */
     public boolean isAnArray(Object arrayObject){
         boolean result = false;
-        if (arrayObject.getClass().isArray()) {
-            result = true;
+        if(arrayObject != null) {
+            if (arrayObject.getClass().isArray()) {
+                result = true;
+            }
         }
         return result;
     }
