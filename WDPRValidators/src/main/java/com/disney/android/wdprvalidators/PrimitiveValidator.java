@@ -25,8 +25,10 @@ public class PrimitiveValidator {
      */
     public boolean isAString(Object stringObject){
         boolean result = false;
-        if(stringObject.getClass()==String.class){
-            result = true;
+        if(stringObject != null) {
+            if (stringObject.getClass() == String.class) {
+                result = true;
+            }
         }
         return result;
     }
