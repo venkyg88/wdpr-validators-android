@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # WDPR-Validators-Android
 
 The following library performs validation for primitive methods and complex methods like Credit Cards.
@@ -31,7 +30,7 @@ The following library block provides both basic and complex methods for input va
 4. Once you have the respective module selected you can run the application using either from an emulator or a real device.
 5. Instructions for running the demo on [Real Device.](http://developer.android.com/training/basics/firstapp/running-app.html#RealDevice)
 6. Instructions for running the demo on [Emulator](http://developer.android.com/training/basics/firstapp/running-app.html#Emulator)
-7. For testing, go the respective folder in terminal and type './gradlew connectedcheck'.
+7. For testing, go the respective folder in terminal and type './gradlew connectedcheck'(Mac) 'gradlew connectedcheck'(Windows).
 8. Then open the index.html file in reports folder, you can see the report of test cases failed/passed/percentage.
 
 Note: Alwasys Make sure your emulator/device is up and running before you test.
@@ -129,6 +128,3 @@ predicate to determine whether the target date is in the range provided.
 - Object `Date` - target date Object to be evaluated with start and end date
 
 **Returns** `boolean`
-
-
->>>>>>> develop
