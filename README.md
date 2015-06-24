@@ -138,7 +138,7 @@ predicate to determine whether the input string is a valid hostname.
 
 **Returns** `boolean`
 
- ## checkHostName(Object)
+## checkHostName(Object)
 
 Checker to determine the error code/codes for hostname failure, if failed else return empty string.
 
