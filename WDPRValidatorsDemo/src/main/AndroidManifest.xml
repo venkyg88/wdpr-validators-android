@@ -25,6 +25,9 @@
         <activity android:name=".UnicodeValidationDemo">
 
         </activity>
+
+        <activity android:name=".HostnameValidationDemo">
+        </activity>
     </application>
 
 </manifest>
