@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  */
 public class HostnameValidation {
 
-    private static final String HOSTNAME_PATTERN = "^([a-z0-9][a-z0-9-]{0,62}\\.)+([a-z]{2,20})$";
+    private static final String HOSTNAME_PATTERN = "^([a-z0-9][a-zA-Z0-9-]{0,62}\\.)+([a-zA-Z]{2,20})$";
 
     private static final String IPADDRESS_PATTERN = "^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
             + "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
