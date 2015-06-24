@@ -128,3 +128,21 @@ predicate to determine whether the target date is in the range provided.
 - Object `Date` - target date Object to be evaluated with start and end date
 
 **Returns** `boolean`
+
+## isHostname(Object)
+
+predicate to determine whether the input string is a valid hostname.
+
+**Params**
+- Object `String` - hostname Object
+
+**Returns** `boolean`
+
+## checkHostName(Object)
+
+Checker to determine the error code/codes for hostname failure, if failed else return empty string.
+
+**Params**
+- Object `String` - hostname Object
+
+**Returns** `List<String>`
