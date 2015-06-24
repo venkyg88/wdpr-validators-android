@@ -146,4 +146,3 @@ Checker to determine the error code/codes for hostname failure, if failed else r
 - Object `String` - hostname Object
 
 **Returns** `List<String>`
-
