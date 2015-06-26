@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  */
 public class HostnameValidation {
 
-    private static final String HOSTNAME_PATTERN = "^([a-z0-9][a-z0-9-]{0,62}\\.)+([a-z]{2,20})$";
+    private static final String HOSTNAME_PATTERN = "^([a-z0-9][a-z0-9-]{0,62}\\.)+([a-z]{2,20})$(i?)";
 
     private static final String IPADDRESS_PATTERN = "^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
             + "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
@@ -66,12 +66,15 @@ public class HostnameValidation {
                     arraylist.add("ERR_HOSTNAME_TLD_LEN");
                 }
                 String[] strArray = hostname.split("\\.");
-                for (int i = 0; i < strArray.length - 1; i++)
+                int countOfSubDomains =strArray.length-1;
+                boolean flag = true;
+                for (int i = 0; i < countOfSubDomains; i++)
                 {
-                    if (strArray[i].length() > 63)
+                    int strSubDomainLength = strArray[i].length();
+                    if (strSubDomainLength > 63 && flag==true)
                     {
+                        flag = false;
                         arraylist.add("ERR_HOSTNAME_SUBDOMAIN_LEN");
-                        break;
                     }
                 }
                 if(hostname.endsWith("."))
@@ -84,7 +87,8 @@ public class HostnameValidation {
                 arraylist.add("ERR_HOSTNAME_IP");
             }
         }
-        else{
+        else
+        {
             arraylist.add("ERR_EMPTY_INPUT");
         }
         return arraylist;
