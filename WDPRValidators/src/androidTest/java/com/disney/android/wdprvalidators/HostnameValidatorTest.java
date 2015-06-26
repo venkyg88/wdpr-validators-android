@@ -41,7 +41,7 @@ public class HostnameValidatorTest extends TestCase {
     public void testForValidHostname(){
         String hostname = "disney.com";
         List<String> result = hostnameValidator.checkHostName(hostname);
-        assertEquals("",result.get(0));
+        assertEquals(0,result.size());
     }
 
 
