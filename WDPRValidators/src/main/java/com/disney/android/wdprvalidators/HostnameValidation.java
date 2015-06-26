@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  */
 public class HostnameValidation {
 
-    private static final String HOSTNAME_PATTERN = "^([a-z0-9][a-z0-9-]{0,62}\\.)+([a-z]{2,20})$(i?)";
+    private static final String HOSTNAME_PATTERN = "^([a-z0-9][a-z0-9-]{0,63}\\.)+([a-z]{2,20})$";
 
     private static final String IPADDRESS_PATTERN = "^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
             + "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
@@ -52,39 +52,42 @@ public class HostnameValidation {
         {
             if (!isHostName(hostname))
             {
-                arraylist.add("ERR_HOSTNAME_OTHER");
-            }
-            if (hostname.length() > 255)
-            {
-                arraylist.add("ERR_HOSTNAME_LEN");
-            }
-            if (hostname.contains("."))
-            {
-                int tld = hostname.substring(hostname.lastIndexOf('.') + 1).length();
-                if (tld < 2 || tld > 20)
+                if (hostname.length() > 255)
                 {
-                    arraylist.add("ERR_HOSTNAME_TLD_LEN");
+                     arraylist.add("ERR_HOSTNAME_LEN");
                 }
-                String[] strArray = hostname.split("\\.");
-                int countOfSubDomains =strArray.length-1;
-                boolean flag = true;
-                for (int i = 0; i < countOfSubDomains; i++)
+                if (hostname.contains("."))
                 {
-                    int strSubDomainLength = strArray[i].length();
-                    if (strSubDomainLength > 63 && flag==true)
+                    int tld = hostname.substring(hostname.lastIndexOf('.') + 1).length();
+                    if (tld < 2 || tld > 20)
                     {
-                        flag = false;
-                        arraylist.add("ERR_HOSTNAME_SUBDOMAIN_LEN");
+                        arraylist.add("ERR_HOSTNAME_TLD_LEN");
+                    }
+                    String[] strArray = hostname.split("\\.");
+                    int countOfSubDomains =strArray.length-1;
+                    boolean flag = true;
+                    for (int i = 0; i < countOfSubDomains; i++)
+                    {
+                        int strSubDomainLength = strArray[i].length();
+                        if (strSubDomainLength > 63 && flag==true)
+                        {
+                            flag = false;
+                            arraylist.add("ERR_HOSTNAME_SUBDOMAIN_LEN");
+                        }
+                    }
+                    if(hostname.endsWith("."))
+                    {
+                        arraylist.add("ERR_HOSTNAME_TLD");
                     }
                 }
-                if(hostname.endsWith("."))
+                if (isIPAddress(hostname) == true)
                 {
-                    arraylist.add("ERR_HOSTNAME_TLD");
+                    arraylist.add("ERR_HOSTNAME_IP");
                 }
-            }
-            if (isIPAddress(hostname) == true)
-            {
-                arraylist.add("ERR_HOSTNAME_IP");
+                if(arraylist.isEmpty())
+                {
+                    arraylist.add("ERR_HOSTNAME_OTHER");
+                }
             }
         }
         else
