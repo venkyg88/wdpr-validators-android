@@ -131,12 +131,22 @@ predicate to determine whether the target date is in the range provided.
 
 ## isHostname(Object)
 
-predicate to determine whether the input string is a valid hostname.
+Predicate to determine whether input value contain valid Hostname or not. It accepts alphanumeric and other accepted character as specified in RFC1123
 
 **Params**
 - Object `String` - hostname Object
 
 **Returns** `boolean`
+
+**Usage:**
+
+    isHostName(final String hostname)
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
 
 ## checkHostName(Object)
 
@@ -146,3 +156,16 @@ Checker to determine the error code/codes for hostname failure, if failed else r
 - Object `String` - hostname Object
 
 **Returns** `List<String>`
+
+**Usage:**
+
+    hostnameValidator.checkHostName(hostname);
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')<br>
+> Failure Scenario: List('ERR\_HOSTNAME\_OTHER')
+
+Refer error codes [here](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md)
+
+-----
