@@ -140,7 +140,7 @@ Predicate to determine whether input value contain valid Hostname or not. It acc
 
 **Usage:**
 
-    isHostName(final String hostname)
+    hostnameValidator.isHostName(final String hostname)
 
 **Output:**<br>
 > **TRUE** (Boolean)<br>
