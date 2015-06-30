@@ -59,8 +59,12 @@ public class HostnameValidationDemo extends Activity{
             errorCode=errorCode.concat(str);
         }
         //mResultText.setError((CharSequence) errorCode);
-        Toast.makeText(this,errorCode,Toast.LENGTH_LONG).show();
-
+        if(errorCode.equals("")){
+            Toast.makeText(this, "It is a Valid Hostname", Toast.LENGTH_LONG).show();
+        }
+        else {
+            Toast.makeText(this, errorCode, Toast.LENGTH_LONG).show();
+        }
 
     }
 }

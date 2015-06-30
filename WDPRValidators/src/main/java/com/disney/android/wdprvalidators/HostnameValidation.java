@@ -64,12 +64,12 @@ public class HostnameValidation {
                         arraylist.add("ERR_HOSTNAME_TLD_LEN");
                     }
                     String[] strArray = hostname.split("\\.");
-                    int countOfSubDomains =strArray.length-1;
+                    int countOfSubDomains = strArray.length - 1;
                     boolean flag = true;
                     for (int i = 0; i < countOfSubDomains; i++)
                     {
                         int strSubDomainLength = strArray[i].length();
-                        if (strSubDomainLength > 63 && flag==true)
+                        if (strSubDomainLength > 63 && flag)
                         {
                             flag = false;
                             arraylist.add("ERR_HOSTNAME_SUBDOMAIN_LEN");
