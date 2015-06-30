@@ -22,15 +22,15 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Spinner dynamicSpinner = (Spinner) findViewById(R.id.dynamic_spinner);
-        String[] items = new String[] { "Select an option","Email Validation", "Date Validation", "Unicode Validation"};
+        String[] items = new String[] { "Select an option","Email Validation", "Date Validation", "Unicode Validation", "Hostname Validation"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         dynamicSpinner.setAdapter(adapter);
         dynamicSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view,int position, long id) {
-                switch(position){
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
                     case 0:
                         //Do nothing, to show the option
                         break;
@@ -45,6 +45,10 @@ public class MainActivity extends Activity {
                     case 3:
                         //Unicode Validation.
                         unicodeIntent();
+                        break;
+                    case 4:
+                        //Hostname Validation
+                        HostnameIntent();
                         break;
                 }
             }
@@ -67,6 +71,11 @@ public class MainActivity extends Activity {
 
     public void unicodeIntent(){
         intent = new Intent(this, UnicodeValidationDemo.class);
+        startActivity(intent);
+    }
+
+    public void HostnameIntent(){
+        intent = new Intent(this, HostnameValidationDemo.class);
         startActivity(intent);
     }
 }

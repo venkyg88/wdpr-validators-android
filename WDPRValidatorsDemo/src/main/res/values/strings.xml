@@ -16,4 +16,38 @@
     <string name="rangeHint_StartInput">Enter startdate</string>
     <string name="rangeHint_EndInput">Enter enddate*</string>
     <string name="validateDateRange">ValidateRange</string>
+    <string name="hostname_validation">Hostname Validation</string>
+    <string name="label_hostname">Enter the hostname</string>
+
+    <string name="ERR_NUM">Input not a number</string>
+    <string name="ERR_BOOL">Input not a BOOL</string>
+    <string name="ERR_UNCHECK">Input not a string</string>
+    <string name="ERR_STRING">Input not a string</string>
+    <string name="ERR_SIMP_STRING">Input string contains characters outside the set ^[a-zA-Z0-9.-\?! ]*$/</string>
+    <string name="ERR_REGEXP">Input is not a valid RegExp</string>
+    <string name="ERR_ARRAY">Input not an array</string>
+    <string name="ERR_ARRAY_NOT_IN_RANGE">Input array contains a number of objects outside the defined range</string>
+    <string name="ERR_ARRAY_CONTENTS_TYPE_MISMATCH">Array contains elements that do not match the intended type Map</string>
+    <string name="ERR_MAP">Input not a map</string>
+    <string name="ERR_MAP_NO_KEYS">Map does not contain any keys Date</string>
+    <string name="ERR_DATE">Input not a date</string>
+    <string name="ERR_CC_OTHER">Credit Card RegExp Pattern Fails</string>
+    <string name="ERR_CC_LEN">Invalid Length</string>
+    <string name="ERR_CC_LUHN">Credit Card failed Luhn check</string>
+    <string name="ERR_CC_CVC">Invalid CVC code</string>
+    <string name="ERR_CC_UNSUP_TYP">Credit Card does not match supported patterns</string>
+    <string name="ERR_CC_EXP">Credit Card is expired Email</string>
+    <string name="ERR_EMAIL_OTHER">Email RegExp Pattern Fails</string>
+    <string name="ERR_EMAIL_LEN">Email has an invalid length</string>
+    <string name="ERR_EMAIL_SPACES">Email contains spaces</string>
+    <string name="ERR_EMAIL_LEN_LOCAL">Email has invalid local length</string>
+    <string name="ERR_EMAIL_STRT_DOT">Email starts with a dot</string>
+    <string name="ERR_EMAIL_END_DOT">Email ends with a dot</string>
+    <string name="ERR_EMAIL_DBL_DOT">Email contains two consecutive dots</string>
+    <string name="ERR_EMAIL_INVALID_AT">Email contains invalid number of @ symbols ISO8601 Date</string>
+    <string name="ERR_ISO_DATE">Input is not a valid ISO8601 Date Date Range</string>
+    <string name="ERR_DATE_RANGE_BEFORE">Input date falls before indicated range</string>
+    <string name="ERR_DATE_RANGE_AFTER">Input date falls after indicated range</string>
+    <string name="ERR_EMAIL_EMPTY">Email is empty</string>
+
 </resources>
