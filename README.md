@@ -78,6 +78,16 @@ predicate to determine whether a date meets the basic structure of an ISO 8601 d
 
 **Returns:** `boolean`
 
+**Usage:**
+
+    dateValidator.isISO8601(date)
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
+
 ## checkIsoDate(Object)
 
 Checker to determine whether the provided string is a valid ISO8601 date.
@@ -85,7 +95,18 @@ Checker to determine whether the provided string is a valid ISO8601 date.
 **Params**
 - Object `String` - date Object to be evaluated
 
-**Returns:** `String` - function that takes a single object for testing Function. This returns a string error message.
+**Returns** `List<String>`
+
+**Usage:**
+
+    dateValidator.checkIsoDate(date)
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_ISO\_DATE')<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')
+
+-----
 
 ## isAnArray(Object)
 
@@ -116,7 +137,19 @@ Checker to determine whether user date falls in the range of start date and end 
 - Object `Date` - end date Object
 - Object `Date` - target date Object to be evaluated with start and end date
 
-**Returns** `String`
+**Returns** `List<String>`
+
+**Usage:**
+
+    dateValidator.checkDateRange(startDate, endDate, userDate)
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')<br>
+> Failure Scenario: List('ERR\_DATE\_RANGE\_BEFORE')
+> Failure Scenario: List('ERR\_DATE\_RANGE\_AFTER')
+
+-----
 
 ## isInRange(Object, Object, Object)
 
@@ -129,6 +162,16 @@ predicate to determine whether the target date is in the range provided.
 
 **Returns** `boolean`
 
+**Usage:**
+
+    dateValidator.isInRange(startDate, endDate, userDate)
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
+
 ## isHostname(Object)
 
 Predicate to determine whether input value contain valid Hostname or not. It accepts alphanumeric and other accepted character as specified in RFC1123
@@ -140,7 +183,7 @@ Predicate to determine whether input value contain valid Hostname or not. It acc
 
 **Usage:**
 
-    hostnameValidator.isHostName(final String hostname)
+    hostnameValidator.isHostName(hostname)
 
 **Output:**<br>
 > **TRUE** (Boolean)<br>
