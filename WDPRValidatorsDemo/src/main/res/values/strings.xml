@@ -9,13 +9,13 @@
     <string name="email_validation">Demo of Email Validation</string>
     <string name="date_validation">Demo of Date Validation</string>
     <string name="date_hint">ISO Date</string>
-    <string name="validateDate">ValidateDate</string>
+    <string name="validateDate">Validate Date</string>
     <string name="validateUnicode">validateUnicode</string>
     <string name="unicode_validation">Demo of Unicode Validation</string>
     <string name="rangeHint_userInput">Enter userdate*</string>
-    <string name="rangeHint_StartInput">Enter startdate</string>
+    <string name="rangeHint_StartInput">Enter startdate*</string>
     <string name="rangeHint_EndInput">Enter enddate*</string>
-    <string name="validateDateRange">ValidateRange</string>
+    <string name="validateDateRange">Validate Range</string>
     <string name="hostname_validation">Hostname Validation</string>
     <string name="label_hostname">Enter the hostname</string>
 

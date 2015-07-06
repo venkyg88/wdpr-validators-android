@@ -7,14 +7,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
-import com.disney.android.wdprvalidators.CodeDescription;
-import com.disney.android.wdprvalidators.DateValidator;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by gonuv001 on 6/3/2015.
@@ -73,11 +69,13 @@ public class DateValidationDemo extends Activity {
      */
     public void onDateValidateClick(View view) {
         String date = mDateText.getText().toString();
-        String result = dateValidator.checkIsoDate(date);
-        if (result == "200") {
+        List<String> result = dateValidator.checkIsoDate(date);
+        if (result.size() == 0) {
             mResultText.setText("date format is good");
         } else {
-            mDateText.setError((CharSequence) CodeDescription.getCodeDescription().get(result));
+            for(int i = 0; i < result.size(); i++) {
+                mDateText.setError(result.get(i));
+            }
             mResultText.setText("");
         }
     }
@@ -105,19 +103,27 @@ public class DateValidationDemo extends Activity {
             e.printStackTrace();
         }
 
-        if(eDate==null){
-            mEndDateText.setError("cannot be empty");
+        if(sDate == null){
+            mStartDateText.setError("Start Date cannot be empty");
         }
-        if (uDate == null) {
-            mUserDateText.setError("cannot be empty");
+
+        if(eDate == null){
+            mEndDateText.setError("End Date cannot be empty");
         }
-        String result = null;
-        result = dateValidator.checkDateRange(sDate,eDate,uDate);
-        if(result == "200"){
+
+        if(uDate == null) {
+            mUserDateText.setError("Target Date cannot be empty");
+        }
+
+        List<String> result = dateValidator.checkDateRange(sDate,eDate,uDate);
+        if(result.size() == 0){
             Toast.makeText(this,"Falls in the range",Toast.LENGTH_SHORT).show();
         }
-        else if(result == "102"){
-            Toast.makeText(this,"Doesn't fall in the range",Toast.LENGTH_SHORT).show();
+        else {
+            for(int i = 0; i < result.size(); i++) {
+                Toast.makeText(this,result.get(i),Toast.LENGTH_SHORT).show();
+            }
+
         }
     }
 }

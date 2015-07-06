@@ -18,7 +18,8 @@
             android:layout_gravity="start"
             android:text="@string/date_validation"
             android:textAllCaps="@bool/abc_config_actionMenuItemAllCaps"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/dateFormat" />
 
 
         <EditText
@@ -47,6 +48,13 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="278dp"
+            android:layout_height="40dp"
+            android:text="Date Format: YYYY-MM-DD"
+            android:id="@+id/textView" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

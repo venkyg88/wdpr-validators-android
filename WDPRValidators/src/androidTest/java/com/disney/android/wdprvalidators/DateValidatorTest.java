@@ -6,6 +6,7 @@ import junit.framework.TestCase;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by venkatgonuguntala on 5/22/15.
@@ -30,7 +31,8 @@ public class DateValidatorTest extends TestCase{
             "2010-02-18T16,25:23:48,444"};
 
     String[] arrayForTrueDateRange = {"2010-01-01","2005-01-01","2025-01-01","2020-01-01","2005-01-02"};
-    String[] arrayForFalseDateRange = {"2030-01-01","2000-01-01","2025-01-02"};
+    String[] arrayForAfterDateRange = {"2030-01-01","2025-02-01","2025-01-02"};
+    String[] arrayForBeforeDateRange = {"2004-01-01","2004-10-12","2000-01-02"};
 
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -47,39 +49,58 @@ public class DateValidatorTest extends TestCase{
     @SmallTest
     public void testForValidDate() {
         for(int i=0;i<arrayForValid.length;i++){
-            String result2 = dateObj.checkIsoDate(arrayForValid[i]);
-            assertEquals("200", result2);
+            List<String> result = dateObj.checkIsoDate(arrayForValid[i]);
+            assertEquals(0, result.size());
         }
     }
 
     @SmallTest
     public void testForInvalidDate(){
         for(int i=0;i< arrayforInvalid.length;i++) {
-            String result2 = dateObj.checkIsoDate(arrayforInvalid[i]);
-            assertEquals("114", result2);
+            List<String> result = dateObj.checkIsoDate(arrayforInvalid[i]);
+            assertEquals("ERR_ISO_DATE", result.get(0));
         }
+    }
+
+    @SmallTest
+    public void testForNullDate(){
+        List<String> result = dateObj.checkIsoDate(null);
+        assertEquals("ERR_EMPTY_INPUT", result.get(0));
+    }
+
+    public void testForEmptyDate(){
+        List<String> result = dateObj.checkIsoDate("");
+        assertEquals("ERR_EMPTY_INPUT", result.get(0));
     }
 
     @SmallTest
     public void testToCheckDateInRange() throws ParseException {
         for(int i =0;i< arrayForTrueDateRange.length;i++) {
-            String result = dateObj.checkDateRange(sDate, eDate, formatter.parse(arrayForTrueDateRange[i]));
-            assertEquals("200", result);
+            List<String> result = dateObj.checkDateRange(sDate, eDate, formatter.parse(arrayForTrueDateRange[i]));
+            assertEquals(0, result.size());
         }
     }
 
     @SmallTest
-    public void testToCheckDateOutOfRange() throws ParseException {
-        for(int i =0;i< arrayForFalseDateRange.length;i++) {
-            String result = dateObj.checkDateRange(sDate, eDate, formatter.parse(arrayForFalseDateRange[i]));
-            assertEquals("102", result);
+    public void testToCheckDateRangeBefore() throws ParseException {
+        for(int i = 0; i < arrayForBeforeDateRange.length;i++) {
+            List<String> result = dateObj.checkDateRange(sDate, eDate, formatter.parse(arrayForBeforeDateRange[i]));
+            assertEquals("ERR_DATE_RANGE_BEFORE", result.get(0));
         }
     }
 
     @SmallTest
-    public void testToCheckNoUserInputDate() throws ParseException {
-        assertEquals("200",dateObj.checkDateRange(startDate,eDate,formatter.parse("2016-04-06")));
-        assertEquals("102",dateObj.checkDateRange(startDate,eDate,formatter.parse("2015-04-06")));
+    public void testToCheckDateRangeAfter() throws ParseException {
+        for(int i = 0; i < arrayForAfterDateRange.length; i++) {
+            List<String> result = dateObj.checkDateRange(sDate, eDate, formatter.parse(arrayForAfterDateRange[i]));
+            assertEquals("ERR_DATE_RANGE_AFTER",result.get(0));
+        }
+    }
+
+    @SmallTest
+    public void testToCheckNullDateRange() throws ParseException {
+        List<String> result = dateObj.checkDateRange(null, null, null);
+        assertEquals("ERR_EMPTY_INPUT", result.get(0));
     }
 
     @Override
