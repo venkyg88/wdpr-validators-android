@@ -25,22 +25,35 @@ public class PrimitiveValidatorTest extends TestCase {
         assertEquals(true, arrayObj.isAnArray(mStringArray));
         assertEquals(true, arrayObj.isAnArray(mIntArray));
         assertEquals(true, arrayObj.isAnArray(mDoubleArray));
+        assertEquals(0, arrayObj.arrayChecker(mStringArray).size());
+        assertEquals(0, arrayObj.arrayChecker(mIntArray).size());
+        assertEquals(0, arrayObj.arrayChecker(mDoubleArray).size());
     }
 
     @SmallTest
     public void testForNotArray(){
         assertEquals(false, arrayObj.isAnArray(mString));
+        assertEquals("ERR_ARRAY", arrayObj.arrayChecker(mString).get(0));
+        assertEquals("ERR_EMPTY_INPUT", arrayObj.arrayChecker(null).get(0));
+
     }
 
     @SmallTest
     public void testForString(){
         assertEquals(true,arrayObj.isAString(mString));
+        assertEquals(0,arrayObj.stringChecker(mString).size());
     }
 
+    @SmallTest
     public void testForNotString(){
         assertEquals(false, arrayObj.isAString(mIntArray));
         assertEquals(false, arrayObj.isAString(mStringArray));
         assertEquals(false, arrayObj.isAString(mDoubleArray));
+        assertEquals(false, arrayObj.isAString(mDoubleArray));
+        assertEquals("ERR_STRING", arrayObj.stringChecker(mDoubleArray).get(0));
+        assertEquals("ERR_STRING", arrayObj.stringChecker(mStringArray).get(0));
+        assertEquals("ERR_EMPTY_INPUT", arrayObj.stringChecker(null).get(0));
+
     }
 
     @Override

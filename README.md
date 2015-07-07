@@ -44,11 +44,19 @@ The WDPRValidators have the following methods.
 This function returns a boolean, checking whether it is valid email or Invalid email.
 
 **Params**
-- emailPattern 'Pattern' predefined email pattern.
 - email 'String'
 
 **Returns:** `Boolean`
 
+**Usage:**
+
+    emailValidator.isValidEmail(email)
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
 
 ## checkEmail(email)
 
@@ -57,8 +65,20 @@ This function will throw error codes of the respective messages, if isValidEmail
 **Params**
 - email `String` Email should follow RFC standards.
 
-**Returns:** `String`
+**Returns:** `List<String>`
 
+**Usage:**
+
+    emailValidator.checkEmail(email)
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_EMAIL\_LEN\_LOCAL')<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')
+> Failure Scenario: List('ERR\_EMAIL\_STRT\_DOT')
+> Failure Scenario: List('ERR\_EMAIL\_END\_DOT')
+
+-----
 
 ## aUnicodeString(Object)
 
@@ -117,6 +137,35 @@ predicate to determine whether the provided Object is an array.
 
 **Returns:** `boolean` 
 
+**Usage:**
+
+    primitiveValidator.isAnArray(Object)
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
+
+## arrayChecker(Object)
+
+Checker to determine whether the input object is a array.
+
+**Params**
+- Object `Object` - Object to be evaluated
+
+**Returns** `boolean`
+
+**Usage:**
+
+    primitiveValidator.arrayChecker(Object)
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_ARRAY')<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')
+
+-----
 
 ## isAString(Object)
 
@@ -127,6 +176,35 @@ predicate to determine whether the provided Object is a String.
 
 **Returns** `boolean`
 
+**Usage:**
+
+    primitiveValidator.isAString(Object)
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
+
+## stringChecker(Object)
+
+Checker to determine whether the input object is a string.
+
+**Params**
+- Object `Object` - Object to be evaluated
+
+**Returns** `boolean`
+
+**Usage:**
+
+    primitiveValidator.stringChecker(Object)
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_STRING')<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')
+
+-----
 
 ## checkDateRange(Object, Object, Object)
 

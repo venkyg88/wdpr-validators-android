@@ -10,7 +10,7 @@
     <string name="date_validation">Demo of Date Validation</string>
     <string name="date_hint">ISO Date</string>
     <string name="validateDate">Validate Date</string>
-    <string name="validateUnicode">validateUnicode</string>
+    <string name="validateUnicode">validate Unicode</string>
     <string name="unicode_validation">Demo of Unicode Validation</string>
     <string name="rangeHint_userInput">Enter userdate*</string>
     <string name="rangeHint_StartInput">Enter startdate*</string>
