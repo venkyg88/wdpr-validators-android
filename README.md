@@ -40,7 +40,8 @@ Note: Always Make sure your emulator/device is up and running before you test.
 
 # Code Coverage
 1. Open `Run/Debug` and select `AllTests`.
-2. Click the `Coverage` menu icon, next to `Run/Debug`.
+2. Open `Build Variants` and select `Unit Tests` under `Test Artifact`.
+3. Click the `Coverage` menu icon, next to `Run/Debug`.
 
 ## API Methods
 
