@@ -12,7 +12,7 @@ public class PrimitiveValidator
      * @param arrayObject
      * @return boolean (True | False)
      */
-    public boolean isAnArray(Object arrayObject)
+    public boolean isAnArray(final Object arrayObject)
     {
         boolean result = false;
         if ( arrayObject != null )
@@ -30,12 +30,12 @@ public class PrimitiveValidator
      * @param object
      * @return String
      */
-    public List<String> arrayChecker(Object object)
+    public List<String> arrayChecker(final Object object)
     {
         List<String> arrayList = new ArrayList<>();
         if (object != null)
         {
-            if (!isAnArray(object))
+            if (!this.isAnArray(object))
             {
                 arrayList.add("ERR_ARRAY");
             }
@@ -52,7 +52,7 @@ public class PrimitiveValidator
      * @param
      * @return boolean (True | False)
      */
-    public boolean isAString(Object stringObject)
+    public boolean isAString(final Object stringObject)
     {
         boolean result = false;
         if (stringObject != null)
@@ -70,9 +70,9 @@ public class PrimitiveValidator
      * @param stringObject
      * @return string
      */
-    public List<String> stringChecker(Object stringObject)
+    public List<String> stringChecker(final Object stringObject)
     {
-        List<String> arrayList = new ArrayList<>();
+        final List<String> arrayList = new ArrayList<>();
         if (stringObject != null && !stringObject.equals(""))
         {
             if (stringObject.getClass() != String.class)

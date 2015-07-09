@@ -56,12 +56,7 @@ public class DateValidationDemo extends Activity {
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
-                try {
-                    onDateRangeValidateClick(v);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                onDateRangeValidateClick(v);
                 //Toast.makeText(DateValidationDemo.this, "Exception at onClick method",Toast.LENGTH_SHORT).show();
             }
         });
@@ -83,23 +78,25 @@ public class DateValidationDemo extends Activity {
         }
     }
 
-    public void onDateRangeValidateClick(View view) throws ParseException {
+    public void onDateRangeValidateClick(View view) {
         String userDate = mUserDateText.getText().toString();
         String startDate = mStartDateText.getText().toString();
         String endDate = mEndDateText.getText().toString();
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date sDate=null,eDate = null,uDate=null;
+        Date sDate=null;
         try {
             sDate = formatter.parse(startDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        Date eDate = null;
         try {
             eDate = formatter.parse(endDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        Date uDate = null;
         try {
             uDate =  formatter.parse(userDate);
         } catch (ParseException e) {

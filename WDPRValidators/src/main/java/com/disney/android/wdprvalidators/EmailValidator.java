@@ -11,14 +11,14 @@ public class EmailValidator {
 
     private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
-    private static Pattern emailPattern = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
+    private static final Pattern emailPattern = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
 
     /**
      * @description Validates if the given input is a valid email address.
      * @param email
      * @return boolean (true | false)
      */
-    public boolean isValidEmail(String email)
+    public boolean isValidEmail(final String email)
     {
         return emailPattern.matcher(email).matches();
     }
@@ -28,18 +28,18 @@ public class EmailValidator {
      * @param email
      * @return Array key and value about status
      */
-    public List<String> checkEmail(String email)
+    public List<String> checkEmail(final String email)
     {
-        List<String> emailList = new ArrayList<>();
+        final List<String> emailList = new ArrayList<>();
 
         List<String> hostnameList = new ArrayList<>();
 
-        HostnameValidation hnvalidation = new HostnameValidation();
+        final HostnameValidation hnvalidation = new HostnameValidation();
 
         if (email != null && !email.equals(""))
         {
 
-            if (!isValidEmail(email))
+            if (!this.isValidEmail(email))
             {
 
                 if (email.contains(".."))
@@ -63,30 +63,29 @@ public class EmailValidator {
                 }
 
                 // Identify the count of '@'.
-                int count = email.length() - email.replaceAll("@", "").length();
+                final int count = email.length() - email.replaceAll("@", "").length();
                 if (count > 1  || count == 0)
                 {
                     emailList.add("ERR_EMAIL_INVALID_AT");
                 }
 
-                int localLength;
-                String hostname = null;
                 if (count == 1 && !email.endsWith("@")) {
-                    String arryval[] = email.split("@");
-                    localLength = arryval[0].length();
-                    hostname = arryval[1];
+                    final String[] arryval = email.split("@");
+                    final int localLength = arryval[0].length();
+                    final String hostname = arryval[1];
                     hostnameList = hnvalidation.checkHostName(hostname);
                     if (localLength > 64) {
                         emailList.add("ERR_EMAIL_LEN_LOCAL");
                     }
                 }
 
-                if (email.length() > 254 || email.length() < 6)
+                final int emailLength = email.length();
+                if (emailLength > 254 || emailLength < 6)
                 {
                     emailList.add("ERR_EMAIL_LEN");
                 }
 
-                if (email.indexOf(" ") != -1)
+                if (email.contains(" "))
                 {
                     emailList.add("ERR_EMAIL_SPACES");
                 }

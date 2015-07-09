@@ -16,16 +16,16 @@ public class HostnameValidation {
             + "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
             + "([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
 
-    private static Pattern hnpattern = Pattern.compile(HOSTNAME_PATTERN,Pattern.CASE_INSENSITIVE);
+    private static final Pattern hnpattern = Pattern.compile(HOSTNAME_PATTERN,Pattern.CASE_INSENSITIVE);
 
-    private static Pattern ipPattern = Pattern.compile(IPADDRESS_PATTERN);
+    private static final Pattern ipPattern = Pattern.compile(IPADDRESS_PATTERN);
 
     /**
      * @Description Validate hostname with regular expression
      * @param hostname for validation
      * @return true valid hostname, false invalid hostname
      */
-    public boolean isHostName(final String hostname)
+    public boolean isHostName(String hostname)
     {
         return hnpattern.matcher(hostname).matches();
     }
@@ -35,7 +35,7 @@ public class HostnameValidation {
      * @param ip ip address for validation
      * @return true valid ip address, false invalid ip address
      */
-    public boolean isIPAddress(final String ip)
+    public boolean isIPAddress(String ip)
     {
         return ipPattern.matcher(ip).matches();
     }
@@ -45,7 +45,7 @@ public class HostnameValidation {
      * @param hostname
      * @return List
      */
-    public List<String> checkHostName(final String hostname)
+    public List<String> checkHostName(String hostname)
     {
         List<String> arraylist = new ArrayList<>();
         if (hostname != null && !hostname.equals(""))
@@ -79,7 +79,7 @@ public class HostnameValidation {
                         arraylist.add("ERR_HOSTNAME_TLD");
                     }
                 }
-                if (isIPAddress(hostname) == true)
+                if (isIPAddress(hostname))
                 {
                     arraylist.add("ERR_HOSTNAME_IP");
                 }
