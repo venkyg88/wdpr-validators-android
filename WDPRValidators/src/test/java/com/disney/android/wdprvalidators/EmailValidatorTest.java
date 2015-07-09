@@ -109,6 +109,26 @@ public class EmailValidatorTest extends TestCase{
         assertEquals("ERR_HOSTNAME_TLD",result.get(7));
     }
 
+    @SmallTest
+    public void testForTldNotBeingNumber(){// If TLD is number the error is handled in the ERROR_HOSTNAME_OTHER.
+        String hostname = "disney@123";
+        List<String> result = emailObj.checkEmail(hostname);
+        assertEquals("ERR_HOSTNAME_OTHER",result.get(1));
+    }
+
+    @SmallTest
+    public void testForValidIpAddress(){
+        String hostname = "venky@127.0.0.255";
+        List<String> result = emailObj.checkEmail(hostname);
+        assertEquals("ERR_HOSTNAME_IP",result.get(1));
+    }
+
+    @SmallTest
+    public void testForInvalidAT(){
+        String hostname ="disney";
+        List<String> result = emailObj.checkEmail(hostname);
+        assertEquals("ERR_EMAIL_INVALID_AT",result.get(0));
+    }
 
     @Override
     protected void tearDown() throws Exception {
