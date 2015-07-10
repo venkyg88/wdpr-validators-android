@@ -9,6 +9,7 @@ import junit.framework.TestCase;
 public class PrimitiveValidatorTest extends TestCase {
 
     String mStringArray[] = {"venk","kat","gonu"};  // It's an array
+    String emptyArray[] = {};
     String mString = "v,e,n,k,a,t";           // Not an array
     int[] mIntArray = {102,133,345,475};        // It's an array
     double[] mDoubleArray = {10.9};                   // It's an array
@@ -54,6 +55,12 @@ public class PrimitiveValidatorTest extends TestCase {
         assertEquals("ERR_STRING", arrayObj.stringChecker(mStringArray).get(0));
         assertEquals("ERR_EMPTY_INPUT", arrayObj.stringChecker(null).get(0));
 
+    }
+
+    @SmallTest
+    public void testForEmptyArray(){
+        assertEquals(true, arrayObj.isAnArray(emptyArray));
+        assertEquals(0, arrayObj.arrayChecker(emptyArray).size());
     }
 
     @Override
