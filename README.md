@@ -86,7 +86,7 @@ This function will throw error codes of the respective messages, if isValidEmail
 > Failure Scenario: List('ERR\_EMAIL\_STRT\_DOT')
 > Failure Scenario: List('ERR\_EMAIL\_END\_DOT')
 
-Refer error codes [here](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#email)
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#email) for further details on their definitions
 
 -----
 
@@ -116,7 +116,7 @@ predicate to determine whether a date meets the basic structure of an ISO 8601 d
 > **TRUE** (Boolean)<br>
 > **FALSE** (Boolean)
 
-Refer error codes [here](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#string)
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#string) for further details on their definitions
 
 -----
 
@@ -138,7 +138,7 @@ Checker to determine whether the provided string is a valid ISO8601 date.
 > Failure Scenario: List('ERR\_ISO\_DATE')<br>
 > Failure Scenario: List('ERR\_EMPTY\_INPUT')
 
-Refer error codes [here](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#iso8601-date)
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#iso8601-date) for further details on their definitions
 
 -----
 
@@ -179,7 +179,7 @@ Checker to determine whether the input object is a array.
 > Failure Scenario: List('ERR\_ARRAY')<br>
 > Failure Scenario: List('ERR\_EMPTY\_INPUT')
 
-Refer error codes [here](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#array)
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#array) for further details on their definitions
 
 -----
 
@@ -220,7 +220,7 @@ Checker to determine whether the input object is a string.
 > Failure Scenario: List('ERR\_STRING')<br>
 > Failure Scenario: List('ERR\_EMPTY\_INPUT')
 
-Refer error codes [here] (https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#string)
+Please refer to our [error codes documentation] (https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#string) for further details on their definitions
 
 -----
 
@@ -245,7 +245,8 @@ Checker to determine whether user date falls in the range of start date and end 
 > Failure Scenario: List('ERR\_DATE\_RANGE\_BEFORE')
 > Failure Scenario: List('ERR\_DATE\_RANGE\_AFTER')
 
-Refer codes [here](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#date-range)
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#date-range) for further details on their definitions
+
 -----
 
 ## isInRange(Object, Object, Object)
@@ -306,6 +307,6 @@ Checker to determine the error code/codes for hostname failure, if failed else r
 > Failure Scenario: List('ERR\_EMPTY\_INPUT')<br>
 > Failure Scenario: List('ERR\_HOSTNAME\_OTHER')
 
-Refer error codes [here](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#hostname)
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#hostname) for further details on their definitions
 
 -----
