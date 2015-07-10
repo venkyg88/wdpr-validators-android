@@ -31,6 +31,17 @@ public class UnicodeValidatorTest extends TestCase{
         assertEquals(false, result);
     }
 
+    @SmallTest
+    public void testForInvalidUnicodeChecker(){
+        assertEquals("ERR_UNICODE_STRING",UnicodeObj.unicodeChecker("U+F024").get(0));
+    }
+
+    @SmallTest
+    public void testForNULLUnicodeChecker(){
+
+        assertEquals("ERR_EMPTY_INPUT",UnicodeObj.unicodeChecker(null).get(0));
+    }
+
     @Override
     protected void tearDown() throws Exception {
         super.tearDown();

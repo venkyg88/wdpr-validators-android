@@ -1,5 +1,7 @@
 package com.disney.android.wdprvalidators;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -16,11 +18,31 @@ public class UnicodeValidator{
      * @param  value
      * @return Boolean (true | false)
      */
-    public boolean aUnicodeString(String value){
+    public boolean aUnicodeString(String value)
+    {
         boolean result = false;
-        if (pattern.matcher(value).matches()) {
+        if (pattern.matcher(value).matches())
+        {
             result = true;
         }
         return result;
+    }
+
+    /**
+     * @desc checker for Unicode Valdiation
+     * @param value
+     * @return List
+     */
+    public List<String> unicodeChecker(String value)
+    {
+        List<String> unicodeList = new ArrayList<>();
+        if(value != null && !value.equals("")){
+            unicodeList.add("ERR_UNICODE_STRING");
+        }
+        else
+        {
+            unicodeList.add("ERR_EMPTY_INPUT");
+        }
+        return unicodeList;
     }
 }

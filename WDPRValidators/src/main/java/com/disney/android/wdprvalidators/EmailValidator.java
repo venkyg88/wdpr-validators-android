@@ -26,7 +26,7 @@ public class EmailValidator {
     /**
      * @description Method to validate Email and return message.
      * @param email
-     * @return Array key and value about status
+     * @return List
      */
     public List<String> checkEmail(final String email)
     {

@@ -97,7 +97,39 @@ Predicate to determine whether something is a fully nuanced Unicode string with 
 **Params**
 - Object `String`
 
-**Returns:** `boolean`
+**Returns:** `Boolean`
+
+**Usage:**
+
+    unicodeValidator.aUnicodeString(email)
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
+
+## unicodeChecker(email)
+
+Checker function to identify the error messages, if its not unicode.
+
+**Params**
+- unicode `String`
+
+**Returns:** `List<String>`
+
+**Usage:**
+
+    unicodeValidator.unicodeChecker(unicode)
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_UNICODE\_STRING')<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')
+
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#string) for further details on their definitions
+
+-----
 
 ## isISO8601(Object)
 
