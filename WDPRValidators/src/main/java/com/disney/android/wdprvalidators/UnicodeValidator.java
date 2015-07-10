@@ -9,6 +9,10 @@ import java.util.regex.Pattern;
  */
 public class UnicodeValidator{
 
+    private static final String ERR_UNICODE_STRING = "ERR_UNICODE_STRING";
+
+    private static final String ERR_EMPTY_INPUT = "ERR_EMPTY_INPUT";
+
     private static final String UNICODE_PATTERN = "^[\\p{L}\\p{M}\\p{N}\\p{Z}\\p{P}]*$";
 
     private static final Pattern pattern = Pattern.compile(UNICODE_PATTERN);
@@ -36,12 +40,12 @@ public class UnicodeValidator{
     public List<String> unicodeChecker(String value)
     {
         List<String> unicodeList = new ArrayList<>();
-        if(value != null && !value.equals("")){
-            unicodeList.add("ERR_UNICODE_STRING");
+        if(value != null && !value.isEmpty()){
+            unicodeList.add(ERR_UNICODE_STRING);
         }
         else
         {
-            unicodeList.add("ERR_EMPTY_INPUT");
+            unicodeList.add(ERR_EMPTY_INPUT);
         }
         return unicodeList;
     }

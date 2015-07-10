@@ -7,6 +7,12 @@ import java.util.List;
  */
 public class PrimitiveValidator
 {
+    private static final String ERR_ARRAY = "ERR_ARRAY";
+
+    private static final String ERR_EMPTY_INPUT = "ERR_EMPTY_INPUT";
+
+    private static final String ERR_STRING = "ERR_STRING";
+
     /**
      * @Description Array Predicate to check for an array.
      * @param arrayObject
@@ -37,12 +43,12 @@ public class PrimitiveValidator
         {
             if (!this.isAnArray(object))
             {
-                arrayList.add("ERR_ARRAY");
+                arrayList.add(ERR_ARRAY);
             }
         }
         else
         {
-            arrayList.add("ERR_EMPTY_INPUT");
+            arrayList.add(ERR_EMPTY_INPUT);
         }
         return arrayList;
     }
@@ -75,14 +81,14 @@ public class PrimitiveValidator
         final List<String> arrayList = new ArrayList<>();
         if (stringObject != null && !stringObject.equals(""))
         {
-            if (stringObject.getClass() != String.class)
+            if (!(stringObject instanceof String))
             {
-                arrayList.add("ERR_STRING");
+                arrayList.add(ERR_STRING);
             }
         }
         else
         {
-            arrayList.add("ERR_EMPTY_INPUT");
+            arrayList.add(ERR_EMPTY_INPUT);
         }
         return arrayList;
     }

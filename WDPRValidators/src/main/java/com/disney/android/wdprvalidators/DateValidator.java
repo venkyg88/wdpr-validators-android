@@ -10,6 +10,13 @@ import java.util.regex.Pattern;
  */
 public class DateValidator
 {
+    private static final String ERR_EMPTY_INPUT = "ERR_EMPTY_INPUT";
+
+    private static final String ERR_ISO_DATE = "ERR_ISO_DATE";
+
+    private static final String ERR_DATE_RANGE_BEFORE = "ERR_DATE_RANGE_BEFORE";
+
+    private static final String ERR_DATE_RANGE_AFTER = "ERR_DATE_RANGE_AFTER";
 
     private static final String DATE_PATTERN = "^([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\17[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$";
 
@@ -38,22 +45,16 @@ public class DateValidator
     public List<String> checkIsoDate(final String date)
     {
         final List<String> isoList = new ArrayList<>();
-        if(date != null )
+        if(date != null && !date.isEmpty())
         {
-            final int datelen = date.length();
-            //condition to check empty input which is not null.
-            if (datelen == 0)
+            if (!this.isISO8601(date))
             {
-                isoList.add("ERR_EMPTY_INPUT");
-            }
-            else if (!this.isISO8601(date))
-            {
-                isoList.add("ERR_ISO_DATE");
+                isoList.add(ERR_ISO_DATE);
             }
         }
         else
         {
-            isoList.add("ERR_EMPTY_INPUT");
+            isoList.add(ERR_EMPTY_INPUT);
         }
         return isoList;
     }
@@ -74,17 +75,17 @@ public class DateValidator
             {
                 if (userDate.before(startDate))
                 {
-                    dateRangeList.add("ERR_DATE_RANGE_BEFORE");
+                    dateRangeList.add(ERR_DATE_RANGE_BEFORE);
                 }
                 if (userDate.after(endDate))
                 {
-                    dateRangeList.add("ERR_DATE_RANGE_AFTER");
+                    dateRangeList.add(ERR_DATE_RANGE_AFTER);
                 }
             }
         }
         else
         {
-            dateRangeList.add("ERR_EMPTY_INPUT");
+            dateRangeList.add(ERR_EMPTY_INPUT);
         }
         return dateRangeList;
     }
