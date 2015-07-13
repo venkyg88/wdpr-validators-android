@@ -8,7 +8,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-
 /**
  * Created by venkatgonuguntala on 5/6/15.
  */

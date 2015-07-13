@@ -1,6 +1,7 @@
 package com.disney.android.wdprvalidators;
 
-import android.util.Patterns;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -8,72 +9,118 @@ import java.util.regex.Pattern;
  */
 public class EmailValidator {
 
+    private static final String ERR_EMAIL_DBL_DOT = "ERR_EMAIL_DBL_DOT";
+
+    private static final String ERR_EMAIL_STRT_DOT = "ERR_EMAIL_STRT_DOT";
+
+    private static final String ERR_EMAIL_END_DOT = "ERR_EMAIL_END_DOT";
+
+    private static final String ERR_EMAIL_LEN_LOCAL = "ERR_EMAIL_LEN_LOCAL";
+
+    private static final String ERR_EMAIL_INVALID_AT = "ERR_EMAIL_INVALID_AT";
+
+    private static final String ERR_EMAIL_LEN = "ERR_EMAIL_LEN";
+
+    private static final String ERR_EMAIL_SPACES = "ERR_EMAIL_SPACES";
+
+    private static final String ERR_EMAIL_OTHER = "ERR_EMAIL_OTHER";
+
+    private static final String ERR_EMPTY_INPUT = "ERR_EMPTY_INPUT";
+
+    private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+    private static final Pattern emailPattern = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
+
     /**
      * @description Validates if the given input is a valid email address.
-     * @param emailPattern, email
+     * @param email
      * @return boolean (true | false)
      */
-    public boolean isValidEmail(Pattern emailPattern, CharSequence email) {
+    public boolean isValidEmail(final String email)
+    {
         return emailPattern.matcher(email).matches();
     }
 
     /**
      * @description Method to validate Email and return message.
      * @param email
-     * @return Array key and value about status
+     * @return List
      */
-    public String checkEmail(String email) {
-        if(email!= null) {
+    public List<String> checkEmail(final String email)
+    {
+        final List<String> emailList = new ArrayList<>();
 
-            //code to check for email containing more than one consecutive '.'s.
-            if (email.contains("..")) { //Email cannot have two repeating adjacent .(dots)
-                return "112";
-            }
+        List<String> hostnameList = new ArrayList<>();
 
-            //code to check for email starting with or ending with '.'.
-            if (email.startsWith(".") || email.endsWith(".")) {
-                return "111";
-            }
+        final HostnameValidation hnvalidation = new HostnameValidation();
 
+        if (email != null && !email.isEmpty())
+        {
 
-            if (email.startsWith("@")) {
-                return "107";
-            } else {
-                String arryval[] = email.split("@");
-                if (arryval[0].length() > 64) {
-                    return "108";
+            if (!this.isValidEmail(email))
+            {
+
+                if (email.contains(".."))
+                {
+                    emailList.add(ERR_EMAIL_DBL_DOT);
+                }
+
+                if (email.startsWith("."))
+                {
+                    emailList.add(ERR_EMAIL_STRT_DOT);
+                }
+
+                if (email.endsWith("."))
+                {
+                    emailList.add(ERR_EMAIL_END_DOT);
+                }
+
+                if (email.startsWith("@"))
+                {
+                    emailList.add(ERR_EMAIL_LEN_LOCAL);
+                }
+
+                // Identify the count of '@'.
+                final int emailLength = email.length();
+                final int count = emailLength - email.replaceAll("@", "").length();
+                if (count > 1  || count == 0)
+                {
+                    emailList.add(ERR_EMAIL_INVALID_AT);
+                }
+
+                if (count == 1 && !email.endsWith("@")) {
+                    final String[] arryval = email.split("@");
+                    final int localLength = arryval[0].length();
+                    final String hostname = arryval[1];
+                    hostnameList = hnvalidation.checkHostName(hostname);
+                    if (localLength > 64) {
+                        emailList.add(ERR_EMAIL_LEN_LOCAL);
+                    }
+                }
+
+                if (emailLength > 254 || emailLength < 6)
+                {
+                    emailList.add(ERR_EMAIL_LEN);
+                }
+
+                if (email.contains(" "))
+                {
+                    emailList.add(ERR_EMAIL_SPACES);
+                }
+
+                // For all other invalid email entries show below msg.
+                if (emailList.isEmpty())
+                {
+                    emailList.add(ERR_EMAIL_OTHER);
                 }
             }
-
-            //code to check whether email is valid or not using pre-defined function.
-            if (isValidEmail(Patterns.EMAIL_ADDRESS, email)) {//return message on valid email.
-                return "200";
-            }
-
-            //check whether the email is empty.
-            if (email == "") {
-                return "100";
-            }
-
-
-            if (email.length() > 254) {
-                return "105";
-            }
-
-            //code to check for more than one '@'.
-            int count = email.length() - email.replaceAll("@", "").length();
-            if (count > 1) {
-                return "106";
-            } else {
-                if (count == 0) {
-                    return "110";
-                }
-            }
-
-            //For all other invalid email entries show below msg.
-            return "113";
-        }else {
-            return "101";
         }
+        else
+        {
+            emailList.add(ERR_EMPTY_INPUT);
+        }
+
+        emailList.addAll(hostnameList);
+        return emailList;
     }
 }

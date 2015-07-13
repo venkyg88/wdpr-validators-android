@@ -8,13 +8,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.disney.android.wdprvalidators.CodeDescription;
 import com.disney.android.wdprvalidators.DateValidator;
-import java.text.DateFormat;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by gonuv001 on 6/3/2015.
@@ -57,12 +56,7 @@ public class DateValidationDemo extends Activity {
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
-                try {
-                    onDateRangeValidateClick(v);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                onDateRangeValidateClick(v);
                 //Toast.makeText(DateValidationDemo.this, "Exception at onClick method",Toast.LENGTH_SHORT).show();
             }
         });
@@ -73,51 +67,63 @@ public class DateValidationDemo extends Activity {
      */
     public void onDateValidateClick(View view) {
         String date = mDateText.getText().toString();
-        String result = dateValidator.checkIsoDate(date);
-        if (result == "200") {
+        List<String> result = dateValidator.checkIsoDate(date);
+        if (result.size() == 0) {
             mResultText.setText("date format is good");
         } else {
-            mDateText.setError((CharSequence) CodeDescription.getCodeDescription().get(result));
+            for(int i = 0; i < result.size(); i++) {
+                mDateText.setError(result.get(i));
+            }
             mResultText.setText("");
         }
     }
 
-    public void onDateRangeValidateClick(View view) throws ParseException {
+    public void onDateRangeValidateClick(View view) {
         String userDate = mUserDateText.getText().toString();
         String startDate = mStartDateText.getText().toString();
         String endDate = mEndDateText.getText().toString();
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date sDate=null,eDate = null,uDate=null;
+        Date sDate=null;
         try {
             sDate = formatter.parse(startDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        Date eDate = null;
         try {
             eDate = formatter.parse(endDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        Date uDate = null;
         try {
             uDate =  formatter.parse(userDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        if(eDate==null){
-            mEndDateText.setError("cannot be empty");
+        if(sDate == null){
+            mStartDateText.setError("Start Date cannot be empty");
         }
-        if (uDate == null) {
-            mUserDateText.setError("cannot be empty");
+
+        if(eDate == null){
+            mEndDateText.setError("End Date cannot be empty");
         }
-        String result = null;
-        result = dateValidator.checkDateRange(sDate,eDate,uDate);
-        if(result == "200"){
+
+        if(uDate == null) {
+            mUserDateText.setError("Target Date cannot be empty");
+        }
+
+        List<String> result = dateValidator.checkDateRange(sDate,eDate,uDate);
+        if(result.size() == 0){
             Toast.makeText(this,"Falls in the range",Toast.LENGTH_SHORT).show();
         }
-        else if(result == "102"){
-            Toast.makeText(this,"Doesn't fall in the range",Toast.LENGTH_SHORT).show();
+        else {
+            for(int i = 0; i < result.size(); i++) {
+                Toast.makeText(this,result.get(i),Toast.LENGTH_SHORT).show();
+            }
+
         }
     }
 }

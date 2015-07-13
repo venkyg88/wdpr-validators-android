@@ -9,6 +9,20 @@ import java.util.regex.Pattern;
  */
 public class HostnameValidation {
 
+    private static final String ERR_HOSTNAME_LEN = "ERR_HOSTNAME_LEN";
+
+    private static final String ERR_HOSTNAME_TLD_LEN = "ERR_HOSTNAME_TLD_LEN";
+
+    private static final String ERR_HOSTNAME_SUBDOMAIN_LEN = "ERR_HOSTNAME_SUBDOMAIN_LEN";
+
+    private static final String ERR_HOSTNAME_TLD = "ERR_HOSTNAME_TLD";
+
+    private static final String ERR_HOSTNAME_IP = "ERR_HOSTNAME_IP";
+
+    private static final String ERR_HOSTNAME_OTHER = "ERR_HOSTNAME_OTHER";
+
+    private static final String ERR_EMPTY_INPUT ="ERR_EMPTY_INPUT";
+
     private static final String HOSTNAME_PATTERN = "^([a-z0-9][a-z0-9-]{0,63}\\.)+([a-z]{2,20})$";
 
     private static final String IPADDRESS_PATTERN = "^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
@@ -16,16 +30,16 @@ public class HostnameValidation {
             + "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
             + "([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
 
-    private static Pattern hnpattern = Pattern.compile(HOSTNAME_PATTERN,Pattern.CASE_INSENSITIVE);
+    private static final Pattern hnpattern = Pattern.compile(HOSTNAME_PATTERN,Pattern.CASE_INSENSITIVE);
 
-    private static Pattern ipPattern = Pattern.compile(IPADDRESS_PATTERN);
+    private static final Pattern ipPattern = Pattern.compile(IPADDRESS_PATTERN);
 
     /**
      * @Description Validate hostname with regular expression
      * @param hostname for validation
      * @return true valid hostname, false invalid hostname
      */
-    public boolean isHostName(final String hostname)
+    public boolean isHostName(String hostname)
     {
         return hnpattern.matcher(hostname).matches();
     }
@@ -35,7 +49,7 @@ public class HostnameValidation {
      * @param ip ip address for validation
      * @return true valid ip address, false invalid ip address
      */
-    public boolean isIPAddress(final String ip)
+    public boolean isIPAddress(String ip)
     {
         return ipPattern.matcher(ip).matches();
     }
@@ -45,23 +59,23 @@ public class HostnameValidation {
      * @param hostname
      * @return List
      */
-    public List<String> checkHostName(final String hostname)
+    public List<String> checkHostName(String hostname)
     {
         List<String> arraylist = new ArrayList<>();
-        if (hostname != null && !hostname.equals(""))
+        if (hostname != null && !hostname.isEmpty())
         {
             if (!isHostName(hostname))
             {
                 if (hostname.length() > 255)
                 {
-                     arraylist.add("ERR_HOSTNAME_LEN");
+                     arraylist.add(ERR_HOSTNAME_LEN);
                 }
                 if (hostname.contains("."))
                 {
                     int tld = hostname.substring(hostname.lastIndexOf('.') + 1).length();
                     if (tld < 2 || tld > 20)
                     {
-                        arraylist.add("ERR_HOSTNAME_TLD_LEN");
+                        arraylist.add(ERR_HOSTNAME_TLD_LEN);
                     }
                     String[] strArray = hostname.split("\\.");
                     int countOfSubDomains = strArray.length - 1;
@@ -70,28 +84,28 @@ public class HostnameValidation {
                         int strSubDomainLength = strArray[i].length();
                         if (strSubDomainLength > 63)
                         {
-                            arraylist.add("ERR_HOSTNAME_SUBDOMAIN_LEN");
+                            arraylist.add(ERR_HOSTNAME_SUBDOMAIN_LEN);
                             break;
                         }
                     }
                     if(hostname.endsWith("."))
                     {
-                        arraylist.add("ERR_HOSTNAME_TLD");
+                        arraylist.add(ERR_HOSTNAME_TLD);
                     }
                 }
-                if (isIPAddress(hostname) == true)
+                if (isIPAddress(hostname))
                 {
-                    arraylist.add("ERR_HOSTNAME_IP");
+                    arraylist.add(ERR_HOSTNAME_IP);
                 }
                 if(arraylist.isEmpty())
                 {
-                    arraylist.add("ERR_HOSTNAME_OTHER");
+                    arraylist.add(ERR_HOSTNAME_OTHER);
                 }
             }
         }
         else
         {
-            arraylist.add("ERR_EMPTY_INPUT");
+            arraylist.add(ERR_EMPTY_INPUT);
         }
         return arraylist;
     }

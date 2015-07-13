@@ -1,27 +1,37 @@
 package com.disney.android.wdprvalidators;
 
-import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
  * Created by venkatgonuguntala on 5/21/15.
  */
-public class DateValidator {
+public class DateValidator
+{
+    private static final String ERR_EMPTY_INPUT = "ERR_EMPTY_INPUT";
 
-    private static final String DATE_PATTERN =
-            "^([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\17[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$";
+    private static final String ERR_ISO_DATE = "ERR_ISO_DATE";
 
-    private static Pattern pattern = Pattern.compile(DATE_PATTERN);
+    private static final String ERR_DATE_RANGE_BEFORE = "ERR_DATE_RANGE_BEFORE";
+
+    private static final String ERR_DATE_RANGE_AFTER = "ERR_DATE_RANGE_AFTER";
+
+    private static final String DATE_PATTERN = "^([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\17[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?$";
+
+    private static final Pattern pattern = Pattern.compile(DATE_PATTERN);
 
     /**
      * @description Validate date format with regular expression
      * @param date date address for validation
      * @return true valid date format, false invalid date format
      */
-    public boolean isISO8601(final String date){
+    public boolean isISO8601(CharSequence date)
+    {
         boolean result = false;
-        if(pattern.matcher(date).matches()){
+        if(pattern.matcher(date).matches())
+        {
             result = true;
         }
         return result;
@@ -30,19 +40,23 @@ public class DateValidator {
     /**
      * @desc Method to validate valid ISO8601 Date and return message and code as Array. alphanumric charcter, Hyphen(-), Colon (:)
      * @param date
-     * @return Array key and value about status
+     * @return List of Strings
      */
-    public String checkIsoDate(String date){
-        if(date != null) {
-            if (isISO8601(date)) {
-                return "200";
-            } else {
-                return "114";
+    public List<String> checkIsoDate(final String date)
+    {
+        final List<String> isoList = new ArrayList<>();
+        if(date != null && !date.isEmpty())
+        {
+            if (!this.isISO8601(date))
+            {
+                isoList.add(ERR_ISO_DATE);
             }
         }
-        else{
-            return "114";
+        else
+        {
+            isoList.add(ERR_EMPTY_INPUT);
         }
+        return isoList;
     }
 
     /**
@@ -50,21 +64,30 @@ public class DateValidator {
      * @param startDate in YYYY-MM-DD format/NULL
      * @param endDate in YYYY-MM-DD format
      * @param userDate in YYYY-MM-DD format
-     * @return Array key and value about status
+     * @return List of Strings
      */
-    public String checkDateRange(Date startDate,Date endDate, Date userDate) throws ParseException {
-        if (startDate == null) {
-            startDate = new Date();
-        }
-
-        String result = "102";
-        if(startDate!=null && endDate!=null && userDate!=null) {
-            //Then perform the main operation to check whether the userdate falls in between the start and end date
-            if(isInRange(startDate,endDate,userDate) == true){
-                result="200";
+    public List<String> checkDateRange(final Date startDate, final Date endDate, final Date userDate)
+    {
+        final List<String> dateRangeList = new ArrayList<>();
+        if (startDate != null && endDate != null && userDate != null)
+        {
+            if (!isInRange(startDate, endDate, userDate))
+            {
+                if (userDate.before(startDate))
+                {
+                    dateRangeList.add(ERR_DATE_RANGE_BEFORE);
+                }
+                if (userDate.after(endDate))
+                {
+                    dateRangeList.add(ERR_DATE_RANGE_AFTER);
+                }
             }
         }
-        return result;
+        else
+        {
+            dateRangeList.add(ERR_EMPTY_INPUT);
+        }
+        return dateRangeList;
     }
 
     /**
@@ -74,7 +97,8 @@ public class DateValidator {
      * @param userDate
      * @return boolean
      */
-    private boolean isInRange(Date startDate, Date endDate, Date userDate) {
+    private boolean isInRange(final Date startDate, final Date endDate, final Date userDate)
+    {
         return !userDate.before(startDate) && !userDate.after(endDate);
     }
 }

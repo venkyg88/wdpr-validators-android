@@ -6,9 +6,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.disney.android.wdprvalidators.CodeDescription;
 import com.disney.android.wdprvalidators.EmailValidator;
+
+import java.util.List;
 
 /**
  * Created by gonuv001 on 6/3/2015.
@@ -52,12 +54,21 @@ public class EmailValidationDemo extends Activity {
      */
     public void onValidateClick(View view) {
         String email = mEmailText.getText().toString();
-        String result = emailValidator.checkEmail(email);
-        if (result == "200") {
-            mResultText.setText("Email format is good");
-        } else {
-            mEmailText.setError((CharSequence) CodeDescription.getCodeDescription().get(result));
-            mResultText.setText("");
+        List<String> result = emailValidator.checkEmail(email);
+        String errorCode="";
+        for (String str : result) {
+            str ="\n"+str;
+            errorCode=errorCode.concat(str);
         }
+        if (result.size() == 0) {
+            Toast.makeText(this, "It is a Valid Email", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, errorCode, Toast.LENGTH_LONG).show();
+        }
+        mResultText.setText("");
     }
 }
+
+
+
+

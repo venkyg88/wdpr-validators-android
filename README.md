@@ -30,10 +30,18 @@ The following library block provides both basic and complex methods for input va
 4. Once you have the respective module selected you can run the application using either from an emulator or a real device.
 5. Instructions for running the demo on [Real Device.](http://developer.android.com/training/basics/firstapp/running-app.html#RealDevice)
 6. Instructions for running the demo on [Emulator](http://developer.android.com/training/basics/firstapp/running-app.html#Emulator)
-7. For testing, go the respective folder in terminal and type './gradlew connectedcheck'(Mac) 'gradlew connectedcheck'(Windows).
-8. Then open the index.html file in reports folder, you can see the report of test cases failed/passed/percentage.
+7. Select the WDPRValidatorDemo module from Run/Debug option run the application.
 
-Note: Alwasys Make sure your emulator/device is up and running before you test.
+Note: Always Make sure your emulator/device is up and running before you test.
+
+# Unit Tests
+1. To run unit tests, go the respective folder in terminal and type `./gradlew connectedcheck`(Mac) `gradlew connectedcheck`(Windows).
+2. After the build is successful running the commands mentioned above - a generated report of pass/fail of test cases can be seen by opening the link [Unit Test Report](http://localhost:63342/wdpr-validators-android/build/outputs/reports/androidTests/connected/com.disney.android.wdprvalidators.html)
+
+# Code Coverage
+1. Open `Run/Debug` and select `AllTests`.
+2. Open `Build Variants` and select `Unit Tests` under `Test Artifact`.
+3. Click the `Coverage` menu icon, next to `Run/Debug`.
 
 ## API Methods
 
@@ -44,11 +52,19 @@ The WDPRValidators have the following methods.
 This function returns a boolean, checking whether it is valid email or Invalid email.
 
 **Params**
-- emailPattern 'Pattern' predefined email pattern.
 - email 'String'
 
 **Returns:** `Boolean`
 
+**Usage:**
+
+    emailValidator.isValidEmail(email)
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
 
 ## checkEmail(email)
 
@@ -57,8 +73,22 @@ This function will throw error codes of the respective messages, if isValidEmail
 **Params**
 - email `String` Email should follow RFC standards.
 
-**Returns:** `String`
+**Returns:** `List<String>`
 
+**Usage:**
+
+    emailValidator.checkEmail(email)
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_EMAIL\_LEN\_LOCAL')<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')
+> Failure Scenario: List('ERR\_EMAIL\_STRT\_DOT')
+> Failure Scenario: List('ERR\_EMAIL\_END\_DOT')
+
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#email) for further details on their definitions
+
+-----
 
 ## aUnicodeString(Object)
 
@@ -67,7 +97,39 @@ Predicate to determine whether something is a fully nuanced Unicode string with 
 **Params**
 - Object `String`
 
-**Returns:** `boolean`
+**Returns:** `Boolean`
+
+**Usage:**
+
+    unicodeValidator.aUnicodeString(email)
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
+
+## unicodeChecker(email)
+
+Checker function to identify the error messages, if its not unicode.
+
+**Params**
+- unicode `String`
+
+**Returns:** `List<String>`
+
+**Usage:**
+
+    unicodeValidator.unicodeChecker(unicode)
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_UNICODE\_STRING')<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')
+
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#string) for further details on their definitions
+
+-----
 
 ## isISO8601(Object)
 
@@ -78,6 +140,18 @@ predicate to determine whether a date meets the basic structure of an ISO 8601 d
 
 **Returns:** `boolean`
 
+**Usage:**
+
+    dateValidator.isISO8601(date)
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#string) for further details on their definitions
+
+-----
+
 ## checkIsoDate(Object)
 
 Checker to determine whether the provided string is a valid ISO8601 date.
@@ -85,7 +159,20 @@ Checker to determine whether the provided string is a valid ISO8601 date.
 **Params**
 - Object `String` - date Object to be evaluated
 
-**Returns:** `String` - function that takes a single object for testing Function. This returns a string error message.
+**Returns** `List<String>`
+
+**Usage:**
+
+    dateValidator.checkIsoDate(date)
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_ISO\_DATE')<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')
+
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#iso8601-date) for further details on their definitions
+
+-----
 
 ## isAnArray(Object)
 
@@ -96,6 +183,37 @@ predicate to determine whether the provided Object is an array.
 
 **Returns:** `boolean` 
 
+**Usage:**
+
+    primitiveValidator.isAnArray(Object)
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
+
+## arrayChecker(Object)
+
+Checker to determine whether the input object is a array.
+
+**Params**
+- Object `Object` - Object to be evaluated
+
+**Returns** `boolean`
+
+**Usage:**
+
+    primitiveValidator.arrayChecker(Object)
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_ARRAY')<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')
+
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#array) for further details on their definitions
+
+-----
 
 ## isAString(Object)
 
@@ -106,6 +224,37 @@ predicate to determine whether the provided Object is a String.
 
 **Returns** `boolean`
 
+**Usage:**
+
+    primitiveValidator.isAString(Object)
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
+
+## stringChecker(Object)
+
+Checker to determine whether the input object is a string.
+
+**Params**
+- Object `Object` - Object to be evaluated
+
+**Returns** `boolean`
+
+**Usage:**
+
+    primitiveValidator.stringChecker(Object)
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_STRING')<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')
+
+Please refer to our [error codes documentation] (https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#string) for further details on their definitions
+
+-----
 
 ## checkDateRange(Object, Object, Object)
 
@@ -116,7 +265,21 @@ Checker to determine whether user date falls in the range of start date and end 
 - Object `Date` - end date Object
 - Object `Date` - target date Object to be evaluated with start and end date
 
-**Returns** `String`
+**Returns** `List<String>`
+
+**Usage:**
+
+    dateValidator.checkDateRange(startDate, endDate, userDate)
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')<br>
+> Failure Scenario: List('ERR\_DATE\_RANGE\_BEFORE')
+> Failure Scenario: List('ERR\_DATE\_RANGE\_AFTER')
+
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#date-range) for further details on their definitions
+
+-----
 
 ## isInRange(Object, Object, Object)
 
@@ -129,6 +292,16 @@ predicate to determine whether the target date is in the range provided.
 
 **Returns** `boolean`
 
+**Usage:**
+
+    dateValidator.isInRange(startDate, endDate, userDate)
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
+
 ## isHostname(Object)
 
 Predicate to determine whether input value contain valid Hostname or not. It accepts alphanumeric and other accepted character as specified in RFC1123
@@ -140,7 +313,7 @@ Predicate to determine whether input value contain valid Hostname or not. It acc
 
 **Usage:**
 
-    hostnameValidator.isHostName(final String hostname)
+    hostnameValidator.isHostName(hostname)
 
 **Output:**<br>
 > **TRUE** (Boolean)<br>
@@ -166,6 +339,6 @@ Checker to determine the error code/codes for hostname failure, if failed else r
 > Failure Scenario: List('ERR\_EMPTY\_INPUT')<br>
 > Failure Scenario: List('ERR\_HOSTNAME\_OTHER')
 
-Refer error codes [here](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md)
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#hostname) for further details on their definitions
 
 -----
