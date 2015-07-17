@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Spinner dynamicSpinner = (Spinner) findViewById(R.id.dynamic_spinner);
-        String[] items = new String[] { "Select an option","Email Validation", "Date Validation", "Unicode Validation", "Hostname Validation"};
+        String[] items = new String[] { "Select an option","Email Validation", "Date Validation", "Unicode Validation", "Hostname Validation", "Url Validation"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -49,6 +49,10 @@ public class MainActivity extends Activity {
                         //Hostname Validation
                         HostnameIntent();
                         break;
+                    case 5:
+                        //Url Validation
+                        urlIntent();
+                        break;
                 }
             }
 
@@ -75,6 +79,11 @@ public class MainActivity extends Activity {
 
     public void HostnameIntent(){
         intent = new Intent(this, HostnameValidationDemo.class);
+        startActivity(intent);
+    }
+
+    public void urlIntent(){
+        intent = new Intent(this, UrlValidationDemo.class);
         startActivity(intent);
     }
 }
