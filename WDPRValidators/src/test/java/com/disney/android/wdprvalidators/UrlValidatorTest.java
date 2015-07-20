@@ -1,11 +1,7 @@
-
 package com.disney.android.wdprvalidators;
 
-
 import android.test.suitebuilder.annotation.SmallTest;
-
 import junit.framework.TestCase;
-
 import java.net.MalformedURLException;
 
 /**
@@ -21,9 +17,9 @@ public class UrlValidatorTest extends TestCase{
         super.setUp();
     }
 
-    /*@SmallTest
+    @SmallTest
     public void testForValidUrl() throws MalformedURLException {
-        assertEquals(1, urlObj.checkURL("https://google.com").size());
+        assertEquals(0, urlObj.checkURL("https://google.com").size());
     }
 
     @SmallTest
@@ -52,13 +48,35 @@ public class UrlValidatorTest extends TestCase{
 
     @SmallTest
     public void testForOtherURLError() throws MalformedURLException {
-        assertEquals("ERR_URI_SCHEME",urlObj.checkURL("http://").get(0));
-    }*/
+        assertEquals("ERR_URI_OTHER",urlObj.checkURL("HTTP://").get(0));
+    }
 
     @SmallTest
     public void testForRestHostname() throws MalformedURLException {
         String urlString = "http://google.com";
-        assertEquals("ERR_URI_SCHEME",urlObj.checkURL(urlString).get(0));
+        assertEquals(0,urlObj.checkURL(urlString).size());
+    }
+
+    @SmallTest
+    public void testForManyErrors() throws MalformedURLException {
+        String urlString  = "https://google.com.";
+        assertEquals("ERR_URI_OTHER",urlObj.checkURL(urlString).get(0));
+        assertEquals("ERR_HOSTNAME_TLD_LEN",urlObj.checkURL(urlString).get(1));
+        assertEquals("ERR_HOSTNAME_TLD",urlObj.checkURL(urlString).get(2));
+    }
+
+    @SmallTest
+    public void testForOtherErrors() throws MalformedURLException {
+        String urlString  = "https://google";
+        assertEquals("ERR_URI_OTHER",urlObj.checkURL(urlString).get(0));
+        assertEquals("ERR_HOSTNAME_OTHER",urlObj.checkURL(urlString).get(1));
+    }
+
+    @SmallTest
+    public void testForOtherError() throws MalformedURLException {
+        String urlString  = "https://";
+        assertEquals("ERR_URI_OTHER",urlObj.checkURL(urlString).get(0));
+        assertEquals("ERR_EMPTY_INPUT",urlObj.checkURL(urlString).get(1));// we get empty input bcoz hosname gets "", which is empty hostname.
     }
 
     @Override

@@ -1,11 +1,10 @@
 package com.disney.android.wdprvalidators;
 
-import android.webkit.URLUtil;
-import com.disney.android.wdprvalidators.HostnameValidation;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Created by venkatgonuguntala on 7/08/15.
@@ -22,6 +21,10 @@ public class UrlValidator {
 
     private static final int URL_MAX_LENGTH = 2048;
 
+    private static final String URL_PATTERN = "\\b(https|http)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+
+    private static final Pattern urlpattern = Pattern.compile(URL_PATTERN, Pattern.CASE_INSENSITIVE);
+
     final HostnameValidation hostnameValidation = new HostnameValidation();
 
     /**
@@ -31,20 +34,17 @@ public class UrlValidator {
      * @return boolean
      * @throws MalformedURLException
      */
-    public boolean isValidURL(final String url) throws MalformedURLException {
+    public boolean isValidURL(String url) throws MalformedURLException {
 
         boolean result = false;
 
-        if (URLUtil.isValidUrl(url))
+        if(urlpattern.matcher(url).matches())
         {
-            if (URLUtil.isHttpsUrl(url) || URLUtil.isHttpUrl(url))
-            {
-                String hostname = getHostname(url);
+            String hostname = getHostname(url);
 
-                if (hostnameValidation.isHostName(hostname))
-                {
-                    result = true;
-                }
+            if(hostnameValidation.isHostName(hostname))
+            {
+                result = true;
             }
         }
         return result;
@@ -58,7 +58,7 @@ public class UrlValidator {
      * @throws MalformedURLException
      */
 
-    public List<String> checkURL(final String stringURL) throws MalformedURLException
+    public List<String> checkURL(String stringURL) throws MalformedURLException
     {
         final List<String> errorUrlList = new ArrayList<>();
 
@@ -68,6 +68,8 @@ public class UrlValidator {
         {
             final int URLLength = stringURL.length();
 
+            stringURL = stringURL.toLowerCase();
+
             if (!this.isValidURL(stringURL))
             {
 
@@ -76,7 +78,7 @@ public class UrlValidator {
                     errorUrlList.add(ERR_URI_LEN);
                 }
 
-                if (!URLUtil.isHttpsUrl(stringURL) && !URLUtil.isHttpUrl(stringURL))
+                if (!hasIntentedPrefix(stringURL))
                 {
                     errorUrlList.add(ERR_URI_SCHEME);
                 }
@@ -86,7 +88,7 @@ public class UrlValidator {
                     errorUrlList.add(ERR_URI_OTHER);
                 }
 
-                if (URLUtil.isHttpUrl(stringURL) || URLUtil.isHttpsUrl(stringURL))
+                if (hasIntentedPrefix(stringURL))
                 {
                     hostname = getHostname(stringURL);
 
@@ -115,5 +117,12 @@ public class UrlValidator {
 
         return hostname;
     }
-}
 
+    /**
+     * Method to check URL has a valid scheme
+     */
+    public boolean hasIntentedPrefix(String stringURL)
+    {
+        return (stringURL.startsWith("https") || stringURL.startsWith("http"));
+    }
+}

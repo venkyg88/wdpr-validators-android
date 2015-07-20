@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.disney.android.wdprvalidators.UrlValidator;
 import java.net.MalformedURLException;
 import java.util.List;
 
