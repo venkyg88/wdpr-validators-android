@@ -46,10 +46,6 @@ public class UrlValidatorTest extends TestCase{
         assertEquals("ERR_URI_LEN",urlObj.checkURL(url).get(0));
     }
 
-    @SmallTest
-    public void testForOtherURLError() throws MalformedURLException {
-        assertEquals("ERR_URI_OTHER",urlObj.checkURL("HTTP://").get(0));
-    }
 
     @SmallTest
     public void testForRestHostname() throws MalformedURLException {

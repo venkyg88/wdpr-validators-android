@@ -66,14 +66,12 @@ public class UrlValidator {
 
         if (stringURL != null && !stringURL.isEmpty())
         {
-            final int URLLength = stringURL.length();
+            final int lengthURL = stringURL.length();
 
-            stringURL = stringURL.toLowerCase();
-
-            if (!this.isValidURL(stringURL))
+            if (!this.isValidURL(stringURL.toLowerCase()))
             {
 
-                if (URLLength > URL_MAX_LENGTH)
+                if (lengthURL > URL_MAX_LENGTH)
                 {
                     errorUrlList.add(ERR_URI_LEN);
                 }
@@ -109,7 +107,7 @@ public class UrlValidator {
     /**
      * Method to retrieve hostname from URL.
      */
-    public String getHostname(String stringURL) throws MalformedURLException
+    private String getHostname(String stringURL) throws MalformedURLException
     {
         URL url = new URL(stringURL);
 
@@ -121,8 +119,8 @@ public class UrlValidator {
     /**
      * Method to check URL has a valid scheme
      */
-    public boolean hasIntentedPrefix(String stringURL)
+    private boolean hasIntentedPrefix(String stringURL)
     {
-        return (stringURL.startsWith("https") || stringURL.startsWith("http"));
+        return (stringURL.startsWith("https://") || stringURL.startsWith("http://"));
     }
 }
