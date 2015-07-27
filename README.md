@@ -384,9 +384,9 @@ Please refer to our [error codes documentation](https://github.disney.com/WDPR-R
 
 -----
 
-## isCreditCard(String creditCardNumber)
+## isCreditCard(String creditCardNumber, String creditCardType)
 
-Predicate to determine whether input value contain valid Credit Card or not.
+Predicate method to determine whether or not an input value contains a valid Credit Card number.
 
 **Params**
 - creditCardNumber `String`
@@ -406,7 +406,7 @@ Predicate to determine whether input value contain valid Credit Card or not.
 
 ## checkCreditCard(String creditCardNumber, String creditCardType)
 
-Checker to determine the error code/codes for CreditCard failure, if failed else return empty string.
+Checker method to check a credit card input, and return an array of error codes for any failed criteria. If the input is a valid credit card, this method returns an empty string.
 
 **Params**
 - creditCardNumber `String`
