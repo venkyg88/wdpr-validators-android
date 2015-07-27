@@ -406,7 +406,7 @@ Predicate method to determine whether or not an input value contains a valid Cre
 
 ## checkCreditCard(String creditCardNumber, String creditCardType)
 
-Checker method to check a credit card input, and return an array of error codes for any failed criteria. If the input is a valid credit card, this method returns an empty string.
+Checker method to check a credit card input, and return an list of error codes for any failed criteria. If the input is a valid credit card, this method returns an empty string.
 
 **Params**
 - creditCardNumber `String`
