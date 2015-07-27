@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin"
+    tools:context=".CCValidatorDemo">
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin"
+        tools:context=".CCValidatorDemo">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="@string/cc_validation"
+            android:textAllCaps="@bool/abc_config_actionMenuItemAllCaps"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/ccFormat" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Validat predicate"/>
+
+        <TextView
+            android:id="@+id/show_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/result"
+            android:layout_gravity="center"/>
+
+
+        <TextView
+            android:layout_width="278dp"
+            android:layout_height="40dp"
+            android:text="CreditCard Validtion With Type"
+            android:id="@+id/textView" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cc_hint"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/creditCardNumberForType" />
+
+
+        <Spinner
+            android:id="@+id/dynamic_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/checkCreditCard"
+            android:layout_width="319dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/buttonTextSize"
+            android:text="@string/validateCreditCard"
+            android:onClick="isCreditCard"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin" />
+
+        <Button
+            android:id="@+id/checkCreditCardType"
+            android:layout_width="324dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/buttonTextSize"
+            android:text="@string/validateCCType"
+            android:onClick="checkCreditCardType"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin" />
+
+    </LinearLayout>
+
+</ScrollView>

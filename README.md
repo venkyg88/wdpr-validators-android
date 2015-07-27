@@ -345,10 +345,10 @@ Please refer to our [error codes documentation](https://github.disney.com/WDPR-R
 
 ## isValidURL(Object)
 
-Predicate to determine whether input value contain valid URI or Invalid
+Predicate to determine whether input value contain valid URL or Invalid
 
 **Params**
-- Object `String` - URI Object
+- Object `String` - URl Object
 
 **Returns** `boolean`
 
@@ -364,10 +364,10 @@ Predicate to determine whether input value contain valid URI or Invalid
 
 ## checkURL(Object)
 
-Checker to determine the error code/codes for URI failure, if failed else return List of size zero.
+Checker to determine the error code/codes for URL failure, if failed else return List of size zero.
 
 **Params**
-- Object `String` - uri Object
+- Object `String` - url Object
 
 **Returns** `List<String>`
 
@@ -383,3 +383,46 @@ Checker to determine the error code/codes for URI failure, if failed else return
 Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#uri) for further details on their definitions
 
 -----
+
+## isCreditCard(String creditCardNumber)
+
+Predicate to determine whether input value contain valid Credit Card or not.
+
+**Params**
+- creditCardNumber `String`
+- creditCardType `String`
+
+**Returns** `boolean`
+
+**Usage:**
+
+    creditCardValidator.isCreditCard(creditCardNumber, creditCardType)
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
+
+## checkCreditCard(String creditCardNumber, String creditCardType)
+
+Checker to determine the error code/codes for CreditCard failure, if failed else return empty string.
+
+**Params**
+- creditCardNumber `String`
+- creditCardType   `String`
+
+**Returns** `List<String>`
+
+**Usage:**
+
+    creditCardValidator.checkCreditCard(creditCardNumber, creditCardType);
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')<br>
+> Failure Scenario: List('ERR\_CC\_OTHER')
+
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#credit-card) for further details on their definitions
+
+------
