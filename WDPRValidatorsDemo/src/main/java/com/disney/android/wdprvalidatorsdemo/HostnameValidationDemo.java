@@ -19,14 +19,14 @@ public class HostnameValidationDemo extends Activity{
     //Logger for this class
     private static final String TAG = "HostnameValidationDemo";
 
-    //Input field where user enters his email address
+    //Input field where user enters his hostname
     private EditText mHostnameText;
 
     //Textview for displaying the result, if email format is good.
     private TextView mResultText;
 
 
-    //The validator for email input field.
+    //The validator for hostname input field.
     private HostnameValidation hostnameValidator;
 
     @Override
@@ -53,6 +53,8 @@ public class HostnameValidationDemo extends Activity{
      * Called when the "Validate" button is clicked.
      */
     public void onValidateClick(View view) {
+
+
         String hostname = mHostnameText.getText().toString();
         List<String> result =  hostnameValidator.checkHostName(hostname);
         String errorCode="";

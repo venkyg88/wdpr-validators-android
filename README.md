@@ -342,3 +342,44 @@ Checker to determine the error code/codes for hostname failure, if failed else r
 Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#hostname) for further details on their definitions
 
 -----
+
+## isValidURL(Object)
+
+Predicate to determine whether input value contain valid URI or Invalid
+
+**Params**
+- Object `String` - URI Object
+
+**Returns** `boolean`
+
+**Usage:**
+
+    urlValidator.isValidURL(url)
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
+
+## checkURL(Object)
+
+Checker to determine the error code/codes for URI failure, if failed else return List of size zero.
+
+**Params**
+- Object `String` - uri Object
+
+**Returns** `List<String>`
+
+**Usage:**
+
+    urlValidator.checkURL(url);
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')<br>
+> Failure Scenario: List('ERR\_URI\_OTHER')
+
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#uri) for further details on their definitions
+
+-----
