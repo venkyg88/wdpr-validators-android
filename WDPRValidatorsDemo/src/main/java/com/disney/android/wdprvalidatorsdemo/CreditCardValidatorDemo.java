@@ -78,30 +78,24 @@ public class CreditCardValidatorDemo extends Activity{
 
                 switch (position) {
                     case 0:
-                        //Do nothing, to show the option
                         dropDownCard = null;
                         break;
                     case 1:
                         dropDownCard = "AMEX";
                         break;
                     case 2:
-                        //Date Validation.
                         dropDownCard = "VISA";
                         break;
                     case 3:
-                        //Unicode Validation.
                         dropDownCard = "MASTERCARD";
                         break;
                     case 4:
-                        //Hostname Validation
                         dropDownCard = "DISCOVER";
                         break;
                     case 5:
-                        //Url Validation
                         dropDownCard = "DINERS";
                         break;
                     case 6:
-                        //Credit Card Validation
                         dropDownCard = "JCB";
                         break;
                 }
