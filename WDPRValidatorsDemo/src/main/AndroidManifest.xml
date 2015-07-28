@@ -31,6 +31,9 @@
 
         <activity android:name=".UrlValidationDemo">
         </activity>
+
+        <activity android:name=".CreditCardValidatorDemo">
+        </activity>
     </application>
 
 </manifest>
