@@ -8,22 +8,27 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.disney.android.wdprvalidators.CreditCardValidators;
 
-import java.util.ArrayList;
+import java.text.ParseException;
 import java.util.List;
 
 /**
  * Created by venkatgonuguntala on 7/21/15.
  */
 public class CreditCardValidatorDemo extends Activity{
+
     private static final String TAG = "CCValidationDemo";
 
     //Input field where user enter credit card number for type
     private EditText mCreditCardNumberForTypeText;
+
+    //Input field where user enter credit card month
+    private EditText mCreditCardNumberExpiryMonthText;
+
+    //Input filed whre user enter credit card year
+    private EditText mCreditCardNumberExpiryYearText;
 
     private CreditCardValidators creditCardValidator;
 
@@ -39,6 +44,10 @@ public class CreditCardValidatorDemo extends Activity{
 
         mCreditCardNumberForTypeText = (EditText) findViewById(R.id.creditCardNumberForType);
 
+        mCreditCardNumberExpiryMonthText = (EditText) findViewById(R.id.editText);
+
+        mCreditCardNumberExpiryYearText = (EditText) findViewById(R.id.editText1);
+
         creditCardValidator =  new CreditCardValidators();
 
         Button button = (Button) findViewById(R.id.checkCreditCard);
@@ -47,7 +56,11 @@ public class CreditCardValidatorDemo extends Activity{
             @Override
             public void onClick(View v)
             {
-                onValidateClick(v);
+                try {
+                    onValidateClick(v);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -57,7 +70,11 @@ public class CreditCardValidatorDemo extends Activity{
             @Override
             public void onClick(View v)
             {
-                onValidateClickType(v);
+                try {
+                    onValidateClickType(v);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -65,8 +82,7 @@ public class CreditCardValidatorDemo extends Activity{
 
         String[] items = new String[] { "Select a Card", "AMEX", "VISA", "MASTER CARD", "DISCOVER", "DINERS CLUB", "JCB"};
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_dropdown_item, items);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
 
@@ -111,15 +127,21 @@ public class CreditCardValidatorDemo extends Activity{
     /**
      * Called when the "Validate" button is clicked.
      */
-    public void onValidateClick(View view) {
+    public void onValidateClick(View view) throws ParseException {
 
         String ccNumber = null;
 
         ccNumber = mCreditCardNumberForTypeText.getText().toString();
 
+        String ccMonth = mCreditCardNumberExpiryMonthText.getText().toString();
+
+        String ccYear = mCreditCardNumberExpiryYearText.getText().toString();
+
         boolean result =  creditCardValidator.isCreditCard(ccNumber, dropDownCard);
 
-        if(result){
+        boolean result1 = creditCardValidator.isValidCreditCardDate(ccYear,ccMonth);
+
+        if(result && result1){
             Toast.makeText(this, "Card is Valid and supported by disney", Toast.LENGTH_LONG).show();
         }
         else {
@@ -127,11 +149,17 @@ public class CreditCardValidatorDemo extends Activity{
         }
     }
 
-    public void onValidateClickType(View view){
+    public void onValidateClickType(View view) throws ParseException {
 
         String ccNUmber = mCreditCardNumberForTypeText.getText().toString();
 
+        String ccMonth = mCreditCardNumberExpiryMonthText.getText().toString();
+
+        String ccYear = mCreditCardNumberExpiryYearText.getText().toString();
+
         List<String> result = creditCardValidator.checkCreditCard(ccNUmber, dropDownCard);
+
+        List<String> result1 = creditCardValidator.checkCreditCardDate(ccYear, ccMonth);
 
         String errorCode = "";
 
@@ -144,7 +172,15 @@ public class CreditCardValidatorDemo extends Activity{
 
         if(result.isEmpty())
         {
-            Toast.makeText(this, "It is a Valid Credit Card with Type", Toast.LENGTH_LONG).show();
+            for (String str1 : result1) {
+
+                str1 ="\n"+str1;
+
+                errorCode=errorCode.concat(str1);
+            }
+            if(result1.isEmpty()) {
+                Toast.makeText(this, "It is a Valid Credit Card with Type", Toast.LENGTH_LONG).show();
+            }
         }
         else
         {

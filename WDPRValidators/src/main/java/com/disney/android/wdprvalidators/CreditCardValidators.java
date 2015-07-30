@@ -3,7 +3,10 @@ package com.disney.android.wdprvalidators;
 /**
  * Created by venkatgonuguntala on 7/26/15.
  */
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +27,9 @@ public class CreditCardValidators
     private static final String VISA = "VISA";
     private static final String AMEX = "AMEX";
     private static final String JCB = "JCB";
+    private static final String MM_YY = "MM/yy";
+    private static final String SLASH = "/";
+    private static final String EXPIRYDATE_PATTERN = "(0?[1-9]|1[0-2])/[0-9]{2}";
     static final Map<String, Long> CARDTYPEMAP = new HashMap<String, Long>();
     private static final CheckDigit LUHN_VALIDATOR = LuhnCheckDigit.LUHN_CHECK_DIGIT;
     private final transient List<String> creditCardList = new ArrayList<String>();
@@ -313,5 +319,83 @@ public class CreditCardValidators
             result = true;
         }
         return result;
+    }
+
+
+    /**
+     *
+     * @param expiryDate
+     * @return
+     */
+    public boolean validateCardExpiryDate(String expiryDate)
+    {
+        return expiryDate.matches(EXPIRYDATE_PATTERN);
+    }
+
+
+    public boolean isValidCreditCardDate(String year, String month) throws ParseException
+    {
+        boolean result = false;
+        if(null!=year && null!=month)
+        {
+            StringBuilder creditCardDate = formatCreditCardDate(year, month);
+            if(validateCardExpiryDate(creditCardDate.toString()))
+            {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(MM_YY);
+                Date expiry = simpleDateFormat.parse(creditCardDate.toString());
+                boolean expiredCard = expiry.before(new Date());
+                if(!expiredCard)
+                {
+                    result = true;
+                }
+            }
+        }
+        return result;
+    }
+    /**
+     *
+     * @param year
+     * @param month
+     * @return
+     * @throws ParseException
+     */
+    public  List<String> checkCreditCardDate(String year, String month) throws ParseException
+    {
+        final  List<String> creditCardDateList = new ArrayList<String>();
+        if(null==year || null==month)
+        {
+            creditCardDateList.add(ValidatorConstant.ERR_EMPTY_INPUT);
+        }
+        else
+        {
+            if(!isValidCreditCardDate(year,month))
+            {
+                StringBuilder creditCardDate = formatCreditCardDate(year, month);
+                if(!validateCardExpiryDate(creditCardDate.toString()))
+                {
+                    creditCardDateList.add(ValidatorConstant.ERR_CC_OTHER);
+                }
+                else
+                {
+                    creditCardDateList.add(ValidatorConstant.ERR_CC_EXP);
+                }
+            }
+        }
+        return creditCardDateList;
+    }
+
+    /**
+     *
+     * @param year
+     * @param month
+     * @return
+     */
+    private StringBuilder formatCreditCardDate(String year, String month)
+    {
+        StringBuilder creditCardDate = new StringBuilder();
+        creditCardDate.append(month);
+        creditCardDate.append(SLASH);
+        creditCardDate.append(year);
+        return creditCardDate;
     }
 }

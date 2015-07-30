@@ -49,10 +49,34 @@
             android:id="@+id/creditCardNumberForType" />
 
 
-        <Spinner
-            android:id="@+id/dynamic_spinner"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:id="@+id/dynamic_spinner"
+                android:layout_width="170dp"
+                android:layout_height="40dp" />
+
+            <EditText
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/editText"
+                android:hint="MM"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/dynamic_spinner"
+                android:layout_toEndOf="@+id/dynamic_spinner" />
+
+            <EditText
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/editText1"
+                android:hint="/YY"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/editText"
+                android:layout_toEndOf="@+id/editText" />
+
+        </RelativeLayout>
 
         <Button
             android:id="@+id/checkCreditCard"
