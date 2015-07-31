@@ -69,12 +69,16 @@ public class CreditCardValidatorsTest {
         assertEquals("ERR_CC_LUHN", creditCardValidators.checkCreditCard("35301113333000000").get(0));
         assertEquals("ERR_CC_LEN", creditCardValidators.checkCreditCard("35301113333000000").get(1));
 
+
+        //Test for strings
+        assertEquals("ERR_CC_LUHN", creditCardValidators.checkCreditCard("disney").get(0));
+        assertEquals("ERR_CC_LEN", creditCardValidators.checkCreditCard("disney").get(1));
+        assertEquals("ERR_CC_OTHER", creditCardValidators.checkCreditCard("disney").get(2));
+
         //Test for null
         assertEquals(ValidatorConstant.ERR_EMPTY_INPUT, creditCardValidators.checkCreditCard("").get(0));
         assertEquals(ValidatorConstant.ERR_EMPTY_INPUT, creditCardValidators.checkCreditCard(null).get(0));
         assertEquals(false, creditCardValidators.isCreditCard(""));
         assertEquals(false, creditCardValidators.isCreditCard(null));
-
-
         }
 }

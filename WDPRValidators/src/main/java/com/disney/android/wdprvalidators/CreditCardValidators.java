@@ -5,10 +5,14 @@ package com.disney.android.wdprvalidators;
  */
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
+
 public class CreditCardValidators
 {
 
+    private static final String NUMBER_REGEX = "^[0-9]*$";
 
+    private static final Pattern numberPattern = Pattern.compile(NUMBER_REGEX);
     /**
      * @description predicate method to determine the input
      * @param creditCard
@@ -20,11 +24,14 @@ public class CreditCardValidators
 
         if(creditcardNumber != null && !creditcardNumber.isEmpty())
         {
-            if (luhnTestForCreditCardNumber(creditcardNumber))
+            if (isNumber(creditcardNumber))
             {
-                if (lengthCheckForCreditCardNumber(creditcardNumber))
+                if (luhnTestForCreditCardNumber(creditcardNumber))
                 {
-                    result = true;
+                    if (lengthCheckForCreditCardNumber(creditcardNumber))
+                    {
+                        result = true;
+                    }
                 }
             }
         }
@@ -56,6 +63,9 @@ public class CreditCardValidators
                 if (!lengthCheckForCreditCardNumber(creditCard))
                 {
                     creditCardList.add(ValidatorConstant.ERR_CC_LEN);
+                }
+                if(!isNumber(creditCard)){
+                    creditCardList.add(ValidatorConstant.ERR_CC_OTHER);
                 }
             }
         }
@@ -112,5 +122,10 @@ public class CreditCardValidators
             result = true;
         }
         return result;
+    }
+
+    private boolean isNumber(String creditcardNumber)
+    {
+        return numberPattern.matcher(creditcardNumber).matches();
     }
 }
