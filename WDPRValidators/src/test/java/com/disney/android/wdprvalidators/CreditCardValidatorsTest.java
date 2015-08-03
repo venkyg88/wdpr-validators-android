@@ -10,7 +10,7 @@ import org.junit.Test;
 public class CreditCardValidatorsTest {
 
     @Test
-    public void testisCreditCard() {
+    public void testCreditCard() {
         CreditCardValidators creditCardValidators = new CreditCardValidators();
 
         //Valid cards
@@ -38,6 +38,9 @@ public class CreditCardValidatorsTest {
         //Jcb check
         assertEquals(true, creditCardValidators.checkCreditCard("3530111333300000").isEmpty());
         assertEquals(true, creditCardValidators.isCreditCard("3530111333300000"));
+
+        assertEquals(true, creditCardValidators.checkCreditCard("378-282 2 46310005").isEmpty());
+        assertEquals(true, creditCardValidators.isCreditCard("3782-8224-6310  005"));
 
         //Invalid  Cards
 

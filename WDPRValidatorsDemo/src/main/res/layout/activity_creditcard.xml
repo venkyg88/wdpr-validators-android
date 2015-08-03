@@ -22,11 +22,6 @@
             android:id="@+id/ccFormat" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Validate predicate"/>
-
-        <TextView
             android:id="@+id/show_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,14 +32,14 @@
         <TextView
             android:layout_width="278dp"
             android:layout_height="40dp"
-            android:text="CreditCard Validtion With Type"
+            android:text="CreditCard Validtion"
             android:id="@+id/textView" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/cc_hint"
-            android:inputType="number"
+            android:inputType="text"
             android:ems="10"
             android:id="@+id/creditCardNumberForType" />
 

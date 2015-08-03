@@ -9,8 +9,9 @@ import java.util.regex.Pattern;
 
 public class CreditCardValidators
 {
-
     private static final String NUMBER_REGEX = "^[0-9]*$";
+
+    private static final String SPECIAL_CHARACTER = "[- ]";
 
     private static final Pattern numberPattern = Pattern.compile(NUMBER_REGEX);
     /**
@@ -18,17 +19,19 @@ public class CreditCardValidators
      * @param creditCard
      * @return boolean
      */
-    public boolean isCreditCard(String creditcardNumber)
+    public boolean isCreditCard(String creditCardNumber)
     {
         boolean result = false;
 
-        if(creditcardNumber != null && !creditcardNumber.isEmpty())
+        if(creditCardNumber != null && !creditCardNumber.isEmpty())
         {
-            if (isNumber(creditcardNumber))
+            creditCardNumber = trimSpecialCharacter(creditCardNumber);
+
+            if (isNumber(creditCardNumber))
             {
-                if (luhnTestForCreditCardNumber(creditcardNumber))
+                if (luhnTestForCreditCardNumber(creditCardNumber))
                 {
-                    if (lengthCheckForCreditCardNumber(creditcardNumber))
+                    if (lengthCheckForCreditCardNumber(creditCardNumber))
                     {
                         result = true;
                     }
@@ -41,30 +44,31 @@ public class CreditCardValidators
 
     /**
      * @description checker method to determine the input card is valid or not.
-     * @param creditCard
+     * @param creditCardNumber
      * @return list
      */
-    public List<String> checkCreditCard(final String creditCard)
+    public List<String> checkCreditCard(String creditCardNumber)
     {
         final List<String> creditCardList = new ArrayList<String>();
 
-        if (creditCard == null || creditCard.isEmpty())
+        if (creditCardNumber == null || creditCardNumber.isEmpty())
         {
             creditCardList.add(ValidatorConstant.ERR_EMPTY_INPUT);
         }
         else
         {
-            if (!isCreditCard(creditCard))
+            creditCardNumber = trimSpecialCharacter(creditCardNumber);
+            if (!isCreditCard(creditCardNumber))
             {
-                if (!luhnTestForCreditCardNumber(creditCard))
+                if (!luhnTestForCreditCardNumber(creditCardNumber))
                 {
                     creditCardList.add(ValidatorConstant.ERR_CC_LUHN);
                 }
-                if (!lengthCheckForCreditCardNumber(creditCard))
+                if (!lengthCheckForCreditCardNumber(creditCardNumber))
                 {
                     creditCardList.add(ValidatorConstant.ERR_CC_LEN);
                 }
-                if(!isNumber(creditCard)){
+                if(!isNumber(creditCardNumber)){
                     creditCardList.add(ValidatorConstant.ERR_CC_OTHER);
                 }
             }
@@ -127,5 +131,11 @@ public class CreditCardValidators
     private boolean isNumber(String creditcardNumber)
     {
         return numberPattern.matcher(creditcardNumber).matches();
+    }
+
+    private String trimSpecialCharacter(String creditCard)
+    {
+        creditCard = creditCard.replaceAll(SPECIAL_CHARACTER, "");
+        return creditCard;
     }
 }

@@ -55,7 +55,7 @@ public class CreditCardValidatorDemo extends Activity{
     }
 
     /**
-     * Called when the "Validate" button is clicked.
+     * Called when the "Predicate" button is clicked.
      */
     public void onValidateClick(View view) {
 
@@ -66,13 +66,16 @@ public class CreditCardValidatorDemo extends Activity{
         boolean result =  creditCardValidator.isCreditCard(ccNumber);
 
         if(result){
-            Toast.makeText(this, "Card is Valid and supported by disney", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Card is Valid", Toast.LENGTH_LONG).show();
         }
         else {
             Toast.makeText(this, "Invalid Card", Toast.LENGTH_LONG).show();
         }
     }
 
+    /**
+     * Called when the "Checker" button is clicked.
+     */
     public void onValidateClickType(View view){
 
         String ccNUmber = mCreditCardNumberForTypeText.getText().toString();
@@ -90,7 +93,7 @@ public class CreditCardValidatorDemo extends Activity{
 
         if(result.isEmpty())
         {
-            Toast.makeText(this, "It is a Valid Credit Card with Type", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "It is a Valid Credit Card", Toast.LENGTH_LONG).show();
         }
         else
         {

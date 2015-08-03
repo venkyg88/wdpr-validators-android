@@ -433,7 +433,10 @@ Checker method to check a credit card input, and return an list of error codes f
 **Output:**<br>
 > Success Scenario: Size of List will be zero<br>
 > Failure Scenario: List('ERR\_EMPTY\_INPUT')<br>
-> Failure Scenario: List('ERR\_CC\_OTHER')
+> Failure Scenario: List('ERR\_CC\_OTHER')<br>
+> Failure Scenario: List('ERR\_CC\_LUHN')<br>
+> Failure Scenario: List('ERR\_CC\_LENGTH')
+
 
 Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#credit-card) for further details on their definitions
 
