@@ -423,15 +423,20 @@ Checker method to check a credit card input, and return an list of error codes f
 
 **Usage:**
 
+```java
+String creditCardNumber = "411111111111111";
 
-    creditCardNumber = "411111111111111"
+List<String> errorList = creditCardValidator.checkCreditCard(creditCardNumber);
 
-    List<String> errorList = creditCardValidator.checkCreditCard(creditCardNumber);
-
-    if(errorList.isEmpty())
-        //It is a valid credit card.
-    else
-        //It is not a valid credit card.
+if(errorList.isEmpty()) 
+{
+  //It is a valid credit card.
+}
+else
+{
+  //It is not a valid credit card.
+}
+```
 
 
 **Output:**<br>
