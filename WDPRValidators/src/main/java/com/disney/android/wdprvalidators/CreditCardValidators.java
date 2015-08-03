@@ -60,16 +60,19 @@ public class CreditCardValidators
             creditCardNumber = trimSpecialCharacter(creditCardNumber);
             if (!isCreditCard(creditCardNumber))
             {
-                if (!luhnTestForCreditCardNumber(creditCardNumber))
-                {
-                    creditCardList.add(ValidatorConstant.ERR_CC_LUHN);
-                }
-                if (!lengthCheckForCreditCardNumber(creditCardNumber))
-                {
-                    creditCardList.add(ValidatorConstant.ERR_CC_LEN);
-                }
                 if(!isNumber(creditCardNumber)){
                     creditCardList.add(ValidatorConstant.ERR_CC_OTHER);
+                }
+                else
+                {
+                    if (!luhnTestForCreditCardNumber(creditCardNumber))
+                    {
+                        creditCardList.add(ValidatorConstant.ERR_CC_LUHN);
+                    }
+                    if (!lengthCheckForCreditCardNumber(creditCardNumber))
+                    {
+                        creditCardList.add(ValidatorConstant.ERR_CC_LEN);
+                    }
                 }
             }
         }
