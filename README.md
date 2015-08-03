@@ -395,10 +395,7 @@ Predicate method to determine whether or not an input value contains a valid Cre
 
 **Usage:**
 
-<<<<<<< HEAD
-=======
-   ```
->>>>>>> 3582b82815731717a6de10cf061adfeb78325eb0
+
     creditCardNumber = "4111111111111111"
 
     boolean value = creditCardValidator.isCreditCard(creditCardNumber)
@@ -407,10 +404,7 @@ Predicate method to determine whether or not an input value contains a valid Cre
         //It is a valid credit card.
     else
         //It is not a valid credit card.
-<<<<<<< HEAD
-=======
-   ```
->>>>>>> 3582b82815731717a6de10cf061adfeb78325eb0
+
 
 **Output:**<br>
 > **TRUE** (Boolean)<br>
@@ -429,10 +423,7 @@ Checker method to check a credit card input, and return an list of error codes f
 
 **Usage:**
 
-<<<<<<< HEAD
-=======
-   ```
->>>>>>> 3582b82815731717a6de10cf061adfeb78325eb0
+
     creditCardNumber = "411111111111111"
 
     List<String> errorList = creditCardValidator.checkCreditCard(creditCardNumber);
@@ -441,10 +432,7 @@ Checker method to check a credit card input, and return an list of error codes f
         //It is a valid credit card.
     else
         //It is not a valid credit card.
-<<<<<<< HEAD
-=======
-   ``` 
->>>>>>> 3582b82815731717a6de10cf061adfeb78325eb0
+
 
 **Output:**<br>
 > Success Scenario: Size of List will be zero<br>
