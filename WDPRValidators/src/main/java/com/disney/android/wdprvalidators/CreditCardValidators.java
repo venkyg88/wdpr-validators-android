@@ -3,6 +3,9 @@ package com.disney.android.wdprvalidators;
 /**
  * Created by venkatgonuguntala on 7/26/15.
  */
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -77,6 +80,31 @@ public class CreditCardValidators
             }
         }
         return creditCardList;
+    }
+
+   public boolean isValidCreditCardDate(int month, int year){
+
+       boolean result =false;
+       if (month > 0 && month < 13 && (year > 15 && year < 99 || year >2015 && year < 2099 )){
+           Date date = new Date();
+           SimpleDateFormat format = new SimpleDateFormat("MM/YYYY");
+           try {
+               Date currentDate = format.parse(String.valueOf(date));
+           } catch (ParseException e) {
+               e.printStackTrace();
+           }
+
+           //result = true;
+       }
+       return result;
+   }
+
+    public List<String> checkValidCreditCardDate(int month, int year){
+        List<String> errorList = new ArrayList<>();
+        if(!isValidCreditCardDate(month, year)){
+
+        }
+        return errorList;
     }
 
 
