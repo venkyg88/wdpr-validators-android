@@ -5,7 +5,6 @@ package com.disney.android.wdprvalidators;
  */
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class CreditCardValidators
 {
@@ -13,10 +12,9 @@ public class CreditCardValidators
 
     private static final String SPECIAL_CHARACTER = "[- ]";
 
-    private static final Pattern numberPattern = Pattern.compile(NUMBER_REGEX);
     /**
      * @description predicate method to determine the input
-     * @param creditCard
+     * @param creditCardNumber
      * @return boolean
      */
     public boolean isCreditCard(String creditCardNumber)
@@ -27,15 +25,9 @@ public class CreditCardValidators
         {
             creditCardNumber = trimSpecialCharacter(creditCardNumber);
 
-            if (isNumber(creditCardNumber))
+            if (isNumber(creditCardNumber) && luhnTestForCreditCardNumber(creditCardNumber) && lengthCheckForCreditCardNumber(creditCardNumber))
             {
-                if (luhnTestForCreditCardNumber(creditCardNumber))
-                {
-                    if (lengthCheckForCreditCardNumber(creditCardNumber))
-                    {
-                        result = true;
-                    }
-                }
+                result = true;
             }
         }
         return result;
@@ -88,33 +80,35 @@ public class CreditCardValidators
 
     private static boolean luhnTestForCreditCardNumber(String number)
     {
-        int s1 = 0, s2 = 0;
+        int variableOne = 0;
 
-        String reverse = new StringBuffer(number).reverse().toString();
+        int variableTwo = 0;
 
-        int numberLength = reverse.length();
+        final String reverse = new StringBuffer(number).reverse().toString();
+
+        final int numberLength = reverse.length();
 
         for (int i = 0 ; i < numberLength; i++)
         {
-            int digit = Character.digit(reverse.charAt(i), 10);
+            final int digit = Character.digit(reverse.charAt(i), 10);
 
             if(i % 2 == 0)
             {
                 //this is for odd digits, they are 1-indexed in the algorithm
-                s1 += digit;
+                variableOne += digit;
             }
             else
             {
                 //add 2 * digit for 0-4, add 2 * digit - 9 for 5-9
-                s2 += 2 * digit;
+                variableTwo += 2 * digit;
 
                 if(digit >= 5)
                 {
-                    s2 -= 9;
+                    variableTwo -= 9;
                 }
             }
         }
-        return (s1 + s2) % 10 == 0;
+        return (variableOne + variableTwo) % 10 == 0;
     }
 
 
@@ -133,7 +127,7 @@ public class CreditCardValidators
 
     private boolean isNumber(String creditcardNumber)
     {
-        return numberPattern.matcher(creditcardNumber).matches();
+        return creditcardNumber.matches(NUMBER_REGEX);
     }
 
     private String trimSpecialCharacter(String creditCard)
