@@ -395,16 +395,20 @@ Predicate method to determine whether or not an input value contains a valid Cre
 
 **Usage:**
 
+```java
+String creditCardNumber = "4111111111111111";
 
-    creditCardNumber = "4111111111111111"
+boolean value = creditCardValidator.isCreditCard(creditCardNumber)
 
-    boolean value = creditCardValidator.isCreditCard(creditCardNumber)
-
-    if(value)
-        //It is a valid credit card.
-    else
-        //It is not a valid credit card.
-
+if(value)
+{
+  //It is a valid credit card.
+}
+else
+{
+  //It is not a valid credit card.
+}  
+```
 
 **Output:**<br>
 > **TRUE** (Boolean)<br>
