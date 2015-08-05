@@ -3,32 +3,23 @@ package com.disney.android.wdprvalidatorsdemo;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.disney.android.wdprvalidators.CreditCardValidators;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by venkatgonuguntala on 7/21/15.
  */
 public class CreditCardValidatorDemo extends Activity{
+
     private static final String TAG = "CCValidationDemo";
 
     //Input field where user enter credit card number for type
     private EditText mCreditCardNumberForTypeText;
 
     private CreditCardValidators creditCardValidator;
-
-    //Input field where user selects the card type from the dropdown
-    private String dropDownCard = new String();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,55 +52,10 @@ public class CreditCardValidatorDemo extends Activity{
             }
         });
 
-        final Spinner dynamicSpinner = (Spinner) findViewById(R.id.dynamic_spinner);
-
-        String[] items = new String[] { "Select a Card", "AMEX", "VISA", "MASTER CARD", "DISCOVER", "DINERS CLUB", "JCB"};
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_dropdown_item, items);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-
-        dynamicSpinner.setAdapter(adapter);
-
-        dynamicSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                switch (position) {
-                    case 0:
-                        dropDownCard = null;
-                        break;
-                    case 1:
-                        dropDownCard = "AMEX";
-                        break;
-                    case 2:
-                        dropDownCard = "VISA";
-                        break;
-                    case 3:
-                        dropDownCard = "MASTERCARD";
-                        break;
-                    case 4:
-                        dropDownCard = "DISCOVER";
-                        break;
-                    case 5:
-                        dropDownCard = "DINERS";
-                        break;
-                    case 6:
-                        dropDownCard = "JCB";
-                        break;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
-            }
-        });
     }
 
     /**
-     * Called when the "Validate" button is clicked.
+     * Called when the "Predicate" button is clicked.
      */
     public void onValidateClick(View view) {
 
@@ -117,21 +63,24 @@ public class CreditCardValidatorDemo extends Activity{
 
         ccNumber = mCreditCardNumberForTypeText.getText().toString();
 
-        boolean result =  creditCardValidator.isCreditCard(ccNumber, dropDownCard);
+        boolean result =  creditCardValidator.isCreditCard(ccNumber);
 
         if(result){
-            Toast.makeText(this, "Card is Valid and supported by disney", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Card is Valid", Toast.LENGTH_LONG).show();
         }
         else {
             Toast.makeText(this, "Invalid Card", Toast.LENGTH_LONG).show();
         }
     }
 
+    /**
+     * Called when the "Checker" button is clicked.
+     */
     public void onValidateClickType(View view){
 
         String ccNUmber = mCreditCardNumberForTypeText.getText().toString();
 
-        List<String> result = creditCardValidator.checkCreditCard(ccNUmber, dropDownCard);
+        List<String> result = creditCardValidator.checkCreditCard(ccNUmber);
 
         String errorCode = "";
 
@@ -144,7 +93,7 @@ public class CreditCardValidatorDemo extends Activity{
 
         if(result.isEmpty())
         {
-            Toast.makeText(this, "It is a Valid Credit Card with Type", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "It is a Valid Credit Card", Toast.LENGTH_LONG).show();
         }
         else
         {

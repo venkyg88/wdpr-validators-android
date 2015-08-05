@@ -10,60 +10,77 @@ import org.junit.Test;
 public class CreditCardValidatorsTest {
 
     @Test
-    public void testisCreditCard() {
+    public void testCreditCard() {
         CreditCardValidators creditCardValidators = new CreditCardValidators();
 
         //Valid cards
-        assertEquals(true, creditCardValidators.checkCreditCard("378282246310005", "AMEX").isEmpty());
-        assertEquals(true, creditCardValidators.checkCreditCard("378282246310005", null).isEmpty());
+        assertEquals(true, creditCardValidators.checkCreditCard("378282246310005").isEmpty());
+        assertEquals(true, creditCardValidators.checkCreditCard("378282246310005").isEmpty());
+        assertEquals(false, creditCardValidators.isCreditCard("41111"));
+        assertEquals(false, creditCardValidators.isCreditCard("11111111111911"));
 
+        //Visa check
+        assertEquals(true, creditCardValidators.checkCreditCard("4111111111111111").isEmpty());
+        assertEquals(true, creditCardValidators.isCreditCard("4111111111111111"));
 
-        assertEquals(true, creditCardValidators.checkCreditCard("4111111111111111", "VISA").isEmpty());
-        assertEquals(true, creditCardValidators.checkCreditCard("4111111111111111", null).isEmpty());
+        //Master Card check
+        assertEquals(true, creditCardValidators.checkCreditCard("5555555555554444").isEmpty());
+        assertEquals(true, creditCardValidators.isCreditCard("5555555555554444"));
 
-        assertEquals(true, creditCardValidators.checkCreditCard("5555555555554444", "MASTERCARD").isEmpty());
-        assertEquals(true, creditCardValidators.checkCreditCard("5555555555554444", null).isEmpty());
+        //Discover check
+        assertEquals(true, creditCardValidators.checkCreditCard("6011111111111117").isEmpty());
+        assertEquals(true, creditCardValidators.isCreditCard("6011111111111117"));
 
-        assertEquals(true, creditCardValidators.checkCreditCard("6011111111111117", "DISCOVER").isEmpty());
-        assertEquals(true, creditCardValidators.checkCreditCard("6011111111111117", null).isEmpty());
+        //Diners Club check
+        assertEquals(true, creditCardValidators.checkCreditCard("30569309025904").isEmpty());
+        assertEquals(true, creditCardValidators.isCreditCard("30569309025904"));
 
-        assertEquals(true, creditCardValidators.checkCreditCard("30569309025904", "DINERS").isEmpty());
-        assertEquals(true, creditCardValidators.checkCreditCard("30569309025904", null).isEmpty());
+        //Jcb check
+        assertEquals(true, creditCardValidators.checkCreditCard("3530111333300000").isEmpty());
+        assertEquals(true, creditCardValidators.isCreditCard("3530111333300000"));
 
-        assertEquals(true, creditCardValidators.checkCreditCard("3530111333300000", "JCB").isEmpty());
-        assertEquals(true, creditCardValidators.checkCreditCard("3530111333300000", null).isEmpty());
+        assertEquals(true, creditCardValidators.checkCreditCard("378-282 2 46310005").isEmpty());
+        assertEquals(true, creditCardValidators.isCreditCard("3782-8224-6310  005"));
 
         //Invalid  Cards
 
-        assertEquals(false, creditCardValidators.checkCreditCard("3782822463100050", "AMEX").isEmpty());
-        assertEquals(false, creditCardValidators.checkCreditCard("3782822463100050", null).isEmpty());
+        //Amex check
+        assertEquals(false, creditCardValidators.checkCreditCard("3782822463100050").isEmpty());
+        assertEquals(false, creditCardValidators.isCreditCard("3782822463100050"));
 
-        assertEquals(false, creditCardValidators.checkCreditCard("41111111111111110", "VISA").isEmpty());
-        assertEquals(false, creditCardValidators.checkCreditCard("41111111111111110", null).isEmpty());
+        //Visa check
+        assertEquals(false, creditCardValidators.checkCreditCard("41111111111111110").isEmpty());
+        assertEquals(false, creditCardValidators.isCreditCard("41111111111111110"));
 
-        assertEquals(false, creditCardValidators.checkCreditCard("55555555555544440", "MASTERCARD").isEmpty());
-        assertEquals(false, creditCardValidators.checkCreditCard("55555555555544440", null).isEmpty());
+        //Master Card
+        assertEquals(false, creditCardValidators.checkCreditCard("55555555555544440").isEmpty());
+        assertEquals(false, creditCardValidators.isCreditCard("55555555555544440"));
 
-        assertEquals(false, creditCardValidators.checkCreditCard("60111111111111170", "DISCOVER").isEmpty());
-        assertEquals(false, creditCardValidators.checkCreditCard("60111111111111170", null).isEmpty());
+        //Discover
+        assertEquals(false, creditCardValidators.checkCreditCard("60111111111111170").isEmpty());
+        assertEquals(false, creditCardValidators.isCreditCard("60111111111111170"));
 
-        assertEquals(false, creditCardValidators.checkCreditCard("305693090259040", "DINERS").isEmpty());
-        assertEquals(false, creditCardValidators.checkCreditCard("305693090259040", null).isEmpty());
+        //DINERS card
+        assertEquals(false, creditCardValidators.checkCreditCard("305693090259040").isEmpty());
+        assertEquals(false, creditCardValidators.isCreditCard("305693090259040"));
 
-        assertEquals(false, creditCardValidators.checkCreditCard("35301113333000000", "JCB").isEmpty());
-        assertEquals(false, creditCardValidators.checkCreditCard("35301113333000000", null).isEmpty());
+        //Jcb
+        assertEquals(false, creditCardValidators.checkCreditCard("35301113333000000").isEmpty());
+        assertEquals(false, creditCardValidators.isCreditCard("35301113333000000"));
 
-        //Credit Card with Null value
-        assertEquals(false, creditCardValidators.checkCreditCard(null, null).isEmpty());
+        //Returning error messages
+        assertEquals("ERR_CC_LUHN", creditCardValidators.checkCreditCard("35301113333000000").get(0));
+        assertEquals("ERR_CC_LEN", creditCardValidators.checkCreditCard("35301113333000000").get(1));
+        assertEquals("ERR_CC_LUHN", creditCardValidators.checkCreditCard("123455686758575885").get(0));
+        assertEquals("ERR_CC_LEN", creditCardValidators.checkCreditCard("123455686758575885").get(1));
 
-        //Credit Card with Blank value
-        assertEquals(false, creditCardValidators.checkCreditCard("", null).isEmpty());
+        //Test for strings
+        assertEquals("ERR_CC_OTHER", creditCardValidators.checkCreditCard("disney").get(0));
 
-        //Valid Card with Wrong Type
-        assertEquals(false, creditCardValidators.checkCreditCard("378282246310005", "VISA").isEmpty());
-
-        //Valid Credit Card not Support by Disney
-        assertEquals(false, creditCardValidators.checkCreditCard("5610591081018250", null).isEmpty());
-
-    }
+        //Test for null
+        assertEquals(ValidatorConstant.ERR_EMPTY_INPUT, creditCardValidators.checkCreditCard("").get(0));
+        assertEquals(ValidatorConstant.ERR_EMPTY_INPUT, creditCardValidators.checkCreditCard(null).get(0));
+        assertEquals(false, creditCardValidators.isCreditCard(""));
+        assertEquals(false, creditCardValidators.isCreditCard(null));
+        }
 }

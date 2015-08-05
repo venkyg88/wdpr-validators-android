@@ -390,13 +390,25 @@ Predicate method to determine whether or not an input value contains a valid Cre
 
 **Params**
 - creditCardNumber `String`
-- creditCardType `String`
 
 **Returns** `boolean`
 
 **Usage:**
 
-    creditCardValidator.isCreditCard(creditCardNumber, creditCardType)
+```java
+String creditCardNumber = "4111111111111111";
+
+boolean value = creditCardValidator.isCreditCard(creditCardNumber)
+
+if(value)
+{
+  //It is a valid credit card.
+}
+else
+{
+  //It is not a valid credit card.
+}  
+```
 
 **Output:**<br>
 > **TRUE** (Boolean)<br>
@@ -404,24 +416,40 @@ Predicate method to determine whether or not an input value contains a valid Cre
 
 -----
 
-## checkCreditCard(String creditCardNumber, String creditCardType)
+## checkCreditCard(String creditCardNumber)
 
 Checker method to check a credit card input, and return an list of error codes for any failed criteria. If the input is a valid credit card, this method returns an empty string.
 
 **Params**
 - creditCardNumber `String`
-- creditCardType   `String`
 
 **Returns** `List<String>`
 
 **Usage:**
 
-    creditCardValidator.checkCreditCard(creditCardNumber, creditCardType);
+```java
+String creditCardNumber = "411111111111111";
+
+List<String> errorList = creditCardValidator.checkCreditCard(creditCardNumber);
+
+if(errorList.isEmpty()) 
+{
+  //It is a valid credit card.
+}
+else
+{
+  //It is not a valid credit card.
+}
+```
+
 
 **Output:**<br>
 > Success Scenario: Size of List will be zero<br>
 > Failure Scenario: List('ERR\_EMPTY\_INPUT')<br>
-> Failure Scenario: List('ERR\_CC\_OTHER')
+> Failure Scenario: List('ERR\_CC\_OTHER')<br>
+> Failure Scenario: List('ERR\_CC\_LUHN')<br>
+> Failure Scenario: List('ERR\_CC\_LENGTH')
+
 
 Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#credit-card) for further details on their definitions
 

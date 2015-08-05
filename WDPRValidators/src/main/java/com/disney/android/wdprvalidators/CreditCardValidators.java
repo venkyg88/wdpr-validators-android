@@ -4,314 +4,135 @@ package com.disney.android.wdprvalidators;
  * Created by venkatgonuguntala on 7/26/15.
  */
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.validator.routines.CreditCardValidator;
-import org.apache.commons.validator.routines.checkdigit.CheckDigit;
-import org.apache.commons.validator.routines.checkdigit.LuhnCheckDigit;
 
 public class CreditCardValidators
 {
-    private static final String _5 = "5";
-    private static final String _6011 = "6011";
-    private static final String _35 = "35";
-    private static final String _2131_1800 = "2131,1800,";
-    private static final String DINERS = "DINERS";
-    private static final String DISCOVER = "DISCOVER";
-    private static final String MASTERCARD = "MASTERCARD";
-    private static final String VISA = "VISA";
-    private static final String AMEX = "AMEX";
-    private static final String JCB = "JCB";
-    static final Map<String, Long> CARDTYPEMAP = new HashMap<String, Long>();
-    private static final CheckDigit LUHN_VALIDATOR = LuhnCheckDigit.LUHN_CHECK_DIGIT;
-    private final transient List<String> creditCardList = new ArrayList<String>();
+    private static final String NUMBER_REGEX = "^[0-9]*$";
+
+    private static final String SPECIAL_CHARACTER = "[- ]";
 
     /**
-     *
-     * @return
+     * @description predicate method to determine the input
+     * @param creditCardNumber
+     * @return boolean
      */
-    public static Map<String, Long> supportedCardType()
+    public boolean isCreditCard(String creditCardNumber)
     {
-        CARDTYPEMAP.put(AMEX, Long.valueOf(1));
-        CARDTYPEMAP.put(VISA, Long.valueOf(2));
-        CARDTYPEMAP.put(MASTERCARD, Long.valueOf(4));
-        CARDTYPEMAP.put(DISCOVER, Long.valueOf(8));
-        CARDTYPEMAP.put(DINERS, Long.valueOf(16));
-        CARDTYPEMAP.put(JCB, Long.valueOf(32));
-        return CARDTYPEMAP;
-    }
+        boolean result = false;
 
-    /**
-     *
-     * @param creditCard
-     * @param cardType
-     * @return
-     */
-    public boolean isCreditCard(final String creditCard, final String cardType)
-    {
-        boolean result = false;
-        String type;
-        if (creditCard != null && !creditCard.isEmpty())
+        if(creditCardNumber != null && !creditCardNumber.isEmpty())
         {
-            if (cardType == null || cardType.isEmpty())
+            creditCardNumber = trimSpecialCharacter(creditCardNumber);
+
+            if (isNumber(creditCardNumber) && luhnTestForCreditCardNumber(creditCardNumber) && lengthCheckForCreditCardNumber(creditCardNumber))
             {
-                type = getCreditCardType(creditCard);
-            }
-            else
-            {
-                type = cardType;
-            }
-            result = validateCard(creditCard, type);
-        }
-        return result;
-    }
-    /**
-     *
-     * @param creditCard
-     * @param cardType
-     * @return
-     */
-    private boolean validateCard(final String creditCard, final String cardType)
-    {
-        boolean result = false;
-        CreditCardValidator ccValidator;
-        if (supportedCardType().containsKey(cardType))
-        {
-            if (cardType.equalsIgnoreCase(JCB))
-            {
-                result = validateJcb(creditCard);
-            }
-            else
-            {
-                ccValidator = new CreditCardValidator((Long) supportedCardType().get(cardType));
-                result = ccValidator.isValid(creditCard);
+                result = true;
             }
         }
         return result;
     }
 
-    /**
-     *
-     * @param creditCard
-     * @return
-     */
-    private boolean validateJcb(final String creditCard)
-    {
-        boolean result = false;
-        final JcbCreditCard jcbCreditCard = new JcbCreditCard();
-        if (jcbCreditCard.matches(creditCard) && LUHN_VALIDATOR.isValid(creditCard.trim()))
-        {
-            result = true;
-        }
-        return result;
-    }
 
     /**
-     *
-     * @param creditCard
-     * @param cardType
-     * @return
+     * @description checker method to determine the input card is valid or not.
+     * @param creditCardNumber
+     * @return list
      */
-    public List<String> checkCreditCard(final String creditCard, final String cardType)
+    public List<String> checkCreditCard(String creditCardNumber)
     {
-        if (creditCard == null || creditCard.isEmpty())
+        final List<String> creditCardList = new ArrayList<String>();
+
+        if (creditCardNumber == null || creditCardNumber.isEmpty())
         {
             creditCardList.add(ValidatorConstant.ERR_EMPTY_INPUT);
         }
         else
         {
-            if (!isCreditCard(creditCard, cardType))
+            creditCardNumber = trimSpecialCharacter(creditCardNumber);
+            if (!isCreditCard(creditCardNumber))
             {
-                if (cardType != null && !cardType.isEmpty())
-                {
-                    validateCCType(creditCard, cardType);
-                }
-                validateLUHN(creditCard);
-                if (cardType != null && !validateCCLength(creditCard, cardType))
-                {
-                    creditCardList.add(ValidatorConstant.ERR_CC_LEN);
-                }
-                if (creditCardList.isEmpty())
-                {
+                if(!isNumber(creditCardNumber)){
                     creditCardList.add(ValidatorConstant.ERR_CC_OTHER);
+                }
+                else
+                {
+                    if (!luhnTestForCreditCardNumber(creditCardNumber))
+                    {
+                        creditCardList.add(ValidatorConstant.ERR_CC_LUHN);
+                    }
+                    if (!lengthCheckForCreditCardNumber(creditCardNumber))
+                    {
+                        creditCardList.add(ValidatorConstant.ERR_CC_LEN);
+                    }
                 }
             }
         }
         return creditCardList;
     }
 
-    /**
-     *
-     * @param creditCard
-     * @return
-     */
-    private void validateCCType(final String creditCard, final String ccType)
-    {
-        final String cardType = getCreditCardType(creditCard);
-        if (!ccType.equals(cardType))
-        {
-            creditCardList.add(ValidatorConstant.ERR_CC_UNSUP_TYP);
-        }
-    }
-    /**
-     *
-     * @param creditCard
-     * @return
-     */
-    private void validateLUHN(final String creditCard)
-    {
-        if(!LUHN_VALIDATOR.isValid(creditCard.trim()))
-        {
-            creditCardList.add(ValidatorConstant.ERR_CC_LUHN);
-        }
-    }
 
     /**
-     *
-     * @param creditCard
-     * @return
+     * @desc luhn Algorithm to check the input number is valid credit card number
+     * @param number
+     * @return boolean
      */
-    public String getCreditCardType(final String creditCard)
+
+    private static boolean luhnTestForCreditCardNumber(String number)
     {
-        return CardType.getCardType(creditCard).toString();
+        int variableOne = 0;
+
+        int variableTwo = 0;
+
+        final String reverse = new StringBuffer(number).reverse().toString();
+
+        final int numberLength = reverse.length();
+
+        for (int i = 0 ; i < numberLength; i++)
+        {
+            final int digit = Character.digit(reverse.charAt(i), 10);
+
+            if(i % 2 == 0)
+            {
+                //this is for odd digits, they are 1-indexed in the algorithm
+                variableOne += digit;
+            }
+            else
+            {
+                //add 2 * digit for 0-4, add 2 * digit - 9 for 5-9
+                variableTwo += 2 * digit;
+
+                if(digit >= 5)
+                {
+                    variableTwo -= 9;
+                }
+            }
+        }
+        return (variableOne + variableTwo) % 10 == 0;
     }
 
-    /**
-     *
-     * @param creditCard
-     * @param type
-     * @return
-     */
-    private boolean validateCCLength(final String creditCard, final String type)
-    {
-        boolean result = true;
-        final int cardLength = creditCard.length();
-        if (AMEX.equals(type))
-        {
-            result = validateAmexLength(cardLength);
-        }
-        if (VISA.equals(type))
-        {
-            result = validateVisaLength(cardLength);
-        }
-        if (MASTERCARD.equals(type))
-        {
-            result = validateMasterCLength(cardLength);
-        }
-        if (DISCOVER.equals(type))
-        {
-            result = validateDiscoverLength(creditCard, cardLength);
-        }
-        if (DINERS.equals(type))
-        {
-            result = validateDinersLength(cardLength);
-        }
-        if (JCB.equals(type))
-        {
-            result = validateJCBLength(creditCard, cardLength);
-        }
-        return result;
-    }
 
-    /**
-     *
-     * @param cardLength
-     * @return
-     */
-    private boolean validateJCBLength(final String creditCard, final int cardLength)
+    private boolean lengthCheckForCreditCardNumber(String creditcardNumber)
     {
         boolean result = false;
-        if(cardLength == 15)
-        {
-            final String PREFIX = _2131_1800;
-            final String prefix2 = creditCard.substring(0, 4) + ",";
-            result =  PREFIX.indexOf(prefix2) != -1;
-        }
-        if(cardLength == 16)
-        {
-            result = creditCard.substring(0, 2).equals(_35);
-        }
-        return result;
-    }
 
-    /**
-     *
-     * @param cardLength
-     * @return
-     */
-    private boolean validateDinersLength(final int cardLength)
-    {
-        boolean result = false;
-        if (cardLength == 14)
+        int creditCardLength = creditcardNumber.length();
+
+        if (creditCardLength >= 11 && creditCardLength <= 16)
         {
             result = true;
         }
         return result;
     }
 
-    /**
-     *
-     * @param cardLength
-     * @return
-     */
-    private boolean validateDiscoverLength(final String creditCard, final int cardLength)
+    private boolean isNumber(String creditcardNumber)
     {
-        boolean result = false;
-        if (cardLength == 16 && creditCard.startsWith(_6011))
-        {
-            result = true;
-        }
-        if (cardLength == 15 && creditCard.startsWith(_5))
-        {
-            result = true;
-        }
-        return result;
+        return creditcardNumber.matches(NUMBER_REGEX);
     }
 
-    /**
-     *
-     * @param cardLength
-     * @return
-     */
-    private boolean validateMasterCLength(final int cardLength)
+    private String trimSpecialCharacter(String creditCard)
     {
-        boolean result = false;
-        if (cardLength == 16)
-        {
-            result = true;
-        }
-        return result;
-    }
-
-    /**
-     *
-     * @param cardLength
-     * @return
-     */
-    private boolean validateVisaLength(final int cardLength)
-    {
-        boolean result = false;
-        if (cardLength == 13 || cardLength == 16)
-        {
-            result = true;
-        }
-        return result;
-    }
-
-    /**
-     *
-     * @param cardLength
-     * @return
-     */
-    private boolean validateAmexLength(final int cardLength)
-    {
-        boolean result = false;
-        if (cardLength == 15)
-        {
-            result = true;
-        }
-        return result;
+        creditCard = creditCard.replaceAll(SPECIAL_CHARACTER, "");
+        return creditCard;
     }
 }
