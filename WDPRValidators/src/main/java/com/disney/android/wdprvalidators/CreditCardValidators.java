@@ -5,6 +5,7 @@ package com.disney.android.wdprvalidators;
  */
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,8 @@ public class CreditCardValidators
     private static final String SPECIAL_CHARACTER = "[- ]";
 
     private static final Pattern numberPattern = Pattern.compile(NUMBER_REGEX);
+
+    private static int mFourDigitYear = 2000;
     /**
      * @description predicate method to determine the input
      * @param creditCard
@@ -84,27 +87,36 @@ public class CreditCardValidators
 
    public boolean isValidCreditCardDate(int month, int year){
 
-       boolean result =false;
-       if (month > 0 && month < 13 && (year > 15 && year < 99 || year >2015 && year < 2099 )){
-           Date date = new Date();
-           SimpleDateFormat format = new SimpleDateFormat("MM/YYYY");
-           try {
-               Date currentDate = format.parse(String.valueOf(date));
-           } catch (ParseException e) {
-               e.printStackTrace();
-           }
+       boolean result = false;
 
-           //result = true;
+       if ( conditionForTwoAndFourDigitYear(month, year)){
+           if(!isCardExpiry(month, mFourDigitYear)){
+               result = true;
+           }
        }
+
        return result;
    }
 
-    public List<String> checkValidCreditCardDate(int month, int year){
-        List<String> errorList = new ArrayList<>();
-        if(!isValidCreditCardDate(month, year)){
+    public List<String> checkValidCreditCardDate(int month, int year)
+    {
+        final List<String> errorDateList = new ArrayList<>();
 
+        if(!isValidCreditCardDate(month, year))
+        {
+            if (conditionForTwoAndFourDigitYear(month, year))
+            {
+                if(isCardExpiry(month, mFourDigitYear))
+                {
+                    errorDateList.add(ValidatorConstant.ERR_CC_EXP);
+                }
+            }
+            else
+            {
+                errorDateList.add(ValidatorConstant.ERR_CC_OTHER);
+            }
         }
-        return errorList;
+        return errorDateList;
     }
 
 
@@ -169,4 +181,49 @@ public class CreditCardValidators
         creditCard = creditCard.replaceAll(SPECIAL_CHARACTER, "");
         return creditCard;
     }
+
+    private Date getDateFormat(int month, int year)
+    {
+        SimpleDateFormat formatter = new SimpleDateFormat("YYYY/MM");
+        Date utilDate = null;
+        try {
+            utilDate = formatter.parse(String.valueOf(year) + "/" + String.valueOf(month));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return utilDate;
+    }
+
+    private Date getCurrentYearMonth()
+    {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(cal.YEAR);
+        int month = cal.get(cal.MONTH)+1;
+        Date currentYearMonth = getDateFormat(month, year);
+        return currentYearMonth;
+    }
+
+    private boolean isCardExpiry(int month, int year)
+    {
+        Date creditCardDate = getDateFormat(month, year);
+        Date curentDate = getCurrentYearMonth();
+        return creditCardDate.before(curentDate);
+    }
+
+    private boolean conditionForTwoAndFourDigitYear(int month, int year)
+    {
+        boolean result = false;
+        if ( month >= 1 && month <= 12 && year >= 10 && year <= 99 )
+        {
+            mFourDigitYear += year;
+            result = true;
+        }
+        if ( month >= 1 && month <= 12 && year >= 2000 && year <= 9999 )
+        {
+            mFourDigitYear = year;
+            result = true;
+        }
+        return result;
+    }
+
 }

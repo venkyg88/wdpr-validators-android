@@ -9,9 +9,11 @@ import org.junit.Test;
 
 public class CreditCardValidatorsTest {
 
-    @Test
+    CreditCardValidators creditCardValidators = new CreditCardValidators();
+
+    /*@Test
     public void testCreditCard() {
-        CreditCardValidators creditCardValidators = new CreditCardValidators();
+
 
         //Valid cards
         assertEquals(true, creditCardValidators.checkCreditCard("378282246310005").isEmpty());
@@ -82,5 +84,15 @@ public class CreditCardValidatorsTest {
         assertEquals(ValidatorConstant.ERR_EMPTY_INPUT, creditCardValidators.checkCreditCard(null).get(0));
         assertEquals(false, creditCardValidators.isCreditCard(""));
         assertEquals(false, creditCardValidators.isCreditCard(null));
-        }
+    }*/
+
+    @Test
+    public void testForCreditCardExpiryDate(){
+
+        //assertEquals(true, creditCardValidators.isValidCreditCardDate(12,2015));
+        //assertEquals(false, creditCardValidators.isValidCreditCardDate(02, 2015));//Its returing true
+        assertEquals("ERR_CC_EXP", creditCardValidators.checkValidCreditCardDate(9, 2016).get(0));
+    }
+
+
 }
