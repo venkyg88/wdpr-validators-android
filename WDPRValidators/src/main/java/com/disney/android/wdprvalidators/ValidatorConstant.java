@@ -13,6 +13,8 @@ public final class ValidatorConstant
     public static final String ERR_CC_LEN = "ERR_CC_LEN";
     /************************* Credit Card failed Luhn check ********************************/
     public static final String ERR_CC_LUHN = "ERR_CC_LUHN";
+    /************************* Credit Card is expired ***************************************/
+    public static final String ERR_CC_EXP = "ERR_CC_EXP";
     /**
      *
      */
