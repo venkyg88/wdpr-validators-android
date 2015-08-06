@@ -13,9 +13,11 @@ import java.util.Calendar;
 
 public class CreditCardValidatorsTest {
 
+    CreditCardValidators creditCardValidators = new CreditCardValidators();
+
     @Test
-    public void testCreditCard() throws ParseException {
-        CreditCardValidators creditCardValidators = new CreditCardValidators();
+    public void testCreditCard() {
+
 
         //Valid cards
         assertEquals(true, creditCardValidators.checkCreditCard("378282246310005").isEmpty());
@@ -86,9 +88,14 @@ public class CreditCardValidatorsTest {
         assertEquals(ValidatorConstant.ERR_EMPTY_INPUT, creditCardValidators.checkCreditCard(null).get(0));
         assertEquals(false, creditCardValidators.isCreditCard(""));
         assertEquals(false, creditCardValidators.isCreditCard(null));
+    }
+
+    @Test
+    public void testCreditCardDate() throws ParseException{
 
         int month = getcurrentMonth();
         int year =  getcurrentYear();
+
         assertEquals(true, creditCardValidators.checkCreditCardDate(year, month).isEmpty());
         assertEquals(false, creditCardValidators.checkCreditCardDate(year, month-1).isEmpty());
 
@@ -96,14 +103,19 @@ public class CreditCardValidatorsTest {
         assertEquals(false, creditCardValidators.isValidCreditCardDate(year, 0));
         assertEquals(false, creditCardValidators.isValidCreditCardDate(0, 0));
 
+        // Since input is integer, Empty Input error msg on passing '0'.
         assertEquals(ValidatorConstant.ERR_EMPTY_INPUT, creditCardValidators.checkCreditCardDate(0, 8).get(0));
         assertEquals(ValidatorConstant.ERR_EMPTY_INPUT, creditCardValidators.checkCreditCardDate(year, 0).get(0));
         assertEquals(ValidatorConstant.ERR_EMPTY_INPUT, creditCardValidators.checkCreditCardDate(0, 0).get(0));
 
-        // Credit Card Date Unit Test Cases with single Digit Month
+        assertEquals(true, creditCardValidators.checkCreditCardDate(35, 12).isEmpty());
+
+        // Single Digit Month with error message
         assertEquals(ValidatorConstant.ERR_CC_EXP, creditCardValidators.checkCreditCardDate(year-1, month).get(0));
         assertEquals(ValidatorConstant.ERR_CC_EXP, creditCardValidators.checkCreditCardDate(year, month-2).get(0));
         assertEquals(ValidatorConstant.ERR_CC_EXP, creditCardValidators.checkCreditCardDate(year, month-1).get(0));
+
+        // Single Digit Month
         assertEquals(true, creditCardValidators.checkCreditCardDate(year, month).isEmpty());
         assertEquals(true, creditCardValidators.checkCreditCardDate(year, month).isEmpty());
         assertEquals(true, creditCardValidators.checkCreditCardDate(3000, month).isEmpty());

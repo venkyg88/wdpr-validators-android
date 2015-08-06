@@ -118,7 +118,11 @@ public class CreditCardValidators
         return (variableOne + variableTwo) % 10 == 0;
     }
 
-
+    /**
+     *
+     * @param creditcardNumber
+     * @return
+     */
     private boolean lengthCheckForCreditCardNumber(String creditcardNumber)
     {
         boolean result = false;
@@ -132,6 +136,11 @@ public class CreditCardValidators
         return result;
     }
 
+    /**
+     *
+     * @param creditcardNumber
+     * @return
+     */
     private boolean isNumber(String creditcardNumber)
     {
         return creditcardNumber.matches(NUMBER_REGEX);
@@ -143,17 +152,37 @@ public class CreditCardValidators
         return creditCard;
     }
 
+    /**
+     *
+     * @param year
+     * @param month
+     * @return
+     * @throws ParseException
+     */
+    private boolean validateCardExpiryDate(final int year, final int month) throws ParseException
+    {
+        boolean result = false;
+        if(month>0 && month<=12 && year>=1000)
+        {
+            result = true;
+        }
+        return result;
+    }
+    /**
+     *
+     * @param year
+     * @param month
+     * @return
+     * @throws ParseException
+     */
     public boolean isValidCreditCardDate(final int year, final int month) throws ParseException
     {
         boolean result = false;
         final int _year = getFourDigitYear(year);
-        if(validateCardExpiryDate(_year,month))
+        if ( validateCardExpiryDate(_year,month) )
         {
-            final StringBuilder creditCardDate = formatCreditCardDate(String.valueOf(_year), String.valueOf(month));
-            final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(MM_YYYY);
-            final Date expiry = simpleDateFormat.parse(creditCardDate.toString());
-            final boolean expiredCard = expiry.before(new Date());
-            if(!expiredCard)
+
+            if ( !checkExpired(_year, month) )
             {
                 result = true;
             }
@@ -167,7 +196,7 @@ public class CreditCardValidators
      */
     private int getFourDigitYear(final int year)
     {
-        if(year>9 && year<=99)
+        if ( year>9 && year<=99 )
         {
             return year + 2000;
         }
@@ -183,16 +212,16 @@ public class CreditCardValidators
     public  List<String> checkCreditCardDate(final int year, final int month) throws ParseException
     {
         final  List<String> cardDateList = new ArrayList<String>();
-        if(year==0 || month==0)
+        if ( year == 0 || month == 0 )
         {
             cardDateList.add(ValidatorConstant.ERR_EMPTY_INPUT);
         }
         else
         {
             final int _year = getFourDigitYear(year);
-            if(!isValidCreditCardDate(_year,month))
+            if ( !isValidCreditCardDate(_year,month) )
             {
-                if(validateCardExpiryDate(_year,month))
+                if ( validateCardExpiryDate(_year,month) )
                 {
                     cardDateList.add(ValidatorConstant.ERR_CC_EXP);
                 }
@@ -219,14 +248,14 @@ public class CreditCardValidators
         return creditCardDate;
     }
 
-    public boolean validateCardExpiryDate(final int year, final int month) throws ParseException
-    {
-        boolean result = false;
-        if(month>0 && month<=12 && year>=1000)
-        {
-            result = true;
-        }
-        return result;
-    }
 
+    private boolean checkExpired(int year, int month) throws ParseException
+    {
+        StringBuilder creditCardDate = formatCreditCardDate(String.valueOf(year), String.valueOf(month));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(MM_YYYY);
+        Date expiry = simpleDateFormat.parse(creditCardDate.toString());
+        boolean expiredCard = expiry.before(new Date());
+        return expiredCard;
+    }
 }
+
