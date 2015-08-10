@@ -104,7 +104,7 @@ public class CreditCardValidatorsTest {
         assertEquals(false, creditCardValidators.isValidCreditCardDate(0, 0));
 
         // Since input is integer, Empty Input error msg on passing '0'.
-        assertEquals(ValidatorConstant.ERR_EMPTY_INPUT, creditCardValidators.checkCreditCardDate(0, 8).get(0));
+        assertEquals(ValidatorConstant.ERR_CC_EXP, creditCardValidators.checkCreditCardDate(0, 8).get(0));
         assertEquals(ValidatorConstant.ERR_EMPTY_INPUT, creditCardValidators.checkCreditCardDate(year, 0).get(0));
         assertEquals(ValidatorConstant.ERR_EMPTY_INPUT, creditCardValidators.checkCreditCardDate(0, 0).get(0));
 
