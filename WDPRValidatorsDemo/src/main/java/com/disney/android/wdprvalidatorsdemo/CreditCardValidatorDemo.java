@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.disney.android.wdprvalidators.CreditCardValidators;
+
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -19,6 +21,10 @@ public class CreditCardValidatorDemo extends Activity{
     //Input field where user enter credit card number for type
     private EditText mCreditCardNumberForTypeText;
 
+    private EditText mCreditCardDateYearText;
+
+    private EditText mCreditCardDateMonthText;
+
     private CreditCardValidators creditCardValidator;
 
     @Override
@@ -30,24 +36,26 @@ public class CreditCardValidatorDemo extends Activity{
 
         mCreditCardNumberForTypeText = (EditText) findViewById(R.id.creditCardNumberForType);
 
+        mCreditCardDateMonthText = (EditText) findViewById(R.id.editTextMonth);
+
+        mCreditCardDateYearText = (EditText) findViewById(R.id.editTextYear);
+
         creditCardValidator =  new CreditCardValidators();
 
         Button button = (Button) findViewById(R.id.checkCreditCard);
 
-        button.setOnClickListener(new View.OnClickListener(){
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 onValidateClick(v);
             }
         });
 
         Button button1 = (Button) findViewById(R.id.checkCreditCardType);
 
-        button1.setOnClickListener(new View.OnClickListener(){
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 onValidateClickType(v);
             }
         });
@@ -89,6 +97,52 @@ public class CreditCardValidatorDemo extends Activity{
             str ="\n"+str;
 
             errorCode=errorCode.concat(str);
+        }
+
+        if(result.isEmpty())
+        {
+            Toast.makeText(this, "It is a Valid Credit Card", Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            Toast.makeText(this, errorCode, Toast.LENGTH_LONG).show();
+
+            result.clear();
+        }
+    }
+
+    public void isCreditCardDate(View view) throws ParseException {
+
+        String year = mCreditCardDateYearText.getText().toString();
+
+        String month = mCreditCardDateMonthText.getText().toString();
+
+        boolean result =  creditCardValidator.isValidCreditCardDate(Integer.parseInt(year),Integer.parseInt(month));
+
+        if(result){
+            Toast.makeText(CreditCardValidatorDemo.this,"date is Valid", Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(CreditCardValidatorDemo.this,"date is not valid", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    public void checkCreditCardDate(View view) throws ParseException {
+
+        String year = mCreditCardDateYearText.getText().toString();
+
+        String month = mCreditCardDateMonthText.getText().toString();
+
+        List<String> result = creditCardValidator.checkCreditCardDate(Integer.parseInt(year), Integer.parseInt(month));
+
+        String errorCode = "";
+
+        for (String str : result) {
+
+            str ="\n"+str;
+
+            errorCode = errorCode.concat(str);
         }
 
         if(result.isEmpty())

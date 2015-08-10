@@ -442,7 +442,6 @@ else
 }
 ```
 
-
 **Output:**<br>
 > Success Scenario: Size of List will be zero<br>
 > Failure Scenario: List('ERR\_EMPTY\_INPUT')<br>
@@ -450,6 +449,80 @@ else
 > Failure Scenario: List('ERR\_CC\_LUHN')<br>
 > Failure Scenario: List('ERR\_CC\_LENGTH')
 
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#credit-card) for further details on their definitions
+
+------
+
+## isValidCreditCardDate(year, month)
+
+Predicate method to determine whether or not the passed parameters(year and month) falls after the current date(year and month).
+Note: while consuming the block, Developers should make sure that they pass integer types for year and month otherwise it will lead to compile time error.
+
+**Params**
+- year `int` Format YY/YYYY
+- month `int` Format MM
+
+**Returns** `boolean`
+
+**Usage:**
+
+```java
+int year = 35; //35/2035
+int month = 10;
+
+boolean value = creditCardValidator.isValidCreditCardDate(year, month);
+
+if(value)
+{
+  //Card date is valid.
+}
+else
+{
+  //Card date is expired/ Invalid input date type/ exceeding range.
+}
+```
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
+
+## checkCreditCardDate(year, month)
+
+Checker method to check a credit card date input parameters, and return an list of error codes for any failed criteria. If the input is a valid credit card date, this method returns an empty string.
+Note: While consuming the block, developers should make sure that they pass integer types for year and month otherwise it will lead to compile time error.
+
+**Params**
+- year `int` Format YY/YYYY
+- month `int` Format MM
+
+**Returns** `List<String>`
+
+**Usage:**
+
+```java
+int year = 35; //35/2035
+int month = 10;
+
+List<String> errorList = creditCardValidator.checkCreditCardDate(year, month);
+
+if(errorList.isEmpty())
+{
+  //It is a valid credit card.
+}
+else
+{
+  //Card date is expired/ Invalid input date type/ exceeding range.
+  //print errorList
+}
+```
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')<br>
+> Failure Scenario: List('ERR\_CC\_OTHER')<br>
+> Failure Scenario: List('ERR\_CC\_EXP')
 
 Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#credit-card) for further details on their definitions
 

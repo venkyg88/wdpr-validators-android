@@ -64,6 +64,60 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginEnd="@dimen/activity_horizontal_margin" />
 
+        <TextView android:layout_marginTop="50dp"
+            android:layout_width="278dp"
+            android:layout_height="40dp"
+            android:text="Date Validtion"
+            android:id="@+id/textViewDate"
+            android:layout_gravity="bottom"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/editTextMonth"
+                android:hint="MM"
+                android:maxLength="2"
+                android:inputType="number"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/dynamic_spinner"
+                android:layout_toEndOf="@+id/dynamic_spinner" />
+
+            <EditText
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:id="@+id/editTextYear"
+                android:hint="YYYY"
+                android:maxLength="4"
+                android:inputType="number"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/editTextMonth"
+                android:layout_toEndOf="@+id/editTextMonth" />
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/isCreditCardDate"
+            android:layout_width="312dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/buttonTextSize"
+            android:text="@string/validateCreditCard"
+            android:onClick="isCreditCardDate"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin" />
+
+        <Button
+            android:id="@+id/checkCreditCardDate"
+            android:layout_width="312dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/buttonTextSize"
+            android:text="@string/validateCCType"
+            android:onClick="checkCreditCardDate"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin" />
     </LinearLayout>
 
 </ScrollView>
