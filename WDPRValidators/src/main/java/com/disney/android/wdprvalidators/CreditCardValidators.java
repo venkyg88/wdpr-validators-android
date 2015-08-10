@@ -196,7 +196,7 @@ public class CreditCardValidators
      */
     private int getFourDigitYear(final int year)
     {
-        if ( year>9 && year<=99 )
+        if ( year >= 00 && year <= 99 )
         {
             return year + 2000;
         }
@@ -212,7 +212,7 @@ public class CreditCardValidators
     public  List<String> checkCreditCardDate(final int year, final int month) throws ParseException
     {
         final  List<String> cardDateList = new ArrayList<String>();
-        if ( year == 0 || month == 0 )
+        if ( month == 0 )
         {
             cardDateList.add(ValidatorConstant.ERR_EMPTY_INPUT);
         }
