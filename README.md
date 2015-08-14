@@ -555,3 +555,71 @@ else
 Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#credit-card) for further details on their definitions
 
 ------
+
+## isCreditCardCVC(String cvc)
+
+Predicate method to determine whether or not an input value contains a valid Credit Card cvc.
+
+**Params**
+- cvc `String` 
+
+**Returns** `boolean`
+
+**Usage:**
+
+```java
+String cvc ="4003
+
+boolean value = creditCardValidator.isCreditCardCVC(cvc);
+
+if(value)
+{
+  //Card cvc is valid.
+}
+else
+{
+  //Card cvc is Invalid because of exceeding range or not number.
+}
+```
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
+
+## checkCreditCardCVC(String cvc)
+
+Checker method to check credit card cvc, and return a list of error codes for any failed criteria. If the input is a valid credit card, this method returns an empty string.
+
+**Params**
+- cvc `String`
+
+**Returns** `List<String>`
+
+**Usage:**
+
+```java
+String cvc = "4003";
+
+List<String> errorList = creditCardValidator.checkCreditCardCVC(cvc);
+
+if(errorList.isEmpty()) 
+{
+  //It is a valid credit card cvc.
+}
+else
+{
+  //It is not a valid credit card cvc.
+}
+```
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')<br>
+> Failure Scenario: List('ERR\_CC\_CVC\_LEN')<br>
+> Failure Scenario: List('ERR\_CC\_CVC')
+
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#credit-card) for further details on their definitions
+
+------
