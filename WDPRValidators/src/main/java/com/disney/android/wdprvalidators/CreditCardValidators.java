@@ -261,7 +261,7 @@ public class CreditCardValidators
     public boolean isCreditCardCVC(String cvc)
     {
         boolean result = false;
-        if(cvc != null)
+        if(cvc != null && !cvc.isEmpty())
         {
             cvc = trimSpecialCharacter(cvc);
             if (isNumber(cvc))
@@ -278,7 +278,7 @@ public class CreditCardValidators
     public List<String> checkCreditCardCVC(String cvc)
     {
         List<String> listCVC = new ArrayList<>();
-        if(cvc != null)
+        if(cvc != null && !cvc.isEmpty())
         {
             cvc = trimSpecialCharacter(cvc);
             if (!isCreditCardCVC(cvc))
