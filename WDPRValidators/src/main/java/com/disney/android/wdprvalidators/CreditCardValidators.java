@@ -257,5 +257,59 @@ public class CreditCardValidators
         boolean expiredCard = expiry.before(new Date());
         return expiredCard;
     }
+
+    public boolean isCreditCardCVC(String cvc)
+    {
+        boolean result = false;
+        if(cvc != null)
+        {
+            cvc = trimSpecialCharacter(cvc);
+            if (isNumber(cvc))
+            {
+                if (cvcLengthCheck(cvc))
+                {
+                    result = true;
+                }
+            }
+        }
+        return result;
+    }
+
+    public List<String> checkCreditCardCVC(String cvc)
+    {
+        List<String> listCVC = new ArrayList<>();
+        if(cvc != null)
+        {
+            cvc = trimSpecialCharacter(cvc);
+            if (!isCreditCardCVC(cvc))
+            {
+                if (!cvcLengthCheck(cvc) && isNumber(cvc))
+                {
+                    listCVC.add("ERR_CC_CVC_LEN");
+                }
+                if(listCVC.isEmpty())
+                {
+                    listCVC.add("ERR_CC_CVC");
+                }
+            }
+        }
+        else
+        {
+            listCVC.add(ValidatorConstant.ERR_EMPTY_INPUT);
+        }
+        return listCVC;
+    }
+
+    /**
+     * method to check the cvc length
+     * @param cvc
+     * @return
+     */
+    private boolean cvcLengthCheck(String cvc)
+    {
+        int cvcLength = cvc.length();
+        return (cvcLength == 3 || cvcLength == 4);
+    }
+
 }
 
