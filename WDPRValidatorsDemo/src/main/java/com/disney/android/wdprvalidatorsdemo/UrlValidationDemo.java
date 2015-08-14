@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.disney.android.wdprvalidators.UrlValidator;
+
 import java.net.MalformedURLException;
 import java.util.List;
 
@@ -20,7 +23,9 @@ public class UrlValidationDemo extends Activity{
 
     private EditText mURLText;
 
-    private TextView mResultText;
+    private Switch mSwithField;
+
+    private TextView mSwithState;
 
     private UrlValidator urlValidator;
 
@@ -31,7 +36,9 @@ public class UrlValidationDemo extends Activity{
 
         mURLText = (EditText) findViewById(R.id.urlInput);
 
-        mResultText = (TextView) findViewById(R.id.text_view);
+        mSwithState = (TextView) findViewById(R.id.swithState);
+
+        mSwithField = (Switch) findViewById(R.id.switch1);
 
         urlValidator = new UrlValidator();
 
@@ -46,29 +53,92 @@ public class UrlValidationDemo extends Activity{
                 }
             }
         });
+
+        Button button1 = (Button) findViewById(R.id.isURL);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    onUrlClick(view);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
+
+
 
     /**
      * Called when the "Validate" button is clicked.
      */
-    public void onValidateClick(View view) throws MalformedURLException {
+    public void onValidateClick(View view) throws MalformedURLException
+    {
         if (mURLText != null){
 
         String url = mURLText.getText().toString();
-        List<String> result =  urlValidator.checkURL(url);
+
+        boolean relaxed;
+
+        if(mSwithField.isChecked())
+        {
+            relaxed = true;
+
+            mSwithState.setText("ON");
+        }
+        else
+        {
+            relaxed = false;
+
+            mSwithState.setText("OFF");
+        }
+        List<String> result =  urlValidator.checkURL(url, relaxed);
 
         String errorCode="";
-        for (String str : result) {
+
+        for (String str : result)
+        {
             str ="\n"+str;
+
             errorCode=errorCode.concat(str);
         }
 
-        if(errorCode.equals("")){
+        if(errorCode.equals(""))
+        {
             Toast.makeText(this, "It is a Valid Url", Toast.LENGTH_LONG).show();
         }
-        else {
+        else
+        {
             Toast.makeText(this, errorCode, Toast.LENGTH_LONG).show();
         }
+        }
+    }
+
+    public void onUrlClick(View view) throws MalformedURLException{
+        if (mURLText != null) {
+
+            String url = mURLText.getText().toString();
+
+            boolean relaxed;
+
+            if (mSwithField.isChecked()) {
+                relaxed = true;
+
+                mSwithState.setText("ON");
+            } else {
+                relaxed = false;
+
+                mSwithState.setText("OFF");
+            }
+
+            boolean result =  urlValidator.isValidURL(url, relaxed);
+
+            if(result){
+                Toast.makeText(this,"true",Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(this,"false",Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

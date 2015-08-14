@@ -35,16 +35,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/validateButton"
+
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/buttonTextSize"
-            android:text="@string/save"
-            android:onClick="onValidateClick"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_height="wrap_content">
+
+            <Switch
+                android:layout_width="158dp"
+                android:layout_height="wrap_content"
+                android:text="Relaxed Switch"
+                android:id="@+id/switch1"
+                android:checked="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/swithState"
+                android:layout_gravity="right"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/switch1"
+                android:layout_toEndOf="@+id/switch1"
+                android:layout_marginLeft="31dp"
+                android:layout_marginStart="31dp" />
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/text_view"
@@ -52,6 +66,24 @@
             android:layout_height="wrap_content"
             android:text="@string/result"
             android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/isURL"
+            android:layout_width="316dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/buttonTextSize"
+            android:text="URL PREDICATE"
+            android:layout_gravity="center" />
+
+        <Button
+            android:id="@+id/validateButton"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/buttonTextSize"
+            android:text="URL CHECKER"
+            android:onClick="onValidateClick"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin" />
 
     </LinearLayout>
 </ScrollView>

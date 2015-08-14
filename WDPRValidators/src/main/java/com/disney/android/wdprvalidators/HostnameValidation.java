@@ -9,20 +9,6 @@ import java.util.regex.Pattern;
  */
 public class HostnameValidation {
 
-    private static final String ERR_HOSTNAME_LEN = "ERR_HOSTNAME_LEN";
-
-    private static final String ERR_HOSTNAME_TLD_LEN = "ERR_HOSTNAME_TLD_LEN";
-
-    private static final String ERR_HOSTNAME_SUBDOMAIN_LEN = "ERR_HOSTNAME_SUBDOMAIN_LEN";
-
-    private static final String ERR_HOSTNAME_TLD = "ERR_HOSTNAME_TLD";
-
-    private static final String ERR_HOSTNAME_IP = "ERR_HOSTNAME_IP";
-
-    private static final String ERR_HOSTNAME_OTHER = "ERR_HOSTNAME_OTHER";
-
-    private static final String ERR_EMPTY_INPUT ="ERR_EMPTY_INPUT";
-
     private static final String HOSTNAME_PATTERN = "^([a-z0-9][a-z0-9-]{0,63}\\.)+([a-z]{2,20})$";
 
     private static final String IPADDRESS_PATTERN = "^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
@@ -66,16 +52,17 @@ public class HostnameValidation {
         {
             if (!isHostName(hostname))
             {
-                if (hostname.length() > 255)
+                int hostNameLength = hostname.length();
+                if (hostNameLength > 255 || hostNameLength < 2)
                 {
-                     arraylist.add(ERR_HOSTNAME_LEN);
+                     arraylist.add(ValidatorConstant.ERR_HOSTNAME_LEN);
                 }
                 if (hostname.contains("."))
                 {
                     int tld = hostname.substring(hostname.lastIndexOf('.') + 1).length();
                     if (tld < 2 || tld > 20)
                     {
-                        arraylist.add(ERR_HOSTNAME_TLD_LEN);
+                        arraylist.add(ValidatorConstant.ERR_HOSTNAME_TLD_LEN);
                     }
                     String[] strArray = hostname.split("\\.");
                     int countOfSubDomains = strArray.length - 1;
@@ -84,28 +71,28 @@ public class HostnameValidation {
                         int strSubDomainLength = strArray[i].length();
                         if (strSubDomainLength > 63)
                         {
-                            arraylist.add(ERR_HOSTNAME_SUBDOMAIN_LEN);
+                            arraylist.add(ValidatorConstant.ERR_HOSTNAME_SUBDOMAIN_LEN);
                             break;
                         }
                     }
                     if(hostname.endsWith("."))
                     {
-                        arraylist.add(ERR_HOSTNAME_TLD);
+                        arraylist.add(ValidatorConstant.ERR_HOSTNAME_TLD);
                     }
                 }
                 if (isIPAddress(hostname))
                 {
-                    arraylist.add(ERR_HOSTNAME_IP);
+                    arraylist.add(ValidatorConstant.ERR_HOSTNAME_IP);
                 }
                 if(arraylist.isEmpty())
                 {
-                    arraylist.add(ERR_HOSTNAME_OTHER);
+                    arraylist.add(ValidatorConstant.ERR_HOSTNAME_OTHER);
                 }
             }
         }
         else
         {
-            arraylist.add(ERR_EMPTY_INPUT);
+            arraylist.add(ValidatorConstant.ERR_EMPTY_INPUT);
         }
         return arraylist;
     }

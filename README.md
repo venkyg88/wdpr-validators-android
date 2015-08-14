@@ -343,18 +343,31 @@ Please refer to our [error codes documentation](https://github.disney.com/WDPR-R
 
 -----
 
-## isValidURL(Object)
+## isValidURL(String url, boolean relaxed)
 
-Predicate to determine whether input value contain valid URL or Invalid
+Predicate method to determine whether input URL url is valid or not based on relaxed parameter, if the flag "relaxed" is set to true, skip the use of Hostname predicate within this so that those special case URLs can pass the predicate. Otherwise always use the Hostname predicate to validate the hostname part of the URL.
 
 **Params**
-- Object `String` - URl Object
+- url `String`
+- relaxed `boolean`
 
 **Returns** `boolean`
 
 **Usage:**
 
-    urlValidator.isValidURL(url)
+```java
+String url = "https://143.23.2.2";
+boolean relaxed = false
+boolean result = urlValidator.isValidURL(url, relaxed)
+if(result)
+{
+    //It is valid url
+}
+else
+{
+    //It is Invalid url
+}
+```
 
 **Output:**<br>
 > **TRUE** (Boolean)<br>
@@ -362,23 +375,38 @@ Predicate to determine whether input value contain valid URL or Invalid
 
 -----
 
-## checkURL(Object)
+## checkURL(String url, boolean relaxed)
 
-Checker to determine the error code/codes for URL failure, if failed else return List of size zero.
+Checker method to check the url input based on relaxed parameter, and return an list of error codes for any failed criteria and returns an empty string for valid url. If the flag "relaxed" is set to true, skip the use of Hostname predicate within this so that those special case URLs can pass the predicate. Otherwise always use the Hostname predicate to validate the hostname part of the URL.
 
 **Params**
-- Object `String` - url Object
+- url `String`
+- relaxed `boolean`
 
 **Returns** `List<String>`
 
 **Usage:**
 
-    urlValidator.checkURL(url);
+```java
+String url = "https://143.23.2.2";
+boolean relaxed = false
+List<String> errorList = urlValidator.checkURL(url);
+if(errorList.isEmpty())
+{
+    //It is Valid url
+}
+else
+{
+    //List of Error messages
+}
+```
 
 **Output:**<br>
 > Success Scenario: Size of List will be zero<br>
 > Failure Scenario: List('ERR\_EMPTY\_INPUT')<br>
-> Failure Scenario: List('ERR\_URI\_OTHER')
+> Failure Scenario: List('ERR\_URL\_OTHER')<br>
+> Failure Scenario: List('URL\_MAX\_LENGTH')<br>
+> Failure Scenario: List('ERR\_URL\_SCHEME')
 
 Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#uri) for further details on their definitions
 
