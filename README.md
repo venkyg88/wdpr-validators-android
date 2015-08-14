@@ -345,7 +345,7 @@ Please refer to our [error codes documentation](https://github.disney.com/WDPR-R
 
 ## isValidURL(String url, boolean relaxed)
 
-Predicate method to determine whether input URL url is valid or not based on relaxed parameter, if the flag "relaxed" is set to true, skip the use of Hostname predicate within this so that those special case URLs can pass the predicate. Otherwise always use the Hostname predicate to validate the hostname part of the URL.
+Predicate method to determine whether input URL url is valid or not based on relaxed parameter, if the flag "relaxed" is set to true, skips the use of Hostname predicate within this so that those special case URLs can pass the predicate. Otherwise always uses the Hostname predicate to validate the hostname part of the URL.
 
 **Params**
 - url `String`
@@ -377,7 +377,7 @@ else
 
 ## checkURL(String url, boolean relaxed)
 
-Checker method to check the url input based on relaxed parameter, and return an list of error codes for any failed criteria and returns an empty string for valid url. If the flag "relaxed" is set to true, skip the use of Hostname predicate within this so that those special case URLs can pass the predicate. Otherwise always use the Hostname predicate to validate the hostname part of the URL.
+Checker method to check the url input based on relaxed parameter, and return an list of error codes for any failed criteria and returns an empty string for valid url. If the flag "relaxed" is set to true, skips the use of Hostname predicate within this so that those special case URLs can pass the predicate. Otherwise always uses the Hostname predicate to validate the hostname part of the URL.
 
 **Params**
 - url `String`
