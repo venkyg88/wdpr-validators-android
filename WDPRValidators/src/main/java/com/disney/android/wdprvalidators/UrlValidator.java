@@ -1,7 +1,5 @@
 package com.disney.android.wdprvalidators;
 
-import com.disney.android.wdprvalidators.HostnameValidation;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -74,12 +72,12 @@ public class UrlValidator {
                     errorUrlList.add(ValidatorConstant.ERR_URL_LEN);
                 }
 
-                if (!hasIntentedPrefix(stringURL))
+                if (!hasIntendedPrefix(stringURL))
                 {
                     errorUrlList.add(ValidatorConstant.ERR_URL_SCHEME);
                 }
 
-                if (hasIntentedPrefix(stringURL) && !relaxed)
+                if (hasIntendedPrefix(stringURL) && !relaxed)
                 {
                     hostname = getHostname(stringURL);
 
@@ -116,7 +114,7 @@ public class UrlValidator {
     /**
      * Method to check URL has a valid scheme
      */
-    private boolean hasIntentedPrefix(String stringURL)
+    private boolean hasIntendedPrefix(String stringURL)
     {
         return (stringURL.startsWith("https://") || stringURL.startsWith("http://"));
     }
