@@ -23,9 +23,9 @@ public class UrlValidationDemo extends Activity{
 
     private EditText mURLText;
 
-    private Switch mSwithField;
+    private Switch mSwitchField;
 
-    private TextView mSwithState;
+    private TextView mSwitchState;
 
     private UrlValidator urlValidator;
 
@@ -36,9 +36,9 @@ public class UrlValidationDemo extends Activity{
 
         mURLText = (EditText) findViewById(R.id.urlInput);
 
-        mSwithState = (TextView) findViewById(R.id.swithState);
+        mSwitchState = (TextView) findViewById(R.id.swithState);
 
-        mSwithField = (Switch) findViewById(R.id.switch1);
+        mSwitchField = (Switch) findViewById(R.id.switch1);
 
         urlValidator = new UrlValidator();
 
@@ -80,17 +80,17 @@ public class UrlValidationDemo extends Activity{
 
         boolean relaxed;
 
-        if(mSwithField.isChecked())
+        if(mSwitchField.isChecked())
         {
             relaxed = true;
 
-            mSwithState.setText("ON");
+            mSwitchState.setText("ON");
         }
         else
         {
             relaxed = false;
 
-            mSwithState.setText("OFF");
+            mSwitchState.setText("OFF");
         }
         List<String> result =  urlValidator.checkURL(url, relaxed);
 
@@ -121,14 +121,14 @@ public class UrlValidationDemo extends Activity{
 
             boolean relaxed;
 
-            if (mSwithField.isChecked()) {
+            if (mSwitchField.isChecked()) {
                 relaxed = true;
 
-                mSwithState.setText("ON");
+                mSwitchState.setText("ON");
             } else {
                 relaxed = false;
 
-                mSwithState.setText("OFF");
+                mSwitchState.setText("OFF");
             }
 
             boolean result =  urlValidator.isValidURL(url, relaxed);
