@@ -69,7 +69,7 @@ public class HostnameValidation {
                     for (int i = 0; i < countOfSubDomains; i++)
                     {
                         int strSubDomainLength = strArray[i].length();
-                        if (strSubDomainLength > 63)
+                        if (strSubDomainLength > 63 || strSubDomainLength < 2)
                         {
                             arraylist.add(ValidatorConstant.ERR_HOSTNAME_SUBDOMAIN_LEN);
                             break;

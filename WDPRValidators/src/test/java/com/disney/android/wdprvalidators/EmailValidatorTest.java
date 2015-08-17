@@ -120,7 +120,7 @@ public class EmailValidatorTest extends TestCase{
     public void testForValidIpAddress(){
         String hostname = "venky@127.0.0.255";
         List<String> result = emailObj.checkEmail(hostname);
-        assertEquals("ERR_HOSTNAME_IP",result.get(1));
+        assertEquals("ERR_HOSTNAME_SUBDOMAIN_LEN",result.get(1));
     }
 
     @SmallTest
