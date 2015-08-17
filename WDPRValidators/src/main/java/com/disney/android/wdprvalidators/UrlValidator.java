@@ -79,11 +79,6 @@ public class UrlValidator {
                     errorUrlList.add(ValidatorConstant.ERR_URL_SCHEME);
                 }
 
-                if (errorUrlList.isEmpty())
-                {
-                    errorUrlList.add(ValidatorConstant.ERR_URL_OTHER);
-                }
-
                 if (hasIntentedPrefix(stringURL) && !relaxed)
                 {
                     hostname = getHostname(stringURL);
@@ -91,6 +86,10 @@ public class UrlValidator {
                     errorUrlList.addAll(hostnameValidation.checkHostName(hostname));
                 }
 
+                if (errorUrlList.isEmpty())
+                {
+                    errorUrlList.add(ValidatorConstant.ERR_URL_OTHER);
+                }
             }
 
         }
