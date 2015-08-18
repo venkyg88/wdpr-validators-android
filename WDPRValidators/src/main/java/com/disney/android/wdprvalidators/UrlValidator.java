@@ -77,7 +77,7 @@ public class UrlValidator {
                     errorUrlList.add(ValidatorConstant.ERR_URL_SCHEME);
                 }
 
-                if (hasIntendedPrefix(stringURL) && !relaxed)
+                if (!relaxed)
                 {
                     hostname = getHostname(stringURL);
 
