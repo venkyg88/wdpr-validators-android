@@ -258,6 +258,12 @@ public class CreditCardValidators
         return expiredCard;
     }
 
+    /**
+     * predicate method to determine the input string is a valid cvc.
+     * Note: The input is taken as string instead of int because to preserve the leading zeros. Eg: '001' or '0002'.etc
+     * @param cvc
+     * @return
+     */
     public boolean isCreditCardCVC(String cvc)
     {
         boolean result = false;
@@ -275,6 +281,12 @@ public class CreditCardValidators
         return result;
     }
 
+    /**
+     * checker method to determine the input string is valid cvc or not. return an empty list on success and error list of failure.
+     * Note: The input is taken as string instead of int because to preserve the leading zeros. Eg: '001' or '0002'.etc
+     * @param cvc
+     * @return
+     */
     public List<String> checkCreditCardCVC(String cvc)
     {
         List<String> listCVC = new ArrayList<>();
