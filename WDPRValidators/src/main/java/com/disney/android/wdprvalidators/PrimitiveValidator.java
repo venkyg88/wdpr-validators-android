@@ -13,6 +13,10 @@ public class PrimitiveValidator
 
     private static final String ERR_STRING = "ERR_STRING";
 
+    private static final String BOOLEAN_FALSE = "false";
+
+    private static final String BOOLEAN_TRUE = "true";
+
     /**
      * @Description Array Predicate to check for an array.
      * @param arrayObject
@@ -91,5 +95,47 @@ public class PrimitiveValidator
             arrayList.add(ERR_EMPTY_INPUT);
         }
         return arrayList;
+    }
+
+    /**
+     * boolean predicate
+     * @param value
+     * @return boolean
+     */
+    public boolean booleanPredicate(final String value){
+
+        boolean result = false;
+
+        if(value != null && !value.isEmpty())
+        {
+            if(BOOLEAN_FALSE.equalsIgnoreCase(value) || BOOLEAN_TRUE.equalsIgnoreCase(value))
+            {
+                result = true;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * boolean checker
+     * @param value
+     * @return List
+     */
+    public List<String> booleanChecker(final String value){
+
+        final List<String> errorList = new ArrayList<>();
+
+        if(value != null && !value.isEmpty())
+        {
+            if (!booleanPredicate(value))
+            {
+                errorList.add(ValidatorConstant.ERR_BOOL);
+            }
+        }
+        else{
+            errorList.add(ValidatorConstant.ERR_EMPTY_INPUT);
+        }
+
+        return errorList;
     }
 }

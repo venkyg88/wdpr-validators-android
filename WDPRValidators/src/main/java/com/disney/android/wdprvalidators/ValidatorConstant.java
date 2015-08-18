@@ -33,7 +33,9 @@ public final class ValidatorConstant
     public static final String ERR_HOSTNAME_IP = "ERR_HOSTNAME_IP";
     /************************* Hostname RegExp/validation fails ******************************/
     public static final String ERR_HOSTNAME_OTHER = "ERR_HOSTNAME_OTHER";
-    /**
+    /************************* Input not a BOOL **********************************************/
+    public static final String ERR_BOOL = "ERR_BOOL";
+     /**
      *
      */
     private ValidatorConstant()
