@@ -50,10 +50,15 @@ public class HostnameValidatorTest extends TestCase {
         String hostname = "vqwertyuioplkjhgfdsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
                 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalllllllllrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrllllllltttlllllllllllllllllllll.com";
         List<String> result = hostnameValidator.checkHostName(hostname);
-        //assertEquals("ERR_HOSTNAME_LEN",result.get(0));
         assertEquals("ERR_HOSTNAME_LEN",result.get(0));
     }
 
+    @SmallTest
+    public void testForMinInvalidDomainLength(){
+        String hostname = "a";
+        List<String> result = hostnameValidator.checkHostName(hostname);
+        assertEquals("ERR_HOSTNAME_LEN",result.get(0));
+    }
 
 
     @SmallTest
@@ -99,7 +104,8 @@ public class HostnameValidatorTest extends TestCase {
     public void testForValidIpAddress(){
         String hostname = "127.0.0.255";
         List<String> result = hostnameValidator.checkHostName(hostname);
-        assertEquals("ERR_HOSTNAME_IP",result.get(0));
+        assertEquals("ERR_HOSTNAME_SUBDOMAIN_LEN",result.get(0));
+        assertEquals("ERR_HOSTNAME_IP",result.get(1));
     }
 
     @SmallTest

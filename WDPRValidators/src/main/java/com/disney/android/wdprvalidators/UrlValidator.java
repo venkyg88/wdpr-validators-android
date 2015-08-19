@@ -11,14 +11,6 @@ import java.util.regex.Pattern;
  */
 public class UrlValidator {
 
-    private static final String ERR_URI_LEN = "ERR_URI_LEN";
-
-    private static final String ERR_URI_SCHEME = "ERR_URI_SCHEME";
-
-    private static final String ERR_URI_OTHER = "ERR_URI_OTHER";
-
-    private static final String ERR_EMPTY_INPUT = "ERR_EMPTY_INPUT";
-
     private static final int URL_MAX_LENGTH = 2048;
 
     private static final String URL_PATTERN = "\\b(https|http)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
@@ -34,17 +26,21 @@ public class UrlValidator {
      * @return boolean
      * @throws MalformedURLException
      */
-    public boolean isValidURL(String url) throws MalformedURLException {
+    public boolean isValidURL(String url, boolean relaxed) throws MalformedURLException {
 
         boolean result = false;
 
         if(urlpattern.matcher(url).matches())
         {
-            String hostname = getHostname(url);
-
-            if(hostnameValidation.isHostName(hostname))
-            {
+            if(relaxed){
                 result = true;
+            }
+            else
+            {
+                String hostname = getHostname(url);
+                if (hostnameValidation.isHostName(hostname)) {
+                    result = true;
+                }
             }
         }
         return result;
@@ -58,7 +54,7 @@ public class UrlValidator {
      * @throws MalformedURLException
      */
 
-    public List<String> checkURL(String stringURL) throws MalformedURLException
+    public List<String> checkURL(String stringURL, boolean relaxed) throws MalformedURLException
     {
         final List<String> errorUrlList = new ArrayList<>();
 
@@ -68,37 +64,36 @@ public class UrlValidator {
         {
             final int lengthURL = stringURL.length();
 
-            if (!this.isValidURL(stringURL.toLowerCase()))
+            if (!this.isValidURL(stringURL.toLowerCase(), relaxed))
             {
 
                 if (lengthURL > URL_MAX_LENGTH)
                 {
-                    errorUrlList.add(ERR_URI_LEN);
+                    errorUrlList.add(ValidatorConstant.ERR_URL_LEN);
                 }
 
-                if (!hasIntentedPrefix(stringURL))
+                if (!hasIntendedPrefix(stringURL))
                 {
-                    errorUrlList.add(ERR_URI_SCHEME);
+                    errorUrlList.add(ValidatorConstant.ERR_URL_SCHEME);
                 }
 
-                if (errorUrlList.isEmpty())
-                {
-                    errorUrlList.add(ERR_URI_OTHER);
-                }
-
-                if (hasIntentedPrefix(stringURL))
+                if (!relaxed)
                 {
                     hostname = getHostname(stringURL);
 
                     errorUrlList.addAll(hostnameValidation.checkHostName(hostname));
                 }
 
+                if (errorUrlList.isEmpty())
+                {
+                    errorUrlList.add(ValidatorConstant.ERR_URL_OTHER);
+                }
             }
 
         }
         else
         {
-            errorUrlList.add(ERR_EMPTY_INPUT);
+            errorUrlList.add(ValidatorConstant.ERR_EMPTY_INPUT);
         }
 
         return errorUrlList;
@@ -119,8 +114,9 @@ public class UrlValidator {
     /**
      * Method to check URL has a valid scheme
      */
-    private boolean hasIntentedPrefix(String stringURL)
+    private boolean hasIntendedPrefix(String stringURL)
     {
         return (stringURL.startsWith("https://") || stringURL.startsWith("http://"));
     }
 }
+
