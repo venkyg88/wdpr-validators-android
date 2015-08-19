@@ -34,6 +34,9 @@
 
         <activity android:name=".CreditCardValidatorDemo">
         </activity>
+
+        <activity android:name=".BooleanValidatorDemo">
+        </activity>
     </application>
 
 </manifest>
