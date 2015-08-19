@@ -578,7 +578,7 @@ if(value)
 }
 else
 {
-  //Card cvc is Invalid because of exceeding range or not number.
+  //Card cvc is Invalid because of exceeding range(3-4) or not number.
 }
 ```
 
