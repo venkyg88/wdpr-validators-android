@@ -56,23 +56,20 @@ public class UrlValidatorTest extends TestCase{
     @SmallTest
     public void testForManyErrors() throws MalformedURLException {
         String urlString  = "https://google.com.";
-        assertEquals("ERR_URL_OTHER",urlObj.checkURL(urlString, false).get(0));
-        assertEquals("ERR_HOSTNAME_TLD_LEN",urlObj.checkURL(urlString, false).get(1));
-        assertEquals("ERR_HOSTNAME_TLD",urlObj.checkURL(urlString, false).get(2));
+        assertEquals("ERR_HOSTNAME_TLD_LEN",urlObj.checkURL(urlString, false).get(0));
+        assertEquals("ERR_HOSTNAME_TLD",urlObj.checkURL(urlString, false).get(1));
     }
 
     @SmallTest
     public void testForOtherErrors() throws MalformedURLException {
         String urlString  = "https://google";
-        assertEquals("ERR_URL_OTHER",urlObj.checkURL(urlString, false).get(0));
-        assertEquals("ERR_HOSTNAME_OTHER",urlObj.checkURL(urlString, false).get(1));
+        assertEquals("ERR_HOSTNAME_OTHER",urlObj.checkURL(urlString, false).get(0));
     }
 
     @SmallTest
     public void testForOtherError() throws MalformedURLException {
         String urlString = "https://";
-        assertEquals("ERR_URL_OTHER",urlObj.checkURL(urlString, false).get(0));
-        assertEquals("ERR_EMPTY_INPUT",urlObj.checkURL(urlString, false).get(1));// we get empty input bcoz hosname gets "", which is empty hostname.
+        assertEquals("ERR_EMPTY_INPUT",urlObj.checkURL(urlString, false).get(0));// we get empty input bcoz hosname gets "", which is empty hostname.
     }
 
     @SmallTest
@@ -80,8 +77,7 @@ public class UrlValidatorTest extends TestCase{
         String urlString = "http://123.23.04.12";
 
         //With relaxed parameter = false
-        assertEquals("ERR_URL_OTHER",urlObj.checkURL(urlString, false).get(0));
-        assertEquals("ERR_HOSTNAME_IP", urlObj.checkURL(urlString, false).get(1));
+        assertEquals("ERR_HOSTNAME_IP", urlObj.checkURL(urlString, false).get(0));
 
         //With relaxed parameter = true
         assertEquals(true, urlObj.checkURL(urlString, true).isEmpty());
