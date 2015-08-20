@@ -127,7 +127,7 @@ public class PrimitiveValidator
 
         if(value != null && !value.isEmpty())
         {
-            if (!booleanPredicate(value))
+            if (!(BOOLEAN_FALSE.equalsIgnoreCase(value) || BOOLEAN_TRUE.equalsIgnoreCase(value)))
             {
                 errorList.add(ValidatorConstant.ERR_BOOL);
             }
