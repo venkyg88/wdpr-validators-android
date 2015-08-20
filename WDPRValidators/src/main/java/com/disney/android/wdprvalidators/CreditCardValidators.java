@@ -293,17 +293,16 @@ public class CreditCardValidators
         if(cvc != null && !cvc.isEmpty())
         {
             cvc = trimSpecialCharacter(cvc);
-            if (!isCreditCardCVC(cvc))
+
+            if (!cvcLengthCheck(cvc))
             {
-                if (!cvcLengthCheck(cvc) && isNumber(cvc))
-                {
-                    listCVC.add("ERR_CC_CVC_LEN");
-                }
-                if(listCVC.isEmpty())
-                {
-                    listCVC.add("ERR_CC_CVC");
-                }
+                listCVC.add("ERR_CC_CVC_LEN");
             }
+            if(!isNumber(cvc))
+            {
+                listCVC.add("ERR_CC_CVC");
+            }
+
         }
         else
         {

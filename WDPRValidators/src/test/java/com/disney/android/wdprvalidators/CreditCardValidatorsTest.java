@@ -155,8 +155,10 @@ public class CreditCardValidatorsTest {
         //Test for Invalid length and non-number
         assertEquals(false, creditCardValidators.checkCreditCardCVC("assdfg").isEmpty());
         assertEquals(false, creditCardValidators.checkCreditCardCVC("v").isEmpty());
-        assertEquals("ERR_CC_CVC", creditCardValidators.checkCreditCardCVC("assdfg").get(0));
-        assertEquals("ERR_CC_CVC", creditCardValidators.checkCreditCardCVC("v").get(0));
+        assertEquals("ERR_CC_CVC_LEN", creditCardValidators.checkCreditCardCVC("assdfg").get(0));
+        assertEquals("ERR_CC_CVC", creditCardValidators.checkCreditCardCVC("assdfg").get(1));
+        assertEquals("ERR_CC_CVC_LEN", creditCardValidators.checkCreditCardCVC("v").get(0));
+        assertEquals("ERR_CC_CVC", creditCardValidators.checkCreditCardCVC("v").get(1));
 
         //Test for valid length and non-number
         assertEquals(false, creditCardValidators.checkCreditCardCVC("asd").isEmpty());
