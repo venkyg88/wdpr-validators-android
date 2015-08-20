@@ -98,7 +98,7 @@ public class PrimitiveValidator
     }
 
     /**
-     * boolean predicate
+     * predicate method to determine where or not the input is a valid boolean input.
      * @param value
      * @return boolean
      */
@@ -117,7 +117,7 @@ public class PrimitiveValidator
     }
 
     /**
-     * boolean checker
+     * Checker method to determine where or not the input is a valid boolean input.
      * @param value
      * @return List
      */
