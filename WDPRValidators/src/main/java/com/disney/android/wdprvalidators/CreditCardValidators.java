@@ -257,5 +257,70 @@ public class CreditCardValidators
         boolean expiredCard = expiry.before(new Date());
         return expiredCard;
     }
+
+    /**
+     * predicate method to determine the input string is a valid cvc.
+     * Note: The input is taken as string instead of int because to preserve the leading zeros. Eg: '001' or '0002'.etc
+     * @param cvc
+     * @return
+     */
+    public boolean isCreditCardCVC(String cvc)
+    {
+        boolean result = false;
+        if(cvc != null && !cvc.isEmpty())
+        {
+            cvc = trimSpecialCharacter(cvc);
+            if (isNumber(cvc))
+            {
+                if (cvcLengthCheck(cvc))
+                {
+                    result = true;
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * checker method to determine the input string is valid cvc or not. return an empty list on success and error list of failure.
+     * Note: The input is taken as string instead of int because to preserve the leading zeros. Eg: '001' or '0002'.etc
+     * @param cvc
+     * @return
+     */
+    public List<String> checkCreditCardCVC(String cvc)
+    {
+        List<String> listCVC = new ArrayList<>();
+        if(cvc != null && !cvc.isEmpty())
+        {
+            cvc = trimSpecialCharacter(cvc);
+
+            if (!cvcLengthCheck(cvc))
+            {
+                listCVC.add("ERR_CC_CVC_LEN");
+            }
+            if(!isNumber(cvc))
+            {
+                listCVC.add("ERR_CC_CVC");
+            }
+
+        }
+        else
+        {
+            listCVC.add(ValidatorConstant.ERR_EMPTY_INPUT);
+        }
+        return listCVC;
+    }
+
+    /**
+     * method to check the cvc length
+     * @param cvc
+     * @return
+     */
+    private boolean cvcLengthCheck(String cvc)
+    {
+        int cvcLength = cvc.length();
+        return (cvcLength == 3 || cvcLength == 4);
+    }
+
 }
 

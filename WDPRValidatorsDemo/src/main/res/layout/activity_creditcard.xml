@@ -43,10 +43,13 @@
             android:ems="10"
             android:id="@+id/creditCardNumberForType" />
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
         <Button
             android:id="@+id/checkCreditCard"
-            android:layout_width="319dp"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:textSize="@dimen/buttonTextSize"
             android:text="@string/validateCreditCard"
@@ -56,15 +59,17 @@
 
         <Button
             android:id="@+id/checkCreditCardType"
-            android:layout_width="324dp"
+            android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:textSize="@dimen/buttonTextSize"
             android:text="@string/validateCCType"
+            android:layout_toRightOf="@+id/checkCreditCard"
             android:onClick="checkCreditCardType"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginEnd="@dimen/activity_horizontal_margin" />
+        </RelativeLayout>
 
-        <TextView android:layout_marginTop="50dp"
+        <TextView android:layout_marginTop="30dp"
             android:layout_width="278dp"
             android:layout_height="40dp"
             android:text="Date Validtion"
@@ -99,9 +104,12 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
         <Button
             android:id="@+id/isCreditCardDate"
-            android:layout_width="312dp"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:textSize="@dimen/buttonTextSize"
             android:text="@string/validateCreditCard"
@@ -111,13 +119,54 @@
 
         <Button
             android:id="@+id/checkCreditCardDate"
-            android:layout_width="312dp"
+            android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:textSize="@dimen/buttonTextSize"
+            android:layout_toRightOf="@+id/isCreditCardDate"
             android:text="@string/validateCCType"
             android:onClick="checkCreditCardDate"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginEnd="@dimen/activity_horizontal_margin" />
+
+        </RelativeLayout>
+
+        <TextView android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CVC Validation"
+            android:id="@+id/textView2" />
+
+        <EditText
+            android:layout_width="52dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextCvc" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/isCreditCardCVC"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/buttonTextSize"
+                android:text="@string/validateCreditCard"
+                android:onClick="isCreditCardCVC"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin" />
+
+            <Button
+                android:id="@+id/checkCreditCardCVC"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/buttonTextSize"
+                android:layout_toRightOf="@+id/isCreditCardCVC"
+                android:text="@string/validateCCType"
+                android:onClick="checkCreditCardCVC"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin" />
+
+        </RelativeLayout>
+
     </LinearLayout>
 
 </ScrollView>

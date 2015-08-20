@@ -27,6 +27,8 @@ public class CreditCardValidatorDemo extends Activity{
 
     private CreditCardValidators creditCardValidator;
 
+    private EditText mCreditCardCvcText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -41,6 +43,8 @@ public class CreditCardValidatorDemo extends Activity{
         mCreditCardDateYearText = (EditText) findViewById(R.id.editTextYear);
 
         creditCardValidator =  new CreditCardValidators();
+
+        mCreditCardCvcText = (EditText) findViewById(R.id.editTextCvc);
 
         Button button = (Button) findViewById(R.id.checkCreditCard);
 
@@ -117,13 +121,22 @@ public class CreditCardValidatorDemo extends Activity{
 
         String month = mCreditCardDateMonthText.getText().toString();
 
-        boolean result =  creditCardValidator.isValidCreditCardDate(Integer.parseInt(year),Integer.parseInt(month));
+        if(year == null || month == null || year.isEmpty() || year.isEmpty()){
+            if (year == null || year.isEmpty()){
+                mCreditCardDateYearText.setError("empty");
+            }
+            if (month == null || month.isEmpty()){
+                mCreditCardDateMonthText.setError("empty");
+            }
+        }else {
 
-        if(result){
-            Toast.makeText(CreditCardValidatorDemo.this,"date is Valid", Toast.LENGTH_LONG).show();
-        }
-        else{
-            Toast.makeText(CreditCardValidatorDemo.this,"date is not valid", Toast.LENGTH_SHORT).show();
+            boolean result = creditCardValidator.isValidCreditCardDate(Integer.parseInt(year), Integer.parseInt(month));
+
+            if (result) {
+                Toast.makeText(CreditCardValidatorDemo.this, "date is Valid", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(CreditCardValidatorDemo.this, "date is not valid", Toast.LENGTH_SHORT).show();
+            }
         }
 
     }
@@ -134,7 +147,58 @@ public class CreditCardValidatorDemo extends Activity{
 
         String month = mCreditCardDateMonthText.getText().toString();
 
-        List<String> result = creditCardValidator.checkCreditCardDate(Integer.parseInt(year), Integer.parseInt(month));
+        if(year == null || month == null || year.isEmpty() || year.isEmpty())
+        {
+            if (year == null || year.isEmpty())
+            {
+                mCreditCardDateYearText.setError("empty");
+            }
+            if (month == null || month.isEmpty())
+            {
+                mCreditCardDateMonthText.setError("empty");
+            }
+        }else {
+
+            List<String> result = creditCardValidator.checkCreditCardDate(Integer.parseInt(year), Integer.parseInt(month));
+
+            String errorCode = "";
+
+            for (String str : result) {
+
+                str = "\n" + str;
+
+                errorCode = errorCode.concat(str);
+            }
+
+            if (result.isEmpty()) {
+                Toast.makeText(this, "It is a Valid Credit Card", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, errorCode, Toast.LENGTH_LONG).show();
+
+                result.clear();
+            }
+        }
+    }
+
+    public void isCreditCardCVC(View view) {
+
+        String cvc = mCreditCardCvcText.getText().toString();
+
+        boolean result = creditCardValidator.isCreditCardCVC(cvc);
+
+        if(result){
+            Toast.makeText(CreditCardValidatorDemo.this,"true", Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(CreditCardValidatorDemo.this,"false", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+    public void checkCreditCardCVC(View view){
+
+        String cvc = mCreditCardCvcText.getText().toString();
+
+        List<String> result = creditCardValidator.checkCreditCardCVC(cvc);
 
         String errorCode = "";
 
@@ -147,7 +211,7 @@ public class CreditCardValidatorDemo extends Activity{
 
         if(result.isEmpty())
         {
-            Toast.makeText(this, "It is a Valid Credit Card", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "It is a Valid CVC", Toast.LENGTH_LONG).show();
         }
         else
         {

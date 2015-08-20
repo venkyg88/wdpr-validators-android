@@ -140,4 +140,37 @@ public class CreditCardValidatorsTest {
         return cal.get(Calendar.YEAR);
     }
 
+    @Test
+    public void testCreditCardCVC(){
+        //Test for Valid(number & length) cvc
+        assertEquals(true, creditCardValidators.checkCreditCardCVC("007").isEmpty());
+        assertEquals(true, creditCardValidators.checkCreditCardCVC("0000").isEmpty());
+
+        //Test for Invalid length but number
+        assertEquals(false, creditCardValidators.checkCreditCardCVC("30001").isEmpty());
+        assertEquals(false, creditCardValidators.checkCreditCardCVC("31").isEmpty());
+        assertEquals("ERR_CC_CVC_LEN", creditCardValidators.checkCreditCardCVC("30001").get(0));
+        assertEquals("ERR_CC_CVC_LEN", creditCardValidators.checkCreditCardCVC("31").get(0));
+
+        //Test for Invalid length and non-number
+        assertEquals(false, creditCardValidators.checkCreditCardCVC("assdfg").isEmpty());
+        assertEquals(false, creditCardValidators.checkCreditCardCVC("v").isEmpty());
+        assertEquals("ERR_CC_CVC_LEN", creditCardValidators.checkCreditCardCVC("assdfg").get(0));
+        assertEquals("ERR_CC_CVC", creditCardValidators.checkCreditCardCVC("assdfg").get(1));
+        assertEquals("ERR_CC_CVC_LEN", creditCardValidators.checkCreditCardCVC("v").get(0));
+        assertEquals("ERR_CC_CVC", creditCardValidators.checkCreditCardCVC("v").get(1));
+
+        //Test for valid length and non-number
+        assertEquals(false, creditCardValidators.checkCreditCardCVC("asd").isEmpty());
+        assertEquals(false, creditCardValidators.checkCreditCardCVC("disn").isEmpty());
+        assertEquals("ERR_CC_CVC", creditCardValidators.checkCreditCardCVC("asd").get(0));
+        assertEquals("ERR_CC_CVC", creditCardValidators.checkCreditCardCVC("disn").get(0));
+
+        //Test for empty cvc
+        assertEquals(false, creditCardValidators.checkCreditCardCVC("").isEmpty());
+        assertEquals(false, creditCardValidators.checkCreditCardCVC(null).isEmpty());
+        assertEquals("ERR_EMPTY_INPUT", creditCardValidators.checkCreditCardCVC("").get(0));
+        assertEquals("ERR_EMPTY_INPUT", creditCardValidators.checkCreditCardCVC(null).get(0));
+
+    }
 }
