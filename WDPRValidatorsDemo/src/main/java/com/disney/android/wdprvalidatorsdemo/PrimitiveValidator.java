@@ -1,7 +1,10 @@
-package com.disney.android.wdprvalidators;
+package com.disney.android.wdprvalidatorsdemo;
+
+import com.disney.android.wdprvalidators.ValidatorConstant;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Created by venkatgonuguntala on 5/26/15.
  */
@@ -98,7 +101,7 @@ public class PrimitiveValidator
     }
 
     /**
-     * predicate method to determine where or not the input is a valid boolean input.
+     * boolean predicate
      * @param value
      * @return boolean
      */
@@ -117,7 +120,7 @@ public class PrimitiveValidator
     }
 
     /**
-     * Checker method to determine where or not the input is a valid boolean input.
+     * boolean checker
      * @param value
      * @return List
      */
@@ -127,9 +130,9 @@ public class PrimitiveValidator
 
         if(value != null && !value.isEmpty())
         {
-            if (!(BOOLEAN_FALSE.equalsIgnoreCase(value) || BOOLEAN_TRUE.equalsIgnoreCase(value)))
+            if (!booleanPredicate(value))
             {
-                errorList.add(ValidatorConstant.ERR_BOOL);
+                errorList.add("ERR_BOOL");
             }
         }
         else{

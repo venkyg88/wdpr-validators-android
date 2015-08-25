@@ -63,6 +63,38 @@ public class PrimitiveValidatorTest extends TestCase {
         assertEquals(0, arrayObj.arrayChecker(emptyArray).size());
     }
 
+    @SmallTest
+    public void testBooleanPredicateAndChecker(){
+        String[] value = {"FALSE", "False", "false", "TRUE", "TrUe", "true", "oooo", null, ""};
+        //boolean predicate testing
+        assertEquals(true, arrayObj.booleanPredicate(value[0]));
+        assertEquals(true, arrayObj.booleanPredicate(value[1]));
+        assertEquals(true, arrayObj.booleanPredicate(value[2]));
+        assertEquals(true, arrayObj.booleanPredicate(value[3]));
+        assertEquals(true, arrayObj.booleanPredicate(value[4]));
+        assertEquals(true, arrayObj.booleanPredicate(value[5]));
+
+        assertEquals(false, arrayObj.booleanPredicate(value[6]));
+        assertEquals(false, arrayObj.booleanPredicate(value[7]));
+        assertEquals(false, arrayObj.booleanPredicate(value[8]));
+
+        //boolean checker testing
+        assertEquals(true, arrayObj.booleanChecker(value[0]).isEmpty());
+        assertEquals(true, arrayObj.booleanChecker(value[1]).isEmpty());
+        assertEquals(true, arrayObj.booleanChecker(value[2]).isEmpty());
+        assertEquals(true, arrayObj.booleanChecker(value[3]).isEmpty());
+        assertEquals(true, arrayObj.booleanChecker(value[4]).isEmpty());
+        assertEquals(true, arrayObj.booleanChecker(value[5]).isEmpty());
+        //testing with false conditions
+        assertEquals(false, arrayObj.booleanChecker(value[6]).isEmpty());
+        assertEquals(false, arrayObj.booleanChecker(value[7]).isEmpty());
+        assertEquals(false, arrayObj.booleanChecker(value[8]).isEmpty());
+        //testing for error messages
+        assertEquals("ERR_BOOL", arrayObj.booleanChecker(value[6]).get(0));
+        assertEquals("ERR_EMPTY_INPUT", arrayObj.booleanChecker(value[7]).get(0));
+        assertEquals("ERR_EMPTY_INPUT", arrayObj.booleanChecker(value[8]).get(0));
+    }
+
     @Override
     protected void tearDown() throws Exception {
         super.tearDown();

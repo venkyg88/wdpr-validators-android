@@ -256,6 +256,69 @@ Please refer to our [error codes documentation] (https://github.disney.com/WDPR-
 
 -----
 
+## booleanPredicate(String value)
+
+predicate method to determine where or not the input is a valid boolean input.
+
+**Params**
+- value `String`
+
+**Returns** `boolean`
+
+**Usage:**
+
+```java
+String value = "false";
+boolean result = primitiveValidator.booleanPredicate(value)
+if(result)
+{
+    //It is valid boolean type
+}
+else
+{
+    //Not a valid boolean type
+}
+```
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
+
+## booleanChecker(String value)
+
+Checker method to determine where or not the input is a valid boolean input.
+
+**Params**
+- value `String`
+
+**Returns** `List<String>`
+
+**Usage:**
+
+```java
+String value = "false";
+boolean result = primitiveValidator.booleanChecker(value)
+if(result)
+{
+    //return empty list
+}
+else
+{
+    //return a list of errors
+}
+```
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')<br>
+> Failure Scenario: List('ERR\_BOOL')
+
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#boolean) for further details on their definitions
+
+-----
+
 ## checkDateRange(Object, Object, Object)
 
 Checker to determine whether user date falls in the range of start date and end date inclusively.
