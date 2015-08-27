@@ -686,3 +686,75 @@ else
 Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#credit-card) for further details on their definitions
 
 ------
+
+## isPassword(String Password)
+
+Predicate method to find the password is a valid password confining to the RA security specified length(6-25) and at least having the minimum count of two categories(lower/upper case characters, digits, symbols) for achieving required password strength.
+
+**Params**
+- Password `String`
+
+**Returns** `boolean`
+
+**Usage:**
+
+```java
+String password ="ABCDefgh_123;
+
+PasswordValidator mPasswordValidator = new PasswordValidator();
+boolean mBoolean = mPasswordValidator.isPassword(password);
+
+if(mBoolean)
+{
+  //Password is valid.
+}
+else
+{
+  //Password is Invalid because of exceeding length(5-25) or doesn't contain the minimum category count for achieving the desired password strength or null/empty input.
+}
+```
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
+
+## checkPassword(String Password)
+
+checker method to return a list of possible error/errors for passwords not specific to RA security standards otherwise return empty list.
+
+**Params**
+- Password `String`
+
+**Returns** `list<String`
+
+**Usage:**
+
+```java
+String password ="ABCDefgh_123;
+
+PasswordValidator mPasswordValidator = new PasswordValidator();
+List<String> errorList = mPasswordValidator.checkPassword(password);
+
+if(errorList.isEmpty())
+{
+  //Password is valid.
+}
+else
+{
+  //List of possible errors specifying the reason for invalid password.
+}
+```
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')<br>
+> Failure Scenario: List('ERR\_PASSWORD\_MIN\_LEN')<br>
+> Failure Scenario: List('ERR\_PASSWORD\_MAX\_LEN')<br>
+> Failure Scenario: List('ERR\_PASSWORD\_STRENGTH')<br>
+> Failure Scenario: List('ERR\_PASSWORD\_OTHER')
+
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#password) for further details on their definitions
+
+------
