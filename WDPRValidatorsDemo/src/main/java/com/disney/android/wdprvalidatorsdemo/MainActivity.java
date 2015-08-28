@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Spinner dynamicSpinner = (Spinner) findViewById(R.id.dynamic_spinner);
-        String[] items = new String[] { "Select an option","Email Validation", "Date Validation", "Unicode Validation", "Hostname Validation", "Url Validation","Credit Card Validation", "Boolean Validation"};
+        String[] items = new String[] { "Select an option","Email Validation", "Date Validation", "Unicode Validation", "Hostname Validation", "Url Validation","Credit Card Validation", "Boolean Validation", "Password Validation"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -61,6 +61,10 @@ public class MainActivity extends Activity {
                         //Boolean Validation
                         booleanIntent();
                         break;
+                    case 8:
+                        //Password Validation
+                        passwordIntent();
+                        break;
                 }
             }
 
@@ -71,6 +75,10 @@ public class MainActivity extends Activity {
         });
     }
 
+    private void passwordIntent() {
+        intent = new Intent(this, PasswordValidatorDemo.class);
+        startActivity(intent);
+    }
 
 
     public void emailIntent(){
