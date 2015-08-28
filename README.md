@@ -710,7 +710,7 @@ if(mBoolean)
 }
 else
 {
-  /*Password is Invalid because of exceeding length(5-25) or doesn't contain the minimum category count for achieving the        desired password strength or null/empty input.*/
+  /*Password is Invalid because of exceeding length(6-25) or doesn't contain the minimum category count for achieving the        desired password strength or null/empty input.*/
 }
 ```
 
@@ -722,7 +722,7 @@ else
 
 ## checkPassword(String Password)
 
-checker method to return a list of possible error/errors for passwords not specific to RA security standards otherwise return empty list.
+Checker method to return a list of possible error/errors for passwords not specific to RA security standards otherwise return empty list.
 
 **Params**
 - Password `String`
@@ -744,6 +744,9 @@ if(errorList.isEmpty())
 else
 {
   //List of possible errors specifying the reason for invalid password.
+  //ERR_PASSWORD_STRENGTH - if the category count falls less than two. Eg: Disney, !<#\%{}|^, 1234567
+  //ERR_PASSWORD_OTHER - if charaters fall out of RA standards. Eg: Disney$, >disney
+  //ERR_PASSWORD_MIN_LEN and ERR_PASSWORD_MAX_LEN if length doesn't fall in range(6-25)
 }
 ```
 
