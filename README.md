@@ -699,7 +699,7 @@ Predicate method to find the password is a valid password confining to the RA se
 **Usage:**
 
 ```java
-String password ="ABCDefgh_123;
+String password ="ABCDefgh_123";
 
 PasswordValidator mPasswordValidator = new PasswordValidator();
 boolean mBoolean = mPasswordValidator.isPassword(password);
@@ -710,7 +710,7 @@ if(mBoolean)
 }
 else
 {
-  //Password is Invalid because of exceeding length(5-25) or doesn't contain the minimum category count for achieving the desired password strength or null/empty input.
+  /*Password is Invalid because of exceeding length(5-25) or doesn't contain the minimum category count for achieving the        desired password strength or null/empty input.*/
 }
 ```
 
@@ -727,12 +727,12 @@ checker method to return a list of possible error/errors for passwords not speci
 **Params**
 - Password `String`
 
-**Returns** `list<String`
+**Returns** `list<String>`
 
 **Usage:**
 
 ```java
-String password ="ABCDefgh_123;
+String password ="ABCDefgh_123";
 
 PasswordValidator mPasswordValidator = new PasswordValidator();
 List<String> errorList = mPasswordValidator.checkPassword(password);
