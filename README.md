@@ -689,7 +689,7 @@ Please refer to our [error codes documentation](https://github.disney.com/WDPR-R
 
 ## isPassword(String Password)
 
-Predicate method to find the password is a valid password confining to the RA security specified length(6-25) and at least having the minimum count of two categories(lower/upper case characters, digits, symbols) for achieving required password strength.
+Predicate method to find the password is a valid password conforming to the RA security specified length(6-25) and at least having the minimum count of two categories(lower/upper case characters, digits, symbols) for achieving required password strength.
 
 **Params**
 - Password `String`
@@ -710,7 +710,7 @@ if(mBoolean)
 }
 else
 {
-  /*Password is Invalid because of exceeding length(6-25) or doesn't contain the minimum category count for achieving the        desired password strength or null/empty input.*/
+  /*Password is Invalid because of exceeding length(6-25) or doesn't contain the minimum category count for achieving the desired password strength or null/empty input.*/
 }
 ```
 
