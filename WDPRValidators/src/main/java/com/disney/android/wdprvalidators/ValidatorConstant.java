@@ -35,6 +35,14 @@ public final class ValidatorConstant
     public static final String ERR_HOSTNAME_OTHER = "ERR_HOSTNAME_OTHER";
     /************************* Input not a BOOL **********************************************/
     public static final String ERR_BOOL = "ERR_BOOL";
+    /************************* Password string doesn't contain minimum string length (6) *****/
+    public static final String ERR_PASSWORD_MIN_LEN = "ERR_PASSWORD_MIN_LEN";
+    /********* Password string contain more characters than maximum allowed length (25) ******/
+    public static final String ERR_PASSWORD_MAX_LEN = "ERR_PASSWORD_MAX_LEN";
+    /**** Password string should contain atleast 2 categories to meet Password strength ******/
+    public static final String ERR_PASSWORD_STRENGTH = "ERR_PASSWORD_STRENGTH";
+    /************************* Invalid Character(s) ******************************************/
+    public static final String ERR_PASSWORD_OTHER ="ERR_PASSWORD_OTHER";
      /**
      *
      */

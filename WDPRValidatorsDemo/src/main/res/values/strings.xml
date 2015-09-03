@@ -27,6 +27,8 @@
     <string name="cc_type">AMEX,VISA,MASTERCARD,JCB,DISCOVER etc.</string>
     <string name="boolean_validation">Boolean Validation</string>
     <string name="boolean_label">Enter the string to validate</string>
+    <string name="password_validation">Password Validation</string>
+    <string name="label_password">Enter the password to validate</string>
 
     <string name="ERR_NUM">Input not a number</string>
     <string name="ERR_BOOL">Input not a BOOL</string>

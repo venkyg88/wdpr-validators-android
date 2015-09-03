@@ -37,6 +37,9 @@
 
         <activity android:name=".BooleanValidatorDemo">
         </activity>
+
+        <activity android:name=".PasswordValidatorDemo">
+        </activity>
     </application>
 
 </manifest>
