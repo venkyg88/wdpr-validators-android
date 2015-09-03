@@ -22,15 +22,12 @@ public class PasswordValidator {
      * @param password
      * @return boolean
      */
-    public boolean isPassword(String password)
+    public boolean isPassword(final String password)
     {
         boolean result = false;
-        if (password != null && !password.isEmpty())
+        if (password != null && !password.isEmpty() && checkPasswordLength(password) && checkPasswordStrength(password) >= 2 && password.matches(PATTERN))
         {
-            if (checkPasswordLength(password) && checkPasswordStrength(password) >= 2 && password.matches(PATTERN))
-            {
-                result = true;
-            }
+            result = true;
         }
         return result;
     }
@@ -41,7 +38,7 @@ public class PasswordValidator {
      * @param password
      * @return list
      */
-    public List<String> checkPassword(String password)
+    public List<String> checkPassword(final String password)
     {
         List<String> errorList = new ArrayList<>();
         if (password != null && !password.isEmpty())
@@ -78,7 +75,7 @@ public class PasswordValidator {
      * @param password
      * @return boolean
      */
-    private boolean checkPasswordLength(String password)
+    private boolean checkPasswordLength(final String password)
     {
         int passwordLength = password.length();
         return (passwordLength >= PASSWORD_MIN_LEN && passwordLength <= PASSWORD_MAX_LEN);
@@ -89,7 +86,7 @@ public class PasswordValidator {
      * @param password
      * @return int
      */
-    private int checkPasswordStrength(String password)
+    private int checkPasswordStrength(final String password)
     {
         int categoriesCount=0;
         String[] partialRegexChecks = { ".*[a-z]+.*", // lower
