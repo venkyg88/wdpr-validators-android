@@ -95,6 +95,12 @@ public class PrimitiveValidatorTest extends TestCase {
         assertEquals("ERR_EMPTY_INPUT", arrayObj.booleanChecker(value[8]).get(0));
     }
 
+    @SmallTest
+    public void testForUnchecked(){
+        assertEquals(true, arrayObj.isUncheked());
+        assertEquals(true, arrayObj.checkUnchecked().isEmpty());
+    }
+
     @Override
     protected void tearDown() throws Exception {
         super.tearDown();

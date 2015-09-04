@@ -43,6 +43,8 @@ public final class ValidatorConstant
     public static final String ERR_PASSWORD_STRENGTH = "ERR_PASSWORD_STRENGTH";
     /************************* Invalid Character(s) ******************************************/
     public static final String ERR_PASSWORD_OTHER ="ERR_PASSWORD_OTHER";
+    /*********************** Unchecked check fails *******************************************/
+    public static final String ERR_UNCHECK = "ERR_UNCHECK";
      /**
      *
      */

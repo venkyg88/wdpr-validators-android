@@ -761,3 +761,47 @@ else
 Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#password) for further details on their definitions
 
 ------
+
+##isUncheked()
+
+Predicate method which doesn't take any parameters and always returns true. This function can be used when there a need for us to deliberately return true for all the values.
+
+**Returns** `boolean`
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
+
+##checkUnchecked()
+
+Checker method for unchecked Predicate method to return a error message list if at all it fails to return true otherwise returns empty list.
+
+**Returns** `list<String>`
+
+**Usage:**
+
+```java
+
+PrimitiveValidator mPrimitiveValidator = new PrimitiveValidator();
+List<String> errorList = mPrimitiveValidator.checkUnchecked();
+
+if(errorList.isEmpty())
+{
+  //Returns true
+}
+else
+{
+  //Error specifying the reason for failure.
+  //ERR_UNCHECK - Unchecked check fails
+}
+```
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_UNCHECK')
+
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#uncheck) for further details on their definitions
+
+-----
