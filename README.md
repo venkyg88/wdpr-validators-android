@@ -768,6 +768,23 @@ Predicate method which doesn't take any parameters and always returns true. This
 
 **Returns** `boolean`
 
+**Usage:**
+
+```java
+
+PrimitiveValidator mPrimitiveValidator = new PrimitiveValidator();
+boolean mBoolean = mPrimitiveValidator.isUnchecked();
+
+if(mBoolean)
+{
+  //Returned value is `true`
+}
+else
+{
+  //Returned value is `false`
+}
+```
+
 **Output:**<br>
 > **TRUE** (Boolean)<br>
 > **FALSE** (Boolean)
