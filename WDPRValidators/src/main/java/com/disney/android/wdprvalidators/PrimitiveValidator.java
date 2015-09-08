@@ -138,4 +138,27 @@ public class PrimitiveValidator
 
         return errorList;
     }
+
+    /**
+     * Unchecked predicate method which always returns true
+     * @return true
+     */
+
+    public boolean isUncheked(){
+        return true;
+    }
+
+    /**
+     * checker method for unchecked to return a error message if at all it fails to return true otherwise return false
+     * @return
+     */
+    public List<String> checkUnchecked()
+    {
+        List<String> errorList = new ArrayList<>();
+        if(!isUncheked())
+        {
+            errorList.add(ValidatorConstant.ERR_UNCHECK);
+        }
+        return errorList;
+    }
 }

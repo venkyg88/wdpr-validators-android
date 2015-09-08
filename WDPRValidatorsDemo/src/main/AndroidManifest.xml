@@ -40,6 +40,9 @@
 
         <activity android:name=".PasswordValidatorDemo">
         </activity>
+
+        <activity android:name=".UncheckedDemo">
+        </activity>
     </application>
 
 </manifest>
