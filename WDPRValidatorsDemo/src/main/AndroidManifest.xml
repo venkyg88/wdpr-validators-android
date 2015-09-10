@@ -43,6 +43,9 @@
 
         <activity android:name=".UncheckedDemo">
         </activity>
+
+        <activity android:name=".NumberValidatorDemo">
+        </activity>
     </application>
 
 </manifest>

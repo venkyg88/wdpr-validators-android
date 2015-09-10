@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin"
+    tools:context=".NumberValidatorDemo">
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin"
+        tools:context=".NumberValidatorDemo"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="Number Validation"
+            android:textAllCaps="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="predicate to check a number input"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            />
+
+        <EditText
+            android:id="@+id/numberInput"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/text_view"
+            android:layout_width="203dp"
+            android:layout_height="wrap_content"
+            android:text="@string/result"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/isNumber"
+            android:layout_width="316dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/buttonTextSize"
+            android:text="NUMBER PREDICATE"
+            android:layout_gravity="center" />
+
+        <Button
+            android:id="@+id/checkNumber"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/buttonTextSize"
+            android:text="NUMBER CHECKER"
+            android:onClick="onValidateClick"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin" />
+
+    </LinearLayout>
+</ScrollView>
