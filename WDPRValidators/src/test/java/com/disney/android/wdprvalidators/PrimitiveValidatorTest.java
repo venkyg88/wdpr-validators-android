@@ -42,7 +42,7 @@ public class PrimitiveValidatorTest extends TestCase {
     @SmallTest
     public void testForString(){
         assertEquals(true,arrayObj.isAString(mString));
-        assertEquals(0,arrayObj.stringChecker(mString).size());
+        assertEquals(0, arrayObj.stringChecker(mString).size());
     }
 
     @SmallTest
@@ -100,6 +100,58 @@ public class PrimitiveValidatorTest extends TestCase {
         assertEquals(true, arrayObj.isUncheked());
         assertEquals(true, arrayObj.checkUnchecked().isEmpty());
     }
+
+/***************************** Tests for Number Predicate *********************/
+    public void testForNumber(){
+        String number = "1234";
+        assertEquals(true, arrayObj.isNumber(number));
+        assertEquals(true, arrayObj.checkNumber(number).isEmpty());
+    }
+
+    public void testForNegativeNumber(){
+        String negativeNumber = "-1234";
+        assertEquals(true, arrayObj.isNumber(negativeNumber));
+        assertEquals(true, arrayObj.checkNumber(negativeNumber).isEmpty());
+    }
+
+    public void testForPositiveNumber(){
+        String positiveNumber = "+1234";
+        assertEquals(true, arrayObj.isNumber(positiveNumber));
+        assertEquals(true, arrayObj.checkNumber(positiveNumber).isEmpty());
+    }
+
+    public void testForNull(){
+        String number = null;
+        assertEquals(false, arrayObj.isNumber(number));
+        assertEquals("ERR_EMPTY_INPUT", arrayObj.checkNumber(number).get(0));
+    }
+
+    public void testForEmptyInput(){
+        String number = "";
+        assertEquals(false, arrayObj.isNumber(number));
+        assertEquals("ERR_EMPTY_INPUT", arrayObj.checkNumber(number).get(0));
+    }
+
+    public void testForNotNumber(){
+        String notNumber = "cow";
+        assertEquals(false, arrayObj.isNumber(notNumber));
+        assertEquals("ERR_NUM", arrayObj.checkNumber(notNumber).get(0));
+        assertEquals("ERR_NUM", arrayObj.checkNumber("!@#$").get(0));
+    }
+
+    public void testForDecimalNumber(){
+        String decimalNumber = "12.01";
+        assertEquals(true, arrayObj.isNumber(decimalNumber));
+        assertEquals(true, arrayObj.checkNumber(decimalNumber).isEmpty());
+    }
+
+    public void testForExponent(){
+        String exponent = "7.6E+7";
+        assertEquals(true, arrayObj.isNumber(exponent));
+        assertEquals(true, arrayObj.checkNumber(exponent).isEmpty());
+    }
+
+/************************* END of Tests for Number Predicate *****************/
 
     @Override
     protected void tearDown() throws Exception {
