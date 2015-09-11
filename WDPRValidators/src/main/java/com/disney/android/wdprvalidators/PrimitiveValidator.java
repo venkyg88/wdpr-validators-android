@@ -175,7 +175,6 @@ public class PrimitiveValidator
         {
             try
             {
-                //Integer.parseInt(number);
                 Double.parseDouble(number);
                 result = true;
             }
