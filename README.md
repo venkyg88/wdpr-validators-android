@@ -823,19 +823,19 @@ Please refer to our [error codes documentation](https://github.disney.com/WDPR-R
 
 -----
 
-##isNumber(String number)
+##isNumber(Object number)
 
 Predicate method to determine whether input value is a Number(that is Byte, Short, Integer, Long, Float, and Double) and also supports if the Number is passed in the form of string. Examples of Valid numbers are 12, -12, +12, 0, 12.12, 7.6E+7.
 
 **Params**
-- number `String`
+- number `Object`
 
 **Returns** `boolean`
 
 **Usage:**
 
 ```java
-String number ="123";
+Integer number =123;
 
 PrimitiveValidator mPrimitiveValidator = new PrimitiveValidator();
 boolean mBoolean = mPrimitiveValidator.isNumber(number);
@@ -856,14 +856,14 @@ else
 
 -----
 
-##checkNumber(String number)
+##checkNumber(Object number)
 
 Checker method to determine whether the input is a number, and returns a empty list on success otherwise return a list of applicable error messages on failure.
 
 **Params**
-- number `String`
+- number `Object`
 
-**Returns** `boolean`
+**Returns** `List<String`
 
 **Usage:**
 
