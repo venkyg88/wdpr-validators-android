@@ -5,10 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.disney.android.wdprvalidators.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,11 +28,17 @@ public class NumberValidatorDemo extends Activity {
     //validator object
     private PrimitiveValidator mPrimitiveValidator;
 
+    private TextView textViewR;
+
     //button for password predicate
     private Button mPredicateButton;
 
     //button for password checker
     private Button mCheckerButton;
+
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+    Date mDate;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,74 +46,105 @@ public class NumberValidatorDemo extends Activity {
 
         mPrimitiveValidator = new PrimitiveValidator();
 
-        mNumberText = (EditText) findViewById(R.id.numberInput);
-
-        mPredicateButton = (Button) findViewById(R.id.isNumber);
-
-        mPredicateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onPredicateClick(v);
-            }
-        });
-
-        mCheckerButton = (Button) findViewById(R.id.checkNumber);
-
-        mCheckerButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                onCheckerClick(v);
-            }
-        });
+        textViewR = (TextView) findViewById(R.id.textViewResult);
     }
-
-
-    /**
-     * Called when the "Validate" button is clicked.
-     */
-    public void onCheckerClick(View view)
-    {
-        if (mNumberText != null){
-
-            String number = mNumberText.getText().toString();
-
-            List<String> result =  mPrimitiveValidator.checkNumber(number);
-
-            String errorCode="";
-
-            for (String str : result)
-            {
-                str ="\n"+str;
-
-                errorCode=errorCode.concat(str);
-            }
-
-            if(errorCode.equals(""))
-            {
-                Toast.makeText(this, number + " is a number", Toast.LENGTH_LONG).show();
-            }
-            else
-            {
-                mNumberText.setError(errorCode);
-
-                Toast.makeText(this, errorCode, Toast.LENGTH_LONG).show();
-            }
+    
+    public void onNilClick(View view){
+        Object number = null;
+        List<String> result =  mPrimitiveValidator.checkNumber(number);
+        String errorCode="";
+        for (String str : result)
+        {
+            str ="\n"+str;
+            errorCode=errorCode.concat(str);
+        }
+        if(errorCode.isEmpty())
+        {
+            textViewR.setText("Success - Input passed");
+        }
+        else
+        {
+            textViewR.setText(errorCode);
         }
     }
 
-    public void onPredicateClick(View view){
-        if (mNumberText != null) {
-
-            String number = mNumberText.getText().toString();
-
-            boolean result =  mPrimitiveValidator.isNumber(number);
-
-            if(result){
-                Toast.makeText(this,"true",Toast.LENGTH_SHORT).show();
-            }
-            else{
-                Toast.makeText(this,"false",Toast.LENGTH_SHORT).show();
-            }
+    public void onNumberClick(View view){
+        List<String> result =  mPrimitiveValidator.checkNumber(72);
+        String errorCode="";
+        for (String str : result)
+        {
+            str ="\n"+str;
+            errorCode=errorCode.concat(str);
+        }
+        if(errorCode.isEmpty())
+        {
+            textViewR.setText("Success - Input passed");
+        }
+        else
+        {
+            textViewR.setText(errorCode);
         }
     }
+
+    public void onStringNumberClick(View view){
+        List<String> result =  mPrimitiveValidator.checkNumber("42");
+        String errorCode="";
+        for (String str : result)
+        {
+            str ="\n"+str;
+            errorCode=errorCode.concat(str);
+        }
+        if(errorCode.isEmpty())
+        {
+            textViewR.setText("Success - Input passed");
+        }
+        else
+        {
+            textViewR.setText(errorCode);
+        }
+    }
+
+    public void onDateClick(View view){
+
+        try {
+            mDate = formatter.parse("2005-01-01");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        List<String> result =  mPrimitiveValidator.checkNumber(mDate);
+        String errorCode="";
+        for (String str : result)
+        {
+            str ="\n"+str;
+            errorCode=errorCode.concat(str);
+        }
+        if(errorCode.isEmpty())
+        {
+            textViewR.setText("Success - Input passed");
+        }
+        else
+        {
+            textViewR.setText(errorCode);
+        }
+    }
+
+    public void onStringClick(View view){
+        List<String> result =  mPrimitiveValidator.checkNumber("cow");
+        String errorCode="";
+        for (String str : result)
+        {
+            str ="\n"+str;
+            errorCode=errorCode.concat(str);
+        }
+        if(errorCode.isEmpty())
+        {
+            textViewR.setText("Success - Input passed");
+        }
+        else
+        {
+            textViewR.setText(errorCode);
+        }
+    }
+
+
 }

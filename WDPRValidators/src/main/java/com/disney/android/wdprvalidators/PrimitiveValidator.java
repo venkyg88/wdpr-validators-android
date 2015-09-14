@@ -164,23 +164,50 @@ public class PrimitiveValidator
 
 
     /**
-     * Predicate method to determine whether input value is a Number. Any input which contain digits with +- should be accepted
+     * Predicate method to determine whether input value is a Number(that is Byte, Short, Integer, Long, Float, and Double)
+     * and also supports if the Number is passed in the form of string.
      * @param number
      * @return boolean
      */
-    public boolean isNumber(String number)
+    public boolean isNumber(final Object number)
     {
+
         boolean result = false;
-        if(number != null && !number.isEmpty())
+
+        if(number != null)
         {
-            try
+            if(number instanceof Number)
             {
-                Double.parseDouble(number);
                 result = true;
             }
-            catch (NumberFormatException ex)
+
+            if (number instanceof String)
             {
-                result = false;
+                final String mNumber = number.toString();
+                if(!mNumber.isEmpty())
+                {
+                    try {
+                        Float.parseFloat(mNumber);
+                        result = true;
+                    } catch (NumberFormatException e) {
+                        try {
+                            Double.parseDouble(mNumber);
+                            result = true;
+                        } catch (NumberFormatException e1) {
+                            try {
+                                Integer.parseInt(mNumber);
+                                result = true;
+                            } catch (NumberFormatException e2) {
+                                try {
+                                    Long.parseLong(mNumber);
+                                    result = true;
+                                } catch (NumberFormatException e3) {
+                                    result = false;
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
         return result;
@@ -191,10 +218,12 @@ public class PrimitiveValidator
      * @param number
      * @return List<String>
      */
-    public List<String> checkNumber(String number)
+    public List<String> checkNumber(final Object number)
     {
         List<String> list = new ArrayList<>();
-        if(number == null || number.isEmpty())
+        boolean flag = false;
+
+        if(number == null)
         {
             list.add(ValidatorConstant.ERR_EMPTY_INPUT);
         }
@@ -202,7 +231,19 @@ public class PrimitiveValidator
         {
             if(!isNumber(number))
             {
-                list.add(ValidatorConstant.ERR_NUM);
+                if(number instanceof String)
+                {
+                    final String mNumber = number.toString();
+                    if(mNumber.isEmpty())
+                    {
+                        list.add(ValidatorConstant.ERR_EMPTY_INPUT);
+                        flag = true;
+                    }
+                }
+                if(!flag)
+                {
+                    list.add(ValidatorConstant.ERR_NUM);
+                }
             }
         }
         return list;

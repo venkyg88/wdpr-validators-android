@@ -27,5 +27,4 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile files('libs/Library.jar')
     compile files('libs/commons-validator-1.4.1.jar')
-    compile files('libs/CreditCard.jar')
 }

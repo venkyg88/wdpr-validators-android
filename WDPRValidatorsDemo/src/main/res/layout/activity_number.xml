@@ -11,7 +11,8 @@
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin"
         tools:context=".NumberValidatorDemo"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:id="@+id/layout_linear">
 
         <TextView
             android:layout_width="wrap_content"
@@ -20,46 +21,93 @@
             android:text="Number Validation"
             android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            />
+            android:textStyle="bold" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="predicate to check a number input"
+            android:text="Pass the following selected values to Validator block one at a time"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            />
+            android:textStyle="bold|italic" />
 
-        <EditText
-            android:id="@+id/numberInput"
-            android:inputType="text"
+        <Button
+            android:id="@+id/buttonNil"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/buttonTextSize"
+            android:text="pass nil"
+            android:onClick="onNilClick"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_gravity="center_horizontal" />
 
+        <Button
+            android:id="@+id/buttonNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/buttonTextSize"
+            android:text="Pass Number(72)"
+            android:onClick="onNumberClick"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:id="@+id/buttonStringNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/buttonTextSize"
+            android:text="Pass String(&quot;42&quot;)"
+            android:onClick="onStringNumberClick"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:id="@+id/buttonDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/buttonTextSize"
+            android:text="Pass date"
+            android:onClick="onDateClick"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:id="@+id/buttonString"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/buttonTextSize"
+            android:text="Pass string &quot;cow&quot;"
+            android:onClick="onStringClick"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_gravity="center_horizontal" />
 
         <TextView
-            android:id="@+id/text_view"
-            android:layout_width="203dp"
-            android:layout_height="wrap_content"
-            android:text="@string/result"
-            android:layout_gravity="center"/>
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/textgap"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.85" />
 
-        <Button
-            android:id="@+id/isNumber"
-            android:layout_width="316dp"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/buttonTextSize"
-            android:text="NUMBER PREDICATE"
-            android:layout_gravity="center" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/textgap2"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.85" />
 
-        <Button
-            android:id="@+id/checkNumber"
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/buttonTextSize"
-            android:text="NUMBER CHECKER"
-            android:onClick="onValidateClick"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/textViewResult"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.85" />
 
     </LinearLayout>
 </ScrollView>

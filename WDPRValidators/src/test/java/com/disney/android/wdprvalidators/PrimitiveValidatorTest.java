@@ -3,6 +3,9 @@ package com.disney.android.wdprvalidators;
 import android.test.suitebuilder.annotation.SmallTest;
 import junit.framework.TestCase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by venkatgonuguntala on 5/26/15.
  */
@@ -15,10 +18,13 @@ public class PrimitiveValidatorTest extends TestCase {
     double[] mDoubleArray = {10.9};                   // It's an array
 
     PrimitiveValidator arrayObj = new PrimitiveValidator();
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    Date sDate;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
+        sDate = formatter.parse("2005-01-01");
     }
 
     @SmallTest
@@ -102,6 +108,41 @@ public class PrimitiveValidatorTest extends TestCase {
     }
 
 /***************************** Tests for Number Predicate *********************/
+    public void testForInteger(){
+        Integer number = 123;
+        assertEquals(true, arrayObj.isNumber(number));
+        assertEquals(true, arrayObj.checkNumber(number).isEmpty());
+    }
+
+    public void testForDouble(){
+        Double number = 7.6E+7;
+        assertEquals(true, arrayObj.isNumber(number));
+        assertEquals(true, arrayObj.checkNumber(number).isEmpty());
+    }
+
+    public void testForLong(){
+        Long number = 12345678910L;
+        assertEquals(true, arrayObj.isNumber(number));
+        assertEquals(true, arrayObj.checkNumber(number).isEmpty());
+    }
+
+    public void testForNegativeInteger(){
+        Integer number = -123;
+        assertEquals(true, arrayObj.isNumber(number));
+        assertEquals(true,arrayObj.checkNumber(number).isEmpty());
+    }
+
+    public void testForNull(){
+        Object number = null;
+        assertEquals(false, arrayObj.isNumber(number));
+        assertEquals("ERR_EMPTY_INPUT", arrayObj.checkNumber(number).get(0));
+    }
+
+    public void testForDate(){
+        assertEquals(false, arrayObj.isNumber(sDate));
+        assertEquals("ERR_NUM",arrayObj.checkNumber(sDate).get(0));
+    }
+
     public void testForNumber(){
         String number = "1234";
         assertEquals(true, arrayObj.isNumber(number));
@@ -118,12 +159,6 @@ public class PrimitiveValidatorTest extends TestCase {
         String positiveNumber = "+1234";
         assertEquals(true, arrayObj.isNumber(positiveNumber));
         assertEquals(true, arrayObj.checkNumber(positiveNumber).isEmpty());
-    }
-
-    public void testForNull(){
-        String number = null;
-        assertEquals(false, arrayObj.isNumber(number));
-        assertEquals("ERR_EMPTY_INPUT", arrayObj.checkNumber(number).get(0));
     }
 
     public void testForEmptyInput(){
