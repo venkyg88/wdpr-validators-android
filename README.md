@@ -825,7 +825,7 @@ Please refer to our [error codes documentation](https://github.disney.com/WDPR-R
 
 ##isNumber(String number)
 
-Predicate method to determine whether input value is a Number or not. Examples of Valid numbers are 12, -12, +12, 0, 12.12, 7.6E+7
+Predicate method to determine whether input value is a Number(that is Byte, Short, Integer, Long, Float, and Double) and also supports if the Number is passed in the form of string. Examples of Valid numbers are 12, -12, +12, 0, 12.12, 7.6E+7.
 
 **Params**
 - number `String`
