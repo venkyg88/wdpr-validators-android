@@ -192,6 +192,14 @@ public class PrimitiveValidatorTest extends TestCase {
         assertEquals(true, arrayObj.checkNumber(number).isEmpty());
     }
 
+    public void testForHexadecimalNumber(){
+        assertEquals(true, arrayObj.isNumber(0x1));
+    }
+
+    public void testForHexadecimalNumberString(){
+        assertEquals(true, arrayObj.isNumber("0x1"));
+    }
+
 /************************* END of Tests for Number Predicate *****************/
 
     @Override

@@ -1,5 +1,7 @@
 package com.disney.android.wdprvalidators;
 
+import org.apache.commons.lang3.math.NumberUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -187,16 +189,12 @@ public class PrimitiveValidator
                 if(!mNumber.isEmpty())
                 {
                     try {
-                        Long.parseLong(mNumber);
-                        result = true;
-                    } catch (NumberFormatException e) {
-                        try {
-                            Double.parseDouble(mNumber);
+                            NumberUtils.createNumber(mNumber);
                             result = true;
-                        } catch (NumberFormatException e1) {
-                            result = false;
-                        }
+                    } catch (NumberFormatException e1) {
+                        result = false;
                     }
+
                 }
             }
         }
