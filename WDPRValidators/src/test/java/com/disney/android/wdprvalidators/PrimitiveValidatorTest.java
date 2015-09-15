@@ -186,6 +186,12 @@ public class PrimitiveValidatorTest extends TestCase {
         assertEquals(true, arrayObj.checkNumber(exponent).isEmpty());
     }
 
+    public void testForStringLong(){
+        Long number = 12345678910L;
+        assertEquals(true, arrayObj.isNumber(number));
+        assertEquals(true, arrayObj.checkNumber(number).isEmpty());
+    }
+
 /************************* END of Tests for Number Predicate *****************/
 
     @Override

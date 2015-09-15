@@ -187,24 +187,14 @@ public class PrimitiveValidator
                 if(!mNumber.isEmpty())
                 {
                     try {
-                        Float.parseFloat(mNumber);
+                        Long.parseLong(mNumber);
                         result = true;
                     } catch (NumberFormatException e) {
                         try {
                             Double.parseDouble(mNumber);
                             result = true;
                         } catch (NumberFormatException e1) {
-                            try {
-                                Integer.parseInt(mNumber);
-                                result = true;
-                            } catch (NumberFormatException e2) {
-                                try {
-                                    Long.parseLong(mNumber);
-                                    result = true;
-                                } catch (NumberFormatException e3) {
-                                    result = false;
-                                }
-                            }
+                            result = false;
                         }
                     }
                 }
