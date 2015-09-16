@@ -863,7 +863,7 @@ Checker method to determine whether the input is a number which returns an empty
 **Params**
 - number `Object`
 
-**Returns** `List<String`>
+**Returns** `List<String>`
 
 **Usage:**
 
