@@ -173,28 +173,27 @@ public class PrimitiveValidator
      */
     public boolean isNumber(final Object number)
     {
-
         boolean result = false;
-
         if(number != null)
         {
             if(number instanceof Number)
             {
                 result = true;
             }
-
             if (number instanceof String)
             {
                 final String mNumber = number.toString();
                 if(!mNumber.isEmpty())
                 {
-                    try {
-                            NumberUtils.createNumber(mNumber);
-                            result = true;
-                    } catch (NumberFormatException e1) {
+                    try
+                    {
+                        NumberUtils.createNumber(mNumber);
+                        result = true;
+                    }
+                    catch (NumberFormatException e)
+                    {
                         result = false;
                     }
-
                 }
             }
         }
@@ -210,7 +209,6 @@ public class PrimitiveValidator
     {
         List<String> list = new ArrayList<>();
         boolean flag = false;
-
         if(number == null)
         {
             list.add(ValidatorConstant.ERR_EMPTY_INPUT);
