@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class NumberValidatorDemo extends Activity {
 
-    private static final String TAG = "PasswordValidatorDemo";
+    private static final String TAG = "NumberValidatorDemo";
 
     //text field for entering password
     private EditText mNumberText;
