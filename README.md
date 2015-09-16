@@ -858,12 +858,12 @@ else
 
 ##checkNumber(Object number)
 
-Checker method to determine whether the input is a number, and returns a empty list on success otherwise return a list of applicable error messages on failure.
+Checker method to determine whether the input is a number which returns an empty list on success or a list of applicable error messages on failure.
 
 **Params**
 - number `Object`
 
-**Returns** `List<String`
+**Returns** `List<String`>
 
 **Usage:**
 
@@ -886,3 +886,7 @@ else
 > Success Scenario: Size of List will be zero<br>
 > Failure Scenario: List('ERR\_EMPTY\_INPUT')<br>
 > Failure Scenario: List('ERR\_NUM')
+
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#number) for further details on their definitions
+
+-----
