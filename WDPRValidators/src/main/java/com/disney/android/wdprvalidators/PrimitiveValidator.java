@@ -180,7 +180,7 @@ public class PrimitiveValidator
             {
                 result = true;
             }
-            if (number instanceof String)
+            else if(number instanceof String)
             {
                 final String mNumber = number.toString();
                 if(!mNumber.isEmpty())

@@ -200,6 +200,9 @@ public class PrimitiveValidatorTest extends TestCase {
         assertEquals(true, arrayObj.isNumber("0x1"));
     }
 
+    public void testForHexadecimalOctal(){
+        assertEquals(true, arrayObj.isNumber(0123123));
+    }
 /************************* END of Tests for Number Predicate *****************/
 
     @Override
