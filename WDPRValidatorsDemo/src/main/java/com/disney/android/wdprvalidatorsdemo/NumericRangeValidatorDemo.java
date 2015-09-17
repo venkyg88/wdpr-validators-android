@@ -33,19 +33,11 @@ public class NumericRangeValidatorDemo extends Activity {
         mUpper = (EditText) findViewById(R.id.editTextUpper);
     }
 
-/*    @Override
-    protected void onResume() {
-        super.onResume();
-        input = mInput.getText().toString();
-        lower = mInput.getText().toString();
-        upper = mInput.getText().toString();
-    }*/
 
     public void onPredicateClick(View view){
         String input = mInput.getText().toString();
         String lower = mLower.getText().toString();
         String upper = mUpper.getText().toString();
-
         boolean result = mPrimitiveValidator.isNumberRange(input, lower, upper);
         if(result){
             mtextViewResult.setText("true");

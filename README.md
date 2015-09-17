@@ -890,3 +890,75 @@ else
 Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#number) for further details on their definitions
 
 -----
+
+##isNumberRange(Object input, Object lower, Object Upper)
+
+Predicate method to determine whether or not the input number falls in between the lower and upper bound values inclusively.
+
+**Params**
+- input `Object`
+- lower `Object`
+- upper `Object`
+
+**Returns** `boolean`
+
+**Usage:**
+
+```java
+PrimitiveValidator mPrimitiveValidator = new PrimitiveValidator();
+boolean mBoolean = mPrimitiveValidator.isNumber(12, 9, 23);
+
+if(mBoolean)
+{
+  //true - falls in range
+}
+else
+{
+  //false - doesn't fall in range
+}
+```
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
+
+##checkNumberRange(Object input, Object lower, Object Upper)
+
+Checker method to determine whether the input falls in the range of upper and lower bound inclusively which returns empty list on success and a list of applicable error list on failure.
+
+**Params**
+- input `Object`
+- lower `Object`
+- upper `Object`
+
+**Returns** `List<String>`
+
+**Usage:**
+
+```java
+PrimitiveValidator mPrimitiveValidator = new PrimitiveValidator();
+List<String> list = mPrimitiveValidator.checkNumber(input, lower, upper);
+
+if(list.isEmpty())
+{
+  //Input falls in the range
+}
+else
+{
+  //Error specifying the reason for failure
+}
+```
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')<br>
+> Failure Scenario: List('ERR\_NUM')<br>
+> Failure Scenario: List('ERR\_NUM\_INVALID\_RANGE')<br>
+> Failure Scenario: List('ERR\_NUM\_RANGE\_MAX')<br>
+> Failure Scenario: List('ERR\_NUM\_RANGE\MIN')
+
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#number) for further details on their definitions
+
+-----
