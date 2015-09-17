@@ -45,6 +45,8 @@ public final class ValidatorConstant
     public static final String ERR_PASSWORD_OTHER ="ERR_PASSWORD_OTHER";
     /*********************** Unchecked check fails *******************************************/
     public static final String ERR_UNCHECK = "ERR_UNCHECK";
+    /************************* Input not a number ********************************************/
+    public static final String ERR_NUM = "ERR_NUM";
      /**
      *
      */

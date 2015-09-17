@@ -3,6 +3,9 @@ package com.disney.android.wdprvalidators;
 import android.test.suitebuilder.annotation.SmallTest;
 import junit.framework.TestCase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by venkatgonuguntala on 5/26/15.
  */
@@ -15,10 +18,13 @@ public class PrimitiveValidatorTest extends TestCase {
     double[] mDoubleArray = {10.9};                   // It's an array
 
     PrimitiveValidator arrayObj = new PrimitiveValidator();
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    Date sDate;
 
     @Override
     protected void setUp() throws Exception {
         super.setUp();
+        sDate = formatter.parse("2005-01-01");
     }
 
     @SmallTest
@@ -42,7 +48,7 @@ public class PrimitiveValidatorTest extends TestCase {
     @SmallTest
     public void testForString(){
         assertEquals(true,arrayObj.isAString(mString));
-        assertEquals(0,arrayObj.stringChecker(mString).size());
+        assertEquals(0, arrayObj.stringChecker(mString).size());
     }
 
     @SmallTest
@@ -100,6 +106,104 @@ public class PrimitiveValidatorTest extends TestCase {
         assertEquals(true, arrayObj.isUncheked());
         assertEquals(true, arrayObj.checkUnchecked().isEmpty());
     }
+
+/***************************** Tests for Number Predicate *********************/
+    public void testForInteger(){
+        Integer number = 123;
+        assertEquals(true, arrayObj.isNumber(number));
+        assertEquals(true, arrayObj.checkNumber(number).isEmpty());
+    }
+
+    public void testForDouble(){
+        Double number = 7.6E+7;
+        assertEquals(true, arrayObj.isNumber(number));
+        assertEquals(true, arrayObj.checkNumber(number).isEmpty());
+    }
+
+    public void testForLong(){
+        Long number = 12345678910L;
+        assertEquals(true, arrayObj.isNumber(number));
+        assertEquals(true, arrayObj.checkNumber(number).isEmpty());
+    }
+
+    public void testForNegativeInteger(){
+        Integer number = -123;
+        assertEquals(true, arrayObj.isNumber(number));
+        assertEquals(true,arrayObj.checkNumber(number).isEmpty());
+    }
+
+    public void testForNull(){
+        Object number = null;
+        assertEquals(false, arrayObj.isNumber(number));
+        assertEquals("ERR_EMPTY_INPUT", arrayObj.checkNumber(number).get(0));
+    }
+
+    public void testForDate(){
+        assertEquals(false, arrayObj.isNumber(sDate));
+        assertEquals("ERR_NUM",arrayObj.checkNumber(sDate).get(0));
+    }
+
+    public void testForNumber(){
+        String number = "1234";
+        assertEquals(true, arrayObj.isNumber(number));
+        assertEquals(true, arrayObj.checkNumber(number).isEmpty());
+    }
+
+    public void testForNegativeNumber(){
+        String negativeNumber = "-1234";
+        assertEquals(true, arrayObj.isNumber(negativeNumber));
+        assertEquals(true, arrayObj.checkNumber(negativeNumber).isEmpty());
+    }
+
+    public void testForPositiveNumber(){
+        String positiveNumber = "+1234";
+        assertEquals(true, arrayObj.isNumber(positiveNumber));
+        assertEquals(true, arrayObj.checkNumber(positiveNumber).isEmpty());
+    }
+
+    public void testForEmptyInput(){
+        String number = "";
+        assertEquals(false, arrayObj.isNumber(number));
+        assertEquals("ERR_EMPTY_INPUT", arrayObj.checkNumber(number).get(0));
+    }
+
+    public void testForNotNumber(){
+        String notNumber = "cow";
+        assertEquals(false, arrayObj.isNumber(notNumber));
+        assertEquals("ERR_NUM", arrayObj.checkNumber(notNumber).get(0));
+        assertEquals("ERR_NUM", arrayObj.checkNumber("!@#$").get(0));
+    }
+
+    public void testForDecimalNumber(){
+        String decimalNumber = "12.01";
+        assertEquals(true, arrayObj.isNumber(decimalNumber));
+        assertEquals(true, arrayObj.checkNumber(decimalNumber).isEmpty());
+    }
+
+    public void testForExponent(){
+        String exponent = "7.6E+7";
+        assertEquals(true, arrayObj.isNumber(exponent));
+        assertEquals(true, arrayObj.checkNumber(exponent).isEmpty());
+    }
+
+    public void testForStringLong(){
+        Long number = 12345678910L;
+        assertEquals(true, arrayObj.isNumber(number));
+        assertEquals(true, arrayObj.checkNumber(number).isEmpty());
+    }
+
+    public void testForHexadecimalNumber(){
+        assertEquals(true, arrayObj.isNumber(0x1));
+    }
+
+    public void testForHexadecimalNumberString(){
+        assertEquals(true, arrayObj.isNumber("0x1"));
+    }
+
+    public void testForHexadecimalOctal(){
+        assertEquals(true, arrayObj.isNumber(0123123));
+    }
+/************************* END of Tests for Number Predicate *****************/
 
     @Override
     protected void tearDown() throws Exception {

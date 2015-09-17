@@ -762,7 +762,7 @@ Please refer to our [error codes documentation](https://github.disney.com/WDPR-R
 
 ------
 
-##isUncheked()
+##isUnchecked()
 
 Predicate method which doesn't take any parameters and always returns true. This function can be used when there a need for us to deliberately return true for all the values.
 
@@ -820,5 +820,73 @@ else
 > Failure Scenario: List('ERR\_UNCHECK')
 
 Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#uncheck) for further details on their definitions
+
+-----
+
+##isNumber(Object number)
+
+Predicate method to determine whether input value is a Number(that is Byte, Short, Integer, Long, Float, and Double) and also supports if the Number is passed in the form of string. Examples of Valid numbers are 12, -12, +12, 0, 12.12, 7.6E+7.
+
+**Params**
+- number `Object`
+
+**Returns** `boolean`
+
+**Usage:**
+
+```java
+Integer number =123;
+
+PrimitiveValidator mPrimitiveValidator = new PrimitiveValidator();
+boolean mBoolean = mPrimitiveValidator.isNumber(number);
+
+if(mBoolean)
+{
+  //Valid number
+}
+else
+{
+  //Invalid number
+}
+```
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
+
+##checkNumber(Object number)
+
+Checker method to determine whether the input is a number which returns an empty list on success or a list of applicable error messages on failure.
+
+**Params**
+- number `Object`
+
+**Returns** `List<String>`
+
+**Usage:**
+
+```java
+PrimitiveValidator mPrimitiveValidator = new PrimitiveValidator();
+List<String> list = mPrimitiveValidator.checkNumber(number);
+
+if(list.isEmpty())
+{
+  //Valid number
+}
+else
+{
+  //Error specifying the reason for failure
+  //ERR_NUM - Input not a number
+}
+```
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')<br>
+> Failure Scenario: List('ERR\_NUM')
+
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#number) for further details on their definitions
 
 -----

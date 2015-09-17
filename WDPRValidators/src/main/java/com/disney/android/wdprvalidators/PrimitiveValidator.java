@@ -1,5 +1,7 @@
 package com.disney.android.wdprvalidators;
 
+import org.apache.commons.lang3.math.NumberUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -160,5 +162,76 @@ public class PrimitiveValidator
             errorList.add(ValidatorConstant.ERR_UNCHECK);
         }
         return errorList;
+    }
+
+
+    /**
+     * Predicate method to determine whether input value is a Number(that is Byte, Short, Integer, Long, Float, and Double)
+     * and also supports if the Number is passed in the form of string.
+     * @param number
+     * @return boolean
+     */
+    public boolean isNumber(final Object number)
+    {
+        boolean result = false;
+        if(number != null)
+        {
+            if(number instanceof Number)
+            {
+                result = true;
+            }
+            else if(number instanceof String)
+            {
+                final String mNumber = number.toString();
+                if(!mNumber.isEmpty())
+                {
+                    try
+                    {
+                        NumberUtils.createNumber(mNumber);
+                        result = true;
+                    }
+                    catch (NumberFormatException e)
+                    {
+                        result = false;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Checker method to determine whether the input is a number and return empty list on success otherwise return a list of error messages on failure.
+     * @param number
+     * @return List<String>
+     */
+    public List<String> checkNumber(final Object number)
+    {
+        List<String> list = new ArrayList<>();
+        boolean flag = false;
+        if(number == null)
+        {
+            list.add(ValidatorConstant.ERR_EMPTY_INPUT);
+        }
+        else
+        {
+            if(!isNumber(number))
+            {
+                if(number instanceof String)
+                {
+                    final String mNumber = number.toString();
+                    if(mNumber.isEmpty())
+                    {
+                        list.add(ValidatorConstant.ERR_EMPTY_INPUT);
+                        flag = true;
+                    }
+                }
+                if(!flag)
+                {
+                    list.add(ValidatorConstant.ERR_NUM);
+                }
+            }
+        }
+        return list;
     }
 }
