@@ -47,6 +47,12 @@ public final class ValidatorConstant
     public static final String ERR_UNCHECK = "ERR_UNCHECK";
     /************************* Input not a number ********************************************/
     public static final String ERR_NUM = "ERR_NUM";
+    /************************* Number fails with lower limit bound ***************************/
+    public static final String ERR_NUM_RANGE_MIN ="ERR_NUM_RANGE_MIN";
+    /************************* Number fails with upper limit bound ***************************/
+    public static final String ERR_NUM_RANGE_MAX = "ERR_NUM_RANGE_MAX";
+    /************************* Invalid number range entries **********************************/
+    public static final String ERR_NUM_INVALID_RANGE = "ERR_NUM_INVALID_RANGE";
      /**
      *
      */

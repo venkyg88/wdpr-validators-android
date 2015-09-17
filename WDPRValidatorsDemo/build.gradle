@@ -27,4 +27,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile files('libs/Library.jar')
     compile files('libs/commons-validator-1.4.1.jar')
+    compile 'org.apache.commons:commons-lang3:3.3.2'
+
 }

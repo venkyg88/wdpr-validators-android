@@ -234,4 +234,85 @@ public class PrimitiveValidator
         }
         return list;
     }
+
+    /**
+     * predicate method which takes in three parameters upper bound, lower bound, and user input and
+     * returns true if user input falls in the range of lower and upper bound inclusively.
+     * @param input
+     * @param lower
+     * @param upper
+     * @return boolean
+     */
+    public boolean isNumberRange(final Object input, final Object lower, final Object upper){
+        boolean result = false;
+        final Number nInput = getNumber(input);
+        final Number nLower = getNumber(lower);
+        final Number nUpper = getNumber(upper);
+
+        if(nInput != null && nLower != null && nUpper != null)
+        {
+            Double dInput = nInput.doubleValue();
+            Double dLower = nLower.doubleValue();
+            Double dUpper = nUpper.doubleValue();
+            if(dLower <= dInput && dInput <= dUpper && dInput >= dLower){
+                result = true;
+            }
+        }
+        return result;
+    }
+
+    private Number getNumber(Object object) throws NumberFormatException{
+        if(object instanceof String){
+            final String sObject = object.toString();
+            if(NumberUtils.isNumber(sObject)) {
+                return NumberUtils.createNumber(sObject);
+            }
+        }
+        if(object instanceof Number){
+            return (Number) object;
+
+        }
+        else{
+            return null;
+        }
+    }
+
+
+    /**
+     * checker method which returns empty list when the input falls in between lower and upper bound
+     * inclusively otherwise return a list of applicable error code/codes.
+     * @param input
+     * @param lower
+     * @param upper
+     * @return List<String>
+     */
+    public List<String> checkNumberRange(final Object input, final Object lower, final Object upper){
+        List<String> list = new ArrayList<>();
+
+        if(input == null || lower == null || upper == null){
+            list.add(ValidatorConstant.ERR_EMPTY_INPUT);
+        }
+        else
+        {
+            final Number nInput = getNumber(input);
+            final Number nLower = getNumber(lower);
+            final Number nUpper = getNumber(upper);
+            if(nInput != null && nLower != null && nUpper != null) {
+                if(nUpper.doubleValue() < nLower.doubleValue()){
+                    list.add(ValidatorConstant.ERR_NUM_INVALID_RANGE);
+                }
+                if(nInput.doubleValue() > nUpper.doubleValue()){
+                    list.add(ValidatorConstant.ERR_NUM_RANGE_MAX);
+                }
+                if(nInput.doubleValue() < nLower.doubleValue()){
+                    list.add(ValidatorConstant.ERR_NUM_RANGE_MIN);
+                }
+            }
+            else{
+                list.add(ValidatorConstant.ERR_NUM);
+            }
+        }
+        return list;
+    }
+
 }
