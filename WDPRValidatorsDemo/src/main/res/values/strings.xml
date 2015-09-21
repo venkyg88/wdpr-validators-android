@@ -60,5 +60,6 @@
     <string name="ERR_DATE_RANGE_BEFORE">Input date falls before indicated range</string>
     <string name="ERR_DATE_RANGE_AFTER">Input date falls after indicated range</string>
     <string name="ERR_EMAIL_EMPTY">Email is empty</string>
+    <string name="dummy">ERR_EMPTY_INPUT</string>
 
 </resources>

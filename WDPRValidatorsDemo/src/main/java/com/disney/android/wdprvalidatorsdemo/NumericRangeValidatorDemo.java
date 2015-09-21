@@ -21,7 +21,7 @@ public class NumericRangeValidatorDemo extends Activity {
     private EditText mUpper;
     private TextView mtextViewResult;
     PrimitiveValidator mPrimitiveValidator;
-
+    private String input, lower, upper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +35,9 @@ public class NumericRangeValidatorDemo extends Activity {
 
 
     public void onPredicateClick(View view){
-        String input = mInput.getText().toString();
-        String lower = mLower.getText().toString();
-        String upper = mUpper.getText().toString();
+        input = mInput.getText().toString();
+        lower = mLower.getText().toString();
+        upper = mUpper.getText().toString();
         boolean result = mPrimitiveValidator.isNumberRange(input, lower, upper);
         if(result){
             mtextViewResult.setText("true");
@@ -47,9 +47,7 @@ public class NumericRangeValidatorDemo extends Activity {
     }
 
     public void onCheckerClick(View view){
-        String input = mInput.getText().toString();
-        String lower = mLower.getText().toString();
-        String upper = mUpper.getText().toString();
+        getValues();
         List<String> result =  mPrimitiveValidator.checkNumberRange(input, lower, upper);
         String errorCode="";
         for (String str : result)
@@ -64,6 +62,21 @@ public class NumericRangeValidatorDemo extends Activity {
         else
         {
             mtextViewResult.setText(errorCode);
+        }
+    }
+
+    private void getValues(){
+        String input = mInput.getText().toString();
+        String lower = mLower.getText().toString();
+        String upper = mUpper.getText().toString();
+        if (input.isEmpty()){
+            mInput.setError(getString(R.string.dummy));
+        }
+        if (lower.isEmpty()){
+            mLower.setError(getString(R.string.dummy));
+        }
+        if (upper.isEmpty()){
+            mUpper.setError(getString(R.string.dummy));
         }
     }
 }
