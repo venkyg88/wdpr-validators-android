@@ -252,7 +252,7 @@ public class PrimitiveValidator
         final BigDecimal nUpper = getNumber(upper);
         if (nInput != null && nLower != null && nUpper != null)
         {
-            if (nInput.compareTo(nLower) >= 0 && nInput.compareTo(nUpper) <= 0 && nLower.compareTo(nUpper) <= 0)
+            if (nInput.compareTo(nLower) >= 0 && nInput.compareTo(nUpper) <= 0)
             {
                 result = true;
             }

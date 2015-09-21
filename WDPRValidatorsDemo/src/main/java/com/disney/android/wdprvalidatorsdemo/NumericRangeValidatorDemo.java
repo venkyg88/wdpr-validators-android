@@ -66,9 +66,9 @@ public class NumericRangeValidatorDemo extends Activity {
     }
 
     private void getValues(){
-        String input = mInput.getText().toString();
-        String lower = mLower.getText().toString();
-        String upper = mUpper.getText().toString();
+        input = mInput.getText().toString();
+        lower = mLower.getText().toString();
+        upper = mUpper.getText().toString();
         if (input.isEmpty()){
             mInput.setError(getString(R.string.dummy));
         }
