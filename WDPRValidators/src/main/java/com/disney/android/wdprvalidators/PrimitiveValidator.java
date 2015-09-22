@@ -264,10 +264,9 @@ public class PrimitiveValidator
     {
         if (object instanceof String)
         {
-            final String sObject = object.toString();
-            if (NumberUtils.isNumber(sObject))
+            if (this.isNumber(object))
             {
-                return new BigDecimal(NumberUtils.createNumber(sObject).toString());
+                return new BigDecimal(NumberUtils.createNumber(object.toString()).toString());
             }
         }
         if (object instanceof Number)
