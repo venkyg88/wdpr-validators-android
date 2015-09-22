@@ -247,12 +247,12 @@ public class PrimitiveValidator
     public boolean isNumberInRange(final Object input, final Object lower, final Object upper)
     {
         boolean result = false;
-        final BigDecimal nInput = getNumber(input);
-        final BigDecimal nLower = getNumber(lower);
-        final BigDecimal nUpper = getNumber(upper);
-        if (nInput != null && nLower != null && nUpper != null)
+        final BigDecimal numberInput = getNumber(input);
+        final BigDecimal numberLower = getNumber(lower);
+        final BigDecimal numberUpper = getNumber(upper);
+        if (numberInput != null && numberLower != null && numberUpper != null)
         {
-            if (nInput.compareTo(nLower) >= 0 && nInput.compareTo(nUpper) <= 0)
+            if (numberInput.compareTo(numberLower) >= 0 && numberInput.compareTo(numberUpper) <= 0)
             {
                 result = true;
             }
