@@ -891,7 +891,7 @@ Please refer to our [error codes documentation](https://github.disney.com/WDPR-R
 
 -----
 
-##isNumberRange(Object input, Object lower, Object Upper)
+##isNumberInRange(Object input, Object lower, Object Upper)
 
 Predicate method to determine whether or not the input number falls in between the lower and upper bound values inclusively.
 
@@ -906,7 +906,7 @@ Predicate method to determine whether or not the input number falls in between t
 
 ```java
 PrimitiveValidator mPrimitiveValidator = new PrimitiveValidator();
-boolean mBoolean = mPrimitiveValidator.isNumber(12, 9, 23);
+boolean mBoolean = mPrimitiveValidator.isNumberInRange(12, 9, 23);
 
 if(mBoolean)
 {
@@ -924,9 +924,9 @@ else
 
 -----
 
-##checkNumberRange(Object input, Object lower, Object Upper)
+##checkNumberInRange(Object input, Object lower, Object Upper)
 
-Checker method to determine whether the input falls in the range of upper and lower bound inclusively which returns empty list on success and a list of applicable error list on failure.
+Checker method to determine whether the input falls in the range of upper and lower bound inclusively which returns empty list on success and a list of applicable errors on failure.
 
 **Params**
 - input `Object`
@@ -939,7 +939,7 @@ Checker method to determine whether the input falls in the range of upper and lo
 
 ```java
 PrimitiveValidator mPrimitiveValidator = new PrimitiveValidator();
-List<String> list = mPrimitiveValidator.checkNumber(input, lower, upper);
+List<String> list = mPrimitiveValidator.checkNumberInRange(input, lower, upper);
 
 if(list.isEmpty())
 {

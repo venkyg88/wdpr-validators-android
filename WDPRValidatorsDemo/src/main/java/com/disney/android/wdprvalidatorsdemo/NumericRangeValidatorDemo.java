@@ -38,7 +38,7 @@ public class NumericRangeValidatorDemo extends Activity {
         input = mInput.getText().toString();
         lower = mLower.getText().toString();
         upper = mUpper.getText().toString();
-        boolean result = mPrimitiveValidator.isNumberRange(input, lower, upper);
+        boolean result = mPrimitiveValidator.isNumberInRange(input, lower, upper);
         if(result){
             mtextViewResult.setText("true");
         }else{
@@ -48,7 +48,7 @@ public class NumericRangeValidatorDemo extends Activity {
 
     public void onCheckerClick(View view){
         getValues();
-        List<String> result =  mPrimitiveValidator.checkNumberRange(input, lower, upper);
+        List<String> result =  mPrimitiveValidator.checkNumberInRange(input, lower, upper);
         String errorCode="";
         for (String str : result)
         {

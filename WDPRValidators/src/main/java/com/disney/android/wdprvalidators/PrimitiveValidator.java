@@ -244,7 +244,7 @@ public class PrimitiveValidator
      * @param upper
      * @return boolean
      */
-    public boolean isNumberRange(final Object input, final Object lower, final Object upper)
+    public boolean isNumberInRange(final Object input, final Object lower, final Object upper)
     {
         boolean result = false;
         final BigDecimal nInput = getNumber(input);
@@ -267,7 +267,7 @@ public class PrimitiveValidator
             final String sObject = object.toString();
             if (NumberUtils.isNumber(sObject))
             {
-                return new BigDecimal(NumberUtils.createNumber(sObject.toString()).toString());
+                return new BigDecimal(NumberUtils.createNumber(sObject).toString());
             }
         }
         if (object instanceof Number)
@@ -289,7 +289,7 @@ public class PrimitiveValidator
      * @param upper
      * @return List<String>
      */
-    public List<String> checkNumberRange(final Object input, final Object lower, final Object upper)
+    public List<String> checkNumberInRange(final Object input, final Object lower, final Object upper)
     {
         List<String> list = new ArrayList<>();
         if (input == null || lower == null || upper == null)
