@@ -204,6 +204,69 @@ public class PrimitiveValidatorTest extends TestCase {
         assertEquals(true, arrayObj.isNumber(0123123));
     }
 /************************* END of Tests for Number Predicate *****************/
+/************************* START of Test for Number Range ********************/
+
+    public void testForStringAndNumber(){
+        //test cases for strings as inputs
+        assertEquals(true, arrayObj.isNumberInRange("12", "-12", "20"));
+        assertEquals(true, arrayObj.isNumberInRange("12l", "12l", "20l"));
+        assertEquals(true, arrayObj.isNumberInRange("12", "11.5", "20"));
+        assertEquals(true, arrayObj.isNumberInRange("12", "-12", "20"));
+        assertEquals(false, arrayObj.isNumberInRange("20", "12.5", "15"));
+        assertEquals(false, arrayObj.isNumberInRange("10", "12.5", "15"));
+        assertEquals(true, arrayObj.isNumberInRange("10.23f", "2", "30l"));
+        assertEquals(true, arrayObj.isNumberInRange("0x12", "0x1", "0x30"));
+        assertEquals(false, arrayObj.isNumberInRange("0x1", "0x10", "0x20"));
+
+        //test cases for Numbers as inputs
+        assertEquals(true, arrayObj.isNumberInRange(12, -12, 20));
+        assertEquals(true, arrayObj.isNumberInRange(12l, 12l, 20l));
+        assertEquals(true, arrayObj.isNumberInRange(12, 11.5, 20));
+        assertEquals(true, arrayObj.isNumberInRange(12, -12, 20));
+        assertEquals(false, arrayObj.isNumberInRange(20, 12.5, 15));
+        assertEquals(false, arrayObj.isNumberInRange(10, 12.5, 15));
+        assertEquals(true, arrayObj.isNumberInRange(10.23f, 2, 30l));
+        assertEquals(true, arrayObj.isNumberInRange(0x12, 0x1, 0x30));
+        assertEquals(false, arrayObj.isNumberInRange(0x1, 0x10, 0x20));
+
+        //test cases for strings and Numbers as inputs
+        assertEquals(true, arrayObj.isNumberInRange("12", -12, "20"));
+    }
+
+    public void testForStringAndNumberCheck(){
+
+        //Test cases for strings as inputs
+        assertEquals(true, arrayObj.checkNumberInRange("12", "-12", "20").isEmpty());
+        assertEquals(true, arrayObj.checkNumberInRange("12l", "12l", "20l").isEmpty());
+        assertEquals(true, arrayObj.checkNumberInRange("12", "11.5", "20").isEmpty());
+        assertEquals(true, arrayObj.checkNumberInRange("12", "-12", "20").isEmpty());
+        assertEquals(ValidatorConstant.ERR_NUM_RANGE_MAX, arrayObj.checkNumberInRange("20", "12.5", "15").get(0));
+        assertEquals(ValidatorConstant.ERR_NUM_RANGE_MIN, arrayObj.checkNumberInRange("10", "12.5", "15").get(0));
+        assertEquals(true, arrayObj.checkNumberInRange("10.23f", "2", "30l").isEmpty());
+        assertEquals(true, arrayObj.checkNumberInRange("0x12", "0x1", "0x30").isEmpty());
+        assertEquals(ValidatorConstant.ERR_NUM_RANGE_MIN, arrayObj.checkNumberInRange("0x1", "0x10", "0x20").get(0));
+        assertEquals(ValidatorConstant.ERR_NUM_INVALID_RANGE,arrayObj.checkNumberInRange("35", "50", "10").get(0));
+        assertEquals(ValidatorConstant.ERR_NUM,arrayObj.checkNumberInRange(true, "50", "10").get(0));   //true is not number
+        assertEquals(ValidatorConstant.ERR_NUM,arrayObj.checkNumberInRange("35", "disney", "10").get(0)); //disney is not number
+
+        //test cases for Numbers as inputs
+        assertEquals(true, arrayObj.checkNumberInRange(12, -12, 20).isEmpty());
+        assertEquals(true, arrayObj.checkNumberInRange(12l, 12l, 20l).isEmpty());
+        assertEquals(true, arrayObj.checkNumberInRange(12, 11.5, 20).isEmpty());
+        assertEquals(true, arrayObj.checkNumberInRange(12, -12, 20).isEmpty());
+        assertEquals(ValidatorConstant.ERR_NUM_RANGE_MAX, arrayObj.checkNumberInRange(20, 12.5, 15).get(0));
+        assertEquals(ValidatorConstant.ERR_NUM_RANGE_MIN, arrayObj.checkNumberInRange(10, 12.5, 15).get(0));
+        assertEquals(true, arrayObj.checkNumberInRange(10.23f, 2, 30l).isEmpty());
+        assertEquals(true, arrayObj.checkNumberInRange(0x12, 0x1, 0x30).isEmpty());
+        assertEquals(ValidatorConstant.ERR_NUM_RANGE_MIN, arrayObj.checkNumberInRange(0x1, 0x10, 0x20).get(0));
+        assertEquals(ValidatorConstant.ERR_NUM_INVALID_RANGE,arrayObj.checkNumberInRange(35, 50, 10).get(0));
+        assertEquals(ValidatorConstant.ERR_NUM,arrayObj.checkNumberInRange(true, 50, 10).get(0));   //true is not number
+
+        //test cases for strings and Numbers as inputs
+        assertEquals(true, arrayObj.checkNumberInRange("12", -12, "20").isEmpty());
+        assertEquals(ValidatorConstant.ERR_NUM,arrayObj.checkNumberInRange(35, "disney", "10").get(0)); //disney is not number
+    }
+/************************ START of Test for Number Range ********************/
 
     @Override
     protected void tearDown() throws Exception {

@@ -2,6 +2,7 @@ package com.disney.android.wdprvalidators;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -234,4 +235,91 @@ public class PrimitiveValidator
         }
         return list;
     }
+
+    /**
+     * predicate method which takes in three parameters upper bound, lower bound, and user input and
+     * returns true if user input falls in the range of lower and upper bound inclusively.
+     * @param input
+     * @param lower
+     * @param upper
+     * @return boolean
+     */
+    public boolean isNumberInRange(final Object input, final Object lower, final Object upper)
+    {
+        boolean result = false;
+        final BigDecimal numberInput = getNumber(input);
+        final BigDecimal numberLower = getNumber(lower);
+        final BigDecimal numberUpper = getNumber(upper);
+        if (numberInput != null && numberLower != null && numberUpper != null)
+        {
+            if (numberInput.compareTo(numberLower) >= 0 && numberInput.compareTo(numberUpper) <= 0)
+            {
+                result = true;
+            }
+        }
+        return result;
+    }
+
+    private BigDecimal getNumber(Object object) throws NumberFormatException
+    {
+        BigDecimal number = null;
+        if (object instanceof String)
+        {
+            if (this.isNumber(object))
+            {
+                number = new BigDecimal(NumberUtils.createNumber(object.toString()).toString());
+            }
+        }
+        if (object instanceof Number)
+        {
+            number = new BigDecimal(object.toString());
+        }
+        return number;
+
+    }
+
+
+    /**
+     * checker method which returns empty list when the input falls in between lower and upper bound
+     * inclusively otherwise return a list of applicable error code/codes.
+     * @param input
+     * @param lower
+     * @param upper
+     * @return List<String>
+     */
+    public List<String> checkNumberInRange(final Object input, final Object lower, final Object upper)
+    {
+        List<String> list = new ArrayList<>();
+        if (input == null || lower == null || upper == null)
+        {
+            list.add(ValidatorConstant.ERR_EMPTY_INPUT);
+        }
+        else
+        {
+            final BigDecimal numberInput = getNumber(input);
+            final BigDecimal numberLower = getNumber(lower);
+            final BigDecimal numberUpper = getNumber(upper);
+            if(numberInput != null && numberLower != null && numberUpper != null)
+            {
+                if (numberLower.compareTo(numberUpper) > 0)
+                {
+                    list.add(ValidatorConstant.ERR_NUM_INVALID_RANGE);
+                }
+                if (numberInput.compareTo(numberUpper) > 0)
+                {
+                    list.add(ValidatorConstant.ERR_NUM_RANGE_MAX);
+                }
+                if (numberInput.compareTo(numberLower) < 0)
+                {
+                    list.add(ValidatorConstant.ERR_NUM_RANGE_MIN);
+                }
+            }
+            else
+            {
+                list.add(ValidatorConstant.ERR_NUM);
+            }
+        }
+        return list;
+    }
+
 }
