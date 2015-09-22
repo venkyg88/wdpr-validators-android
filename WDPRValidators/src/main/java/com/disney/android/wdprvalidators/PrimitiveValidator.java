@@ -262,21 +262,20 @@ public class PrimitiveValidator
 
     private BigDecimal getNumber(Object object) throws NumberFormatException
     {
+        BigDecimal number = null;
         if (object instanceof String)
         {
             if (this.isNumber(object))
             {
-                return new BigDecimal(NumberUtils.createNumber(object.toString()).toString());
+                number = new BigDecimal(NumberUtils.createNumber(object.toString()).toString());
             }
         }
         if (object instanceof Number)
         {
-            return new BigDecimal(object.toString());
+            number = new BigDecimal(object.toString());
         }
-        else
-        {
-            return null;
-        }
+        return number;
+
     }
 
 
@@ -297,20 +296,20 @@ public class PrimitiveValidator
         }
         else
         {
-            final BigDecimal nInput = getNumber(input);
-            final BigDecimal nLower = getNumber(lower);
-            final BigDecimal nUpper = getNumber(upper);
-            if(nInput != null && nLower != null && nUpper != null)
+            final BigDecimal numberInput = getNumber(input);
+            final BigDecimal numberLower = getNumber(lower);
+            final BigDecimal numberUpper = getNumber(upper);
+            if(numberInput != null && numberLower != null && numberUpper != null)
             {
-                if (nLower.compareTo(nUpper) > 0)
+                if (numberLower.compareTo(numberUpper) > 0)
                 {
                     list.add(ValidatorConstant.ERR_NUM_INVALID_RANGE);
                 }
-                if (nInput.compareTo(nUpper) > 0)
+                if (numberInput.compareTo(numberUpper) > 0)
                 {
                     list.add(ValidatorConstant.ERR_NUM_RANGE_MAX);
                 }
-                if (nInput.compareTo(nLower) < 0)
+                if (numberInput.compareTo(numberLower) < 0)
                 {
                     list.add(ValidatorConstant.ERR_NUM_RANGE_MIN);
                 }
