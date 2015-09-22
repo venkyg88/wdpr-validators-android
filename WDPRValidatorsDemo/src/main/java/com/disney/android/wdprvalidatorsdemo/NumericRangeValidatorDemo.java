@@ -25,7 +25,7 @@ public class NumericRangeValidatorDemo extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_numeric_range);
+        setContentView(R.layout.activity_numeric);
         mPrimitiveValidator = new PrimitiveValidator();
         mtextViewResult = (TextView) findViewById(R.id.textViewNumericResult);
         mInput = (EditText) findViewById(R.id.editTextInput);
