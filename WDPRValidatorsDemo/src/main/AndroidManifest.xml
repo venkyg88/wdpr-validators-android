@@ -49,6 +49,8 @@
 
         <activity android:name=".NumericRangeValidatorDemo">
         </activity>
+
+        <activity android:name=".ObjectLengthValidatorDemo"/>
     </application>
 
 </manifest>
