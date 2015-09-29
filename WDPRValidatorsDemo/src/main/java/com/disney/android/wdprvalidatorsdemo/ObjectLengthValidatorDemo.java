@@ -1,17 +1,1 @@
-package com.disney.android.wdprvalidatorsdemo;
-
-import android.app.Activity;
-import android.os.Bundle;
-
-/**
- * Created by venkatgonuguntala on 9/28/15.
- */
-public class ObjectLengthValidatorDemo extends Activity{
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_objlength);
-
-    }
-}
+package com.disney.android.wdprvalidatorsdemo;import android.app.Activity;import android.os.Bundle;import android.view.View;import android.widget.Button;import android.widget.EditText;import android.widget.TextView;import com.disney.android.wdprvalidators.ObjectLengthValidator;import org.json.JSONObject;import java.util.List;/** * Created by venkatgonuguntala on 9/28/15. */public class ObjectLengthValidatorDemo extends Activity{    private ObjectLengthValidator mObjectLengthValidator;    private EditText mEditTextLower;    private EditText mEditTextUpper;    private Button mButtonArray;    private Button mButtonJson;    private Button mButtonCollection;    private TextView mTextViewResult;    @Override    protected void onCreate(Bundle savedInstanceState) {        super.onCreate(savedInstanceState);        setContentView(R.layout.activity_objlength);        mObjectLengthValidator = new ObjectLengthValidator();        mEditTextLower = (EditText) findViewById(R.id.lowerEditText);        mEditTextUpper = (EditText) findViewById(R.id.upperEditText);        mButtonArray = (Button) findViewById(R.id.buttonArray);        mButtonJson = (Button) findViewById(R.id.buttonJson);        mButtonCollection = (Button) findViewById(R.id.buttonCollection);        mTextViewResult = (TextView) findViewById(R.id.textViewObjectResult);    }    public void onArrayClick(View view){        int []input = {1,1,1,1,1,1,1,1,1,1,1,1,1};        int lower = Integer.parseInt(mEditTextLower.getText().toString());        int upper = Integer.parseInt(mEditTextUpper.getText().toString());        List<String> result =  mObjectLengthValidator.checkObjectLengthInRange(input, lower, upper);        String errorCode="";        for (String str : result)        {            str ="\n"+str;            errorCode=errorCode.concat(str);        }        if(errorCode.isEmpty())        {            mTextViewResult.setText("Success - Input passed");        }        else        {            mTextViewResult.setText(errorCode);        }    }    public void onJsonClick(View view){        JSONObject jsonObject = new JSONObject();        int lower = Integer.parseInt(mEditTextLower.getText().toString());        int upper = Integer.parseInt(mEditTextUpper.getText().toString());        List<String> result =  mObjectLengthValidator.checkObjectLengthInRange(jsonObject, lower, upper);        String errorCode="";        for (String str : result)        {            str ="\n"+str;            errorCode=errorCode.concat(str);        }        if(errorCode.isEmpty())        {            mTextViewResult.setText("Success - Input passed");        }        else        {            mTextViewResult.setText(errorCode);        }    }}
