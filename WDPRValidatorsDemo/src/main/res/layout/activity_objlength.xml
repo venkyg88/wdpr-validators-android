@@ -73,10 +73,21 @@
             android:textSize="@dimen/buttonTextSize"
             android:text="Collection Input"
             android:id="@+id/buttonCollection"
-            android:onClick="onCheckerClick"
+            android:onClick="onCollectionClick"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:layout_gravity="center_horizontal"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/buttonTextSize"
+            android:text="Class instance Input"
+            android:id="@+id/button"
+            android:onClick="onInstanceClick"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_gravity="center_horizontal" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -84,7 +95,8 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/textViewObjectResult"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.85" />
+            android:layout_weight="0.85"
+            android:layout_marginTop="60dp" />
 
 
     </LinearLayout>

@@ -55,6 +55,8 @@ public final class ValidatorConstant
     public static final String ERR_NUM_INVALID_RANGE = "ERR_NUM_INVALID_RANGE";
     /************************* Input not an object *******************************************/
     public static final String ERR_OBJECT = "ERR_OBJECT";
+    /************************* Input not a positive integer **********************************/
+    public static final String ERR_INT_POSITIVE = "ERR_INT_POSITIVE";
      /**
      *
      */
