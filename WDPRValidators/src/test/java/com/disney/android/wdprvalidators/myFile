@@ -1,0 +1,19 @@
+{
+  "customerId": "CUST01",
+  "orderId": "101010",
+  "orderTotal": 99.99,
+  "orderDetailList": [
+    {
+      "lineId": "1",
+      "itemNumber": "ABC",
+      "quantity": 9,
+      "price": 10.0
+    },
+    {
+      "lineId": "2",
+      "itemNumber": "XYZ",
+      "quantity": 1,
+      "price": 9.99
+    }
+  ]
+}
