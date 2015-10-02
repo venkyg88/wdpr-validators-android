@@ -997,7 +997,7 @@ else
 -----
 ##checkObjectInRange(Object object, int lower, int Upper)
 
-Checker method to determine whether the input falls in the range of upper and lower bound inclusively which returns empty list on success and a list of applicable errors on failure.
+Checker method to determine whether the input object's length falls in the range of upper and lower bound inclusively which returns empty list on success and a list of applicable errors on failure.
 
 **Params**
 - object `Object`
