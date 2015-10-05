@@ -91,27 +91,10 @@ public class ObjectLengthValidatorsTest extends TestCase{
     @SmallTest
     public void testForJsonObjectReadFromFile() throws JSONException {
 
-       try {
-
-           String sCurrentLine;
-           bufferedReader = new BufferedReader(new FileReader("/Users/venkatgonuguntala/wdpr-validators-android/WDPRValidators/src/test/java/com/disney/android/wdprvalidators/myFile"));
-           while ((sCurrentLine = bufferedReader.readLine()) != null) {
-               myJSONString = myJSONString + sCurrentLine;
-               }
-           } catch (IOException e) {
-           e.printStackTrace();
-           } finally {
-           try {
-               if (bufferedReader != null){
-                   bufferedReader.close();
-                   }
-               } catch (IOException ex) {
-               ex.printStackTrace();
-               }
-           }
-       Gson gson = new Gson();
+        String myJSONString = "{\"phonetype\":\"N95\",\"cat\":\"WP\"}";
+        Gson gson = new Gson();
         Object object = gson.toJson(myJSONString);
-       assertEquals(true, mObjectLengthValidators.checkObjectLengthInRange(object, 1, 4).isEmpty());
+        assertEquals(true, mObjectLengthValidators.checkObjectLengthInRange(object, 1, 4).isEmpty());
         assertEquals(true, mObjectLengthValidators.isObjectLengthInRange(object, 1, 4));
     }
 
