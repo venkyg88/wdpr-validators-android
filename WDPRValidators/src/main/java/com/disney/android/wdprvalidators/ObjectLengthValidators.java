@@ -17,7 +17,7 @@ public class ObjectLengthValidators {
 
     private final PrimitiveValidator mPrimitiveValidator = new PrimitiveValidator();
 
-    private int getObjectLength(Object object)
+    public int getObjectLength(Object object)
     {
         int objectLength = -1;
 
