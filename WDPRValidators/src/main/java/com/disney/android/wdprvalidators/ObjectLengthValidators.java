@@ -30,11 +30,13 @@ public class ObjectLengthValidators {
             else if (object instanceof Collection<?>)
             {
                 objectLength = ((Collection) object).size();
-            } else if (object instanceof Map<?, ?>)
+            }
+            else if (object instanceof Map<?, ?>)
             {
                 objectLength = ((Map) object).size();
             }
-            else if (object instanceof JSONObject) {
+            else if (object instanceof JSONObject)
+            {
                 objectLength = ((JSONObject) object).length();
             }
             else if (object instanceof JSONArray)
