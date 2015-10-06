@@ -118,6 +118,20 @@ public class ObjectLengthValidatorsTest extends TestCase{
         assertEquals(ValidatorConstant.ERR_NUM_RANGE_MAX, mObjectLengthValidators.checkObjectLengthInRange(mMap, 7, 8).get(0));
     }
 
+    @SmallTest
+    public void testForFailureScenarios() {
+        assertEquals(false, mObjectLengthValidators.isObjectLengthInRange(list, 2, 8));
+        assertEquals(false, mObjectLengthValidators.isObjectLengthInRange(list, 22, 8));
+        assertEquals(false, mObjectLengthValidators.checkObjectLengthInRange(list, 5, 1).isEmpty());
+        assertEquals(false, mObjectLengthValidators.checkObjectLengthInRange(list, 12, 20).isEmpty());
+        assertEquals(false, mObjectLengthValidators.checkObjectLengthInRange(list, -12, -20).isEmpty());
+        assertEquals(false, mObjectLengthValidators.checkObjectLengthInRange(nullArray, 12, 20).isEmpty());
+        assertEquals(false, mObjectLengthValidators.checkObjectLengthInRange(new NestedClass(), 7, 8).isEmpty());
+        assertEquals(false, mObjectLengthValidators.checkObjectLengthInRange(new NestedClass(), 9, 1).isEmpty());
+        assertEquals(false, mObjectLengthValidators.checkObjectLengthInRange(mMap, 11, 10).isEmpty());
+        assertEquals(false, mObjectLengthValidators.checkObjectLengthInRange(mMap, 7, 8).isEmpty());
+    }
+
     @Override
     protected void tearDown() throws Exception {
         super.tearDown();
