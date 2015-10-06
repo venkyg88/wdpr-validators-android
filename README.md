@@ -962,3 +962,80 @@ else
 Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#number) for further details on their definitions
 
 -----
+
+##isObjectInRange(Object object, int lower, int Upper)
+
+Predicate method to determine whether or not the input object's length falls in between the lower and upper integer bound values inclusively. This method uses a public method to find the length of the passed object, it also takes care of all kinds of objects - arrays, collections, maps, Json objects, Json Arrays, class property length(number of exposed fields), etc.
+
+**Params**
+- object `Object`
+- lower `int`
+- upper `int`
+
+**Returns** `boolean`
+
+**Usage:**
+
+```java
+int lower = 3;
+int upper = 10;
+String []object = {"Cow", "Dog", "Pig", "Egg"}; //Here the object could be of any Object in java(list, map, string, array).
+ObjectLengthValidator mObjectLengthValidator = new ObjectLengthValidator();
+boolean mBoolean = mObjectLengthValidator.isObjectInRange(object, lower, upper);
+
+if(mBoolean)
+{
+  //true - input object's length falls in range
+}
+else
+{
+  //false - input object's length doesn't fall in range
+}
+```
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
+##checkObjectInRange(Object object, int lower, int Upper)
+
+Checker method to determine whether the input object's length falls in the range of upper and lower bound inclusively which returns an empty list on success and a list of applicable errors on failure.
+
+**Params**
+- object `Object`
+- lower `int`
+- upper `int`
+
+**Returns** `List<String>`
+
+**Usage:**
+
+```java
+int lower = 3;
+int upper = 10;
+String []object = {"Cow", "Dog", "Pig", "Egg"}; //Here the object could be of any Object in java.
+ObjectLengthValidator mObjectLengthValidator = new ObjectLengthValidator();
+List<String> list = mObjectLengthValidator.checkObjectInRange(object, lower, upper);
+
+if(list.isEmpty())
+{
+  //Input object's length falls in the range
+}
+else
+{
+  //Error specifying the reason for failure
+}
+```
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')<br>
+> Failure Scenario: List('ERR\_POS_INTEGER')<br>
+> Failure Scenario: List('ERR\_NUM\_INVALID\_RANGE')<br>
+> Failure Scenario: List('ERR\_NUM\_RANGE\_MAX')<br>
+> Failure Scenario: List('ERR\_NUM\_RANGE\MIN')
+
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#number) for further details on their definitions
+
+-----

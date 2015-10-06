@@ -21,7 +21,10 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Spinner dynamicSpinner = (Spinner) findViewById(R.id.dynamic_spinner);
-        String[] items = new String[] { "Select an option","Email Validation", "Date Validation", "Unicode Validation", "Hostname Validation", "Url Validation","Credit Card Validation", "Boolean Validation", "Password Validation", "Unchecked funtion", "Number Validator", "Numeric Range Validators"};
+        String[] items = new String[] { "Select an option","Email Validation", "Date Validation",
+                "Unicode Validation", "Hostname Validation", "Url Validation","Credit Card Validation",
+                "Boolean Validation", "Password Validation", "Unchecked funtion", "Number Validator",
+                "Numeric Range Validators", "Object Length Validators"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -78,6 +81,10 @@ public class MainActivity extends Activity {
                         //Numeric Range Validator
                         numericRangeIntent();
                         break;
+                    case 12:
+                        //Object Length Validator
+                        objectLengthIntent();
+                        break;
                 }
             }
 
@@ -86,6 +93,11 @@ public class MainActivity extends Activity {
                 // TODO Auto-generated method stub
             }
         });
+    }
+
+    private void objectLengthIntent() {
+        intent = new Intent(this, ObjectLengthValidatorDemo.class);
+        startActivity(intent);
     }
 
     private void numericRangeIntent() {
