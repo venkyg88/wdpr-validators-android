@@ -965,7 +965,7 @@ Please refer to our [error codes documentation](https://github.disney.com/WDPR-R
 
 ##isObjectInRange(Object object, int lower, int Upper)
 
-Predicate method to determine whether or not the input object falls in between the lower and upper integer bound values inclusively. This method uses a public method to find the length of the passed object, it also takes care of all kinds of objects - arrays, collections, maps, Json objects, Json Arrays, class property length(number of exposed fields), etc.
+Predicate method to determine whether or not the input object's length falls in between the lower and upper integer bound values inclusively. This method uses a public method to find the length of the passed object, it also takes care of all kinds of objects - arrays, collections, maps, Json objects, Json Arrays, class property length(number of exposed fields), etc.
 
 **Params**
 - object `Object`
@@ -977,8 +977,11 @@ Predicate method to determine whether or not the input object falls in between t
 **Usage:**
 
 ```java
+int lower = 3;
+int upper = 10;
+String []object = {"Cow", "Dog", "Pig", "Egg"}; //Here the object could be of any Object in java(list, map, string, array).
 ObjectLengthValidator mObjectLengthValidator = new ObjectLengthValidator();
-boolean mBoolean = mObjectLengthValidator.isObjectInRange(12, 9, 23);
+boolean mBoolean = mObjectLengthValidator.isObjectInRange(object, lower, upper);
 
 if(mBoolean)
 {
@@ -997,7 +1000,7 @@ else
 -----
 ##checkObjectInRange(Object object, int lower, int Upper)
 
-Checker method to determine whether the input object's length falls in the range of upper and lower bound inclusively which returns empty list on success and a list of applicable errors on failure.
+Checker method to determine whether the input object's length falls in the range of upper and lower bound inclusively which returns an empty list on success and a list of applicable errors on failure.
 
 **Params**
 - object `Object`
@@ -1009,6 +1012,9 @@ Checker method to determine whether the input object's length falls in the range
 **Usage:**
 
 ```java
+int lower = 3;
+int upper = 10;
+String []object = {"Cow", "Dog", "Pig", "Egg"}; //Here the object could be of any Object in java.
 ObjectLengthValidator mObjectLengthValidator = new ObjectLengthValidator();
 List<String> list = mObjectLengthValidator.checkObjectInRange(object, lower, upper);
 
