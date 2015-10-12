@@ -57,6 +57,8 @@ public final class ValidatorConstant
     public static final String ERR_OBJECT = "ERR_OBJECT";
     /************************* Input not a positive integer **********************************/
     public static final String ERR_INT_POSITIVE = "ERR_INT_POSITIVE";
+    /************************* Input not a valid RegExp **************************************/
+    public static final String ERR_REGEXP = "ERR_REGEXP";
      /**
      *
      */
