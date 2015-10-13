@@ -1,9 +1,7 @@
 package com.disney.android.wdprvalidators;
 
 import android.util.Log;
-
 import org.apache.commons.lang3.StringUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -14,6 +12,11 @@ import java.util.regex.PatternSyntaxException;
  */
 public class RegexValidator
 {
+    /**
+     * predicate method to validate the input patten is a valid regex
+     * @param inputPattern
+     * @return boolean
+     */
     public boolean isRegex(String inputPattern)
     {
         boolean result = false;
@@ -27,12 +30,18 @@ public class RegexValidator
             catch (PatternSyntaxException exception)
             {
                 Log.e("RegexValidator", exception.getDescription());
+                //Logs can be stipped from the code before deployment writing gradle script with the help of pro-guard.
             }
         }
         return result;
     }
 
 
+    /**
+     * checker method to help the consumer/user to get acquainted with the possible errors if the input fails to pass the predicate condition.
+     * @param inputPattern
+     * @return List<String>
+     */
     public List<String> checkRegex(String inputPattern)
     {
         List<String> list = new ArrayList<>();
