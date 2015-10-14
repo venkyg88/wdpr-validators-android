@@ -13,7 +13,7 @@ import java.util.regex.PatternSyntaxException;
 public class RegexValidator
 {
     /**
-     * predicate method to validate the input patten is a valid regex
+     * predicate method to validate the input pattern is a valid regex
      * @param inputPattern
      * @return boolean
      */
@@ -29,8 +29,7 @@ public class RegexValidator
             }
             catch (PatternSyntaxException exception)
             {
-                Log.e("RegexValidator", exception.getDescription());
-                //Logs can be stipped from the code before deployment writing gradle script with the help of pro-guard.
+                result = false;
             }
         }
         return result;
