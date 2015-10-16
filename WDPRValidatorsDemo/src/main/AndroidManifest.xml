@@ -53,6 +53,8 @@
         <activity android:name=".ObjectLengthValidatorDemo"/>
 
         <activity android:name=".RegularExpressionValidatorDemo"/>
+
+        <activity android:name=".ArrayContentsValidatorDemo"/>
     </application>
 
 </manifest>

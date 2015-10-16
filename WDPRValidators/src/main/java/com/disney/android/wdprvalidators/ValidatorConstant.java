@@ -59,6 +59,8 @@ public final class ValidatorConstant
     public static final String ERR_INT_POSITIVE = "ERR_INT_POSITIVE";
     /************************* Input not a valid RegExp **************************************/
     public static final String ERR_REGEXP = "ERR_REGEXP";
+    /************************* Array contains elements that do not match the intended type ***/
+    public static final String ERR_CONTENTS_MISMATCH = "ERR_ARRAY_CONTENTS_TYPE_MISMATCH";
      /**
      *
      */
