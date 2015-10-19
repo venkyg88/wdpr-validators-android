@@ -998,6 +998,7 @@ else
 > **FALSE** (Boolean)
 
 -----
+
 ##checkObjectInRange(Object object, int lower, int Upper)
 
 Checker method to determine whether the input object's length falls in the range of upper and lower bound inclusively which returns an empty list on success and a list of applicable errors on failure.
@@ -1037,5 +1038,71 @@ else
 > Failure Scenario: List('ERR\_NUM\_RANGE\MIN')
 
 Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#number) for further details on their definitions
+
+-----
+
+##isRegex(String inputPattern)
+
+Predicate method to validate the input pattern for valid regular expression
+
+**Params**
+- inputPattern `String`
+
+**Returns** `boolean`
+
+**Usage:**
+
+```java
+String inputPattern = "^([a-z0-9][a-z0-9-]{0,63}\\.)+([a-z]{2,20})$";
+RegexValidator mRegexValidator = new RegexValidator();
+boolean mBoolean = mRegexValidator.isRegex(inputPattern);
+if(mBoolean)
+{
+  //true - Input is a valid regular expression
+}
+else
+{
+  //false - Input is a invalid regular expression
+}
+```
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
+
+##checkRegex(String inputPattern)
+
+Checker method to determine whether the input is a valid regular expression which returns an empty list on success or a list of applicable error messages on failure.
+
+**Params**
+- inputPattern `String`
+
+**Returns** `List<String>`
+
+**Usage:**
+
+```java
+String inputPattern = "^([a-z0-9][a-z0-9-]{0,63}\\.)+([a-z]{2,20})$";
+RegexValidator mRegexValidator = new RegexValidator();
+List<String> list = mRegexValidator.checkRegex(inputPattern);
+
+if(list.isEmpty())
+{
+  //success - valid Regular expression
+}
+else
+{
+  //Error specifying the reason for failure
+}
+```
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')<br>
+> Failure Scenario: List('ERR\_REGEXP')
+
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#regexp) for further details on their definitions
 
 -----

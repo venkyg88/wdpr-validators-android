@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
         String[] items = new String[] { "Select an option","Email Validation", "Date Validation",
                 "Unicode Validation", "Hostname Validation", "Url Validation","Credit Card Validation",
                 "Boolean Validation", "Password Validation", "Unchecked funtion", "Number Validator",
-                "Numeric Range Validators", "Object Length Validators"};
+                "Numeric Range Validators", "Object Length Validators", "RegExp Validator"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -85,6 +85,10 @@ public class MainActivity extends Activity {
                         //Object Length Validator
                         objectLengthIntent();
                         break;
+                    case 13:
+                        //Regex Validator
+                        regexIntent();
+                        break;
                 }
             }
 
@@ -93,6 +97,11 @@ public class MainActivity extends Activity {
                 // TODO Auto-generated method stub
             }
         });
+    }
+
+    private void regexIntent() {
+        intent = new Intent(this, RegularExpressionValidatorDemo.class);
+        startActivity(intent);
     }
 
     private void objectLengthIntent() {
