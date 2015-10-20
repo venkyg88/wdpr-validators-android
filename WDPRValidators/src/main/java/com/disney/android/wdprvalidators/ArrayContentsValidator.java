@@ -7,11 +7,9 @@ import java.util.List;
  * Created by venkatgonuguntala on 10/14/15.
  */
 
-//TODO: Null check for both the methods.
-
 public class ArrayContentsValidator {
 
-    public boolean isArrayOfIntendedType(Object objectArray[], Class arrayType)
+    public boolean isArrayOfIntendedType(final Object objectArray[], final Class arrayType)
     {
         boolean result = false;
         if(objectArray != null)
@@ -32,7 +30,7 @@ public class ArrayContentsValidator {
         return result;
     }
 
-    public List<String> checkArrayOfIntendedType(Object objectArray[], Class arrayType)
+    public List<String> checkArrayOfIntendedType(final Object objectArray[], final Class arrayType)
     {
         List<String> list = new ArrayList<>();
         if( objectArray != null)
