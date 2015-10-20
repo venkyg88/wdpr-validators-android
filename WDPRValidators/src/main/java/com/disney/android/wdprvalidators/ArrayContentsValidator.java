@@ -9,6 +9,13 @@ import java.util.List;
 
 public class ArrayContentsValidator {
 
+    /**
+     * Predicate method to validate the input array that has the array contents of intended type.
+     * The intended type is passed as a `Class` argument.
+     * @param objectArray
+     * @param arrayType
+     * @return boolean
+     */
     public boolean isArrayOfIntendedType(final Object objectArray[], final Class arrayType)
     {
         boolean result = false;
@@ -30,6 +37,13 @@ public class ArrayContentsValidator {
         return result;
     }
 
+    /**
+     * Checker method to validate the array contents of the input array, which returns an empty
+     * list if the array is of intended `Class` type and a list of applicable error on failure.
+     * @param objectArray
+     * @param arrayType
+     * @return List<String>
+     */
     public List<String> checkArrayOfIntendedType(final Object objectArray[], final Class arrayType)
     {
         List<String> list = new ArrayList<>();

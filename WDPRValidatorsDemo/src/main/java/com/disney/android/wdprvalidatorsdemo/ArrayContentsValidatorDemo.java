@@ -96,6 +96,7 @@ public class ArrayContentsValidatorDemo extends Activity {
     public void validateCheckerDemo3(View view) {
 
         Object objectArray[] = {new Holder(20), new HolderTwo("android"), new Holder(16)};
+        int mInt[] = {12, 12,1,12,21};
         List<String> result = mArrayContentsValidator.checkArrayOfIntendedType(objectArray, Holder.class);
 
         String errorCode="";
