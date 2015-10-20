@@ -15,7 +15,7 @@ public class ArrayContentsValidatorTest extends TestCase{
     protected void setUp() throws Exception {
         super.setUp();
         mArrayContentsValidator = new ArrayContentsValidator();
-        Holder holder[] = {new Holder(12), new Holder(11)};
+        TestChildClassOne testChildClassOne[] = {new TestChildClassOne(12), new TestChildClassOne(11)};
 
     }
 
@@ -26,10 +26,6 @@ public class ArrayContentsValidatorTest extends TestCase{
         assertEquals(ValidatorConstant.ERR_CONTENTS_MISMATCH, mArrayContentsValidator.checkArrayOfIntendedType(obj, Integer.class).get(0));
 
         Object obj1[] = { 1, 2, 4, 5, 6};
-        assertEquals(true, mArrayContentsValidator.isArrayOfIntendedType(obj1, Integer.class));
-        assertEquals(true, mArrayContentsValidator.checkArrayOfIntendedType(obj1, Integer.class).isEmpty());
-
-        Object obj2[] = { 1, 2, 4, 5, 6};
         assertEquals(true, mArrayContentsValidator.isArrayOfIntendedType(obj1, Integer.class));
         assertEquals(true, mArrayContentsValidator.checkArrayOfIntendedType(obj1, Integer.class).isEmpty());
 
@@ -51,10 +47,10 @@ public class ArrayContentsValidatorTest extends TestCase{
         assertEquals(false, mArrayContentsValidator.checkArrayOfIntendedType(null, Double.class).isEmpty());
         assertEquals(ValidatorConstant.ERR_EMPTY_INPUT, mArrayContentsValidator.checkArrayOfIntendedType(null, Double.class).get(0));
 
-        Object objects[] = {new HolderTwo("Walt"), new HolderTwo("Disney"), new Holder(1), new Holder(5), new HolderTwo("company")};
+        Object objects[] = {new TestChildClassTwo("Walt"), new TestChildClassTwo("Disney"), new TestChildClassOne(1), new TestChildClassOne(5), new TestChildClassTwo("company")};
         assertEquals(false, mArrayContentsValidator.checkArrayOfIntendedType(objects, String.class).isEmpty());
-        Object objects2[] = {new HolderTwo("Walt"), new HolderTwo("Disney"), new HolderTwo("company")};
-        assertEquals(true, mArrayContentsValidator.checkArrayOfIntendedType(objects2, HolderTwo.class).isEmpty());
+        Object objects2[] = {new TestChildClassTwo("Walt"), new TestChildClassTwo("Disney"), new TestChildClassTwo("company")};
+        assertEquals(true, mArrayContentsValidator.checkArrayOfIntendedType(objects2, TestChildClassTwo.class).isEmpty());
     }
 
     public void testForInteger(){
@@ -62,25 +58,19 @@ public class ArrayContentsValidatorTest extends TestCase{
         assertEquals(true, mArrayContentsValidator.isArrayOfIntendedType(intArray, Integer.class));
     }
 
-    public class Holder{
+    public class TestChildClassOne {
         private int anInt;
-        Holder(int anInt){
+        TestChildClassOne(int anInt){
             this.anInt = anInt;
         }
     }
 
-    public class HolderTwo{
+    public class TestChildClassTwo {
         private String anInt;
-        HolderTwo(String anInt){
+        TestChildClassTwo(String anInt){
             this.anInt = anInt;
         }
     }
-
-    public interface HoldersHolder{
-        Holder holder[] = new Holder[10];
-        HolderTwo holderTwo[] = new HolderTwo[10];
-    }
-
 
     @Override
     protected void tearDown() throws Exception {

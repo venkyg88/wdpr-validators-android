@@ -1109,8 +1109,7 @@ Please refer to our [error codes documentation](https://github.disney.com/WDPR-R
 
 ##isArrayOfIntendedType(Object objectArray[], Class arrayType)
 
-Predicate method to validate the input array that has the array contents of intended type. The intended type is passed as a `Class` argument.
-
+Predicate method to validate that the input array contains only contents of the intended type. The intended type is passed as a Class argument.
 **Params**
 - objectArray[] `Object`
 - arrayType `Class`
