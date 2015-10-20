@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Array Contents Validator"
+        android:id="@+id/textViewArrayContentsHeader"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textIsSelectable="false"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingTop="10sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="(Integer[], Integer)"
+        android:id="@+id/buttonDemo1"
+        android:layout_below="@+id/textViewArrayContentsHeader"
+        android:onClick="validateCheckerDemo1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="83dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="(String[], Boolean)"
+        android:id="@+id/buttonDemo2"
+        android:onClick="validateCheckerDemo2"
+        android:layout_below="@+id/buttonDemo1"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="(Object[], objType)"
+        android:id="@+id/buttonDemo3"
+        android:onClick="validateCheckerDemo3"
+        android:layout_below="@+id/buttonDemo2"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Result View"
+        android:id="@+id/textViewArrayContents"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp" />
+
+</RelativeLayout>

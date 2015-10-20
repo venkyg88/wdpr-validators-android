@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.disney.android.wdprvalidators.ArrayContentsValidator;
+
 /**
  * Created by venkatgonuguntala on 5/6/15.
  */
@@ -24,7 +26,7 @@ public class MainActivity extends Activity {
         String[] items = new String[] { "Select an option","Email Validation", "Date Validation",
                 "Unicode Validation", "Hostname Validation", "Url Validation","Credit Card Validation",
                 "Boolean Validation", "Password Validation", "Unchecked funtion", "Number Validator",
-                "Numeric Range Validators", "Object Length Validators", "RegExp Validator"};
+                "Numeric Range Validators", "Object Length Validators", "RegExp Validator", "Array Contents Validator"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -89,6 +91,10 @@ public class MainActivity extends Activity {
                         //Regex Validator
                         regexIntent();
                         break;
+                    case 14:
+                        //Array contents Validator
+                        arrayContentsIntent();
+                        break;
                 }
             }
 
@@ -97,6 +103,11 @@ public class MainActivity extends Activity {
                 // TODO Auto-generated method stub
             }
         });
+    }
+
+    private void arrayContentsIntent() {
+        intent = new Intent(this, ArrayContentsValidatorDemo.class);
+        startActivity(intent);
     }
 
     private void regexIntent() {

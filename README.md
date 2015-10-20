@@ -1106,3 +1106,70 @@ else
 Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#regexp) for further details on their definitions
 
 -----
+
+##isArrayOfIntendedType(Object objectArray[], Class arrayType)
+
+Predicate method to validate that the input array contains only contents of the intended type. The intended type is passed as a Class argument.
+**Params**
+- objectArray[] `Object`
+- arrayType `Class`
+
+**Returns** `boolean`
+
+**Usage:**
+
+```java
+Integer integer[] = {1,1,1,1};
+ArrayContentsValidator mArrayContentsValidator = new ArrayContentsValidator();
+boolean mBoolean = mArrayContentsValidator.isArrayOfIntendedType(integer, Integer.class);
+if(mBoolean)
+{
+  //true - Array contents are of Intended type
+}
+else
+{
+  //false - Array contents are not of Intended type
+}
+```
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
+
+##checkArrayOfIntendedType(Object objectArray[], Class arrayType)
+
+Checker method to validate the array contents of the input array, which returns an empty list if the array is of intended `Class` type and a list of applicable error on failure.
+
+**Params**
+- objectArray[] `Object`
+- arrayType `Class`
+
+**Returns** `List<String>`
+
+**Usage:**
+
+```java
+Integer integer[] = {1,1,1,1};
+ArrayContentsValidator mArrayContentsValidator = new ArrayContentsValidator();
+List<String> list = mArrayContentsValidator.checkArrayOfIntendedType(integer, Integer.class);
+
+if(list.isEmpty())
+{
+  //success
+}
+else
+{
+  //Error specifying the reason for failure
+}
+```
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')<br>
+> Failure Scenario: List('ERR\_ARRAY\_CONTENTS\_TYPE\_MISMATCH')
+
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#array) for further details on their definitions
+
+-----
