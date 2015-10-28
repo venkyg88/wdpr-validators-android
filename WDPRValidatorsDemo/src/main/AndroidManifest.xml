@@ -55,6 +55,8 @@
         <activity android:name=".RegularExpressionValidatorDemo"/>
 
         <activity android:name=".ArrayContentsValidatorDemo"/>
+
+        <activity android:name=".MapKeysValidatorDemo"/>
     </application>
 
 </manifest>

@@ -1173,3 +1173,74 @@ else
 Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#array) for further details on their definitions
 
 -----
+
+##hasMapKeys(Map<String, ?> map, String []keys)
+
+Predicate method to validate that the input `Map<Key,Value>` contains all the keys of the passed input `String` array. 
+
+**Params**
+- map `Map<String, ?>`
+- keys `String[]`
+
+**Returns** `boolean`
+
+**Usage:**
+
+```java
+String[] stringArray = {"Amit", "Naren", "KK"};
+Map<String,?> map = new HashMap<>();
+MapKeysValidator mMapKeysValidator = new MapKeysValidator();
+boolean mBoolean = mMapKeysValidator.hasMapKeys(map, stringArray);
+if(mBoolean)
+{
+  //true - map has all the keys present in the array
+}
+else
+{
+  //false - map doesn't have the keys present in the array
+}
+```
+
+**Output:**<br>
+> **TRUE** (Boolean)<br>
+> **FALSE** (Boolean)
+
+-----
+
+##checkForMapKeys(Map<String,?> map, String []keys)
+
+Checker method to validate whether the input `Map<Key,Value>` contains all the keys present in the another input parameter, `String` array. 
+On success returns an empty list otherwise a list of applicable errors.
+
+**Params**
+- map `Map<String, ?>`
+- keys `String[]`
+
+**Returns** `List<String>`
+
+**Usage:**
+
+```java
+String[] stringArray = {"Amit", "Naren", "KK"};
+Map<String,?> map = new HashMap<>();
+MapKeysValidator mMapKeysValidator = new MapKeysValidator();
+List<String> list = mMapKeysValidator.checkForMapKeys(map, stringArray);
+if(list.isEmpty())
+{
+  //success
+}
+else
+{
+  //Error specifying the reason for failure
+}
+```
+
+**Output:**<br>
+> Success Scenario: Size of List will be zero<br>
+> Failure Scenario: List('ERR\_EMPTY\_INPUT')<br>
+> Failure Scenario: List('ERR\_MAP\_MISSING\_KEYS')<br>
+> Failure Scenario: List('ERR\_MAP\_NO\_KEYS')
+
+Please refer to our [error codes documentation](https://github.disney.com/WDPR-RA-UI/docs/blob/master/docs/security/Validator_Error_Codes.md#map) for further details on their definitions
+
+-----

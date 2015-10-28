@@ -26,7 +26,8 @@ public class MainActivity extends Activity {
         String[] items = new String[] { "Select an option","Email Validation", "Date Validation",
                 "Unicode Validation", "Hostname Validation", "Url Validation","Credit Card Validation",
                 "Boolean Validation", "Password Validation", "Unchecked funtion", "Number Validator",
-                "Numeric Range Validators", "Object Length Validators", "RegExp Validator", "Array Contents Validator"};
+                "Numeric Range Validators", "Object Length Validators", "RegExp Validator", "Array Contents Validator",
+                "MapKeys Validator"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -95,6 +96,9 @@ public class MainActivity extends Activity {
                         //Array contents Validator
                         arrayContentsIntent();
                         break;
+                    case 15:
+                        //Map keys Validator
+                        mapKeysIntent();
                 }
             }
 
@@ -103,6 +107,11 @@ public class MainActivity extends Activity {
                 // TODO Auto-generated method stub
             }
         });
+    }
+
+    private void mapKeysIntent() {
+        intent = new Intent(this, MapKeysValidatorDemo.class);
+        startActivity(intent);
     }
 
     private void arrayContentsIntent() {

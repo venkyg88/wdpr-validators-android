@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MapKeys Validator Demo"
+            android:id="@+id/textViewMapKey"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:textColor="#0e0d0d"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(Map, keys[])"
+            android:id="@+id/button2"
+            android:onClick="checkMapKeysFunctionOne"
+            android:layout_marginTop="58dp"
+            android:layout_below="@+id/textViewMapKey"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(Map, Keys[])"
+            android:id="@+id/button3"
+            android:onClick="checkMapKeysfunctionTwo"
+            android:layout_below="@+id/button2"
+            android:layout_alignLeft="@+id/button2"
+            android:layout_alignStart="@+id/button2"
+            android:layout_marginTop="32dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(Map=nokeys,keys[])"
+            android:id="@+id/button4"
+            android:layout_below="@+id/button3"
+            android:layout_marginTop="30dp"
+            android:onClick="checkMapKeysfunctionThree"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="result"
+            android:layout_marginBottom="116dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/textViewMapKeys" />
+
+    </RelativeLayout>
+</LinearLayout>

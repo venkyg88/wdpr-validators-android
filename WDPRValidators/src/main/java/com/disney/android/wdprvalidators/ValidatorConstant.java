@@ -61,6 +61,12 @@ public final class ValidatorConstant
     public static final String ERR_REGEXP = "ERR_REGEXP";
     /************************* Array contains elements that do not match the intended type ***/
     public static final String ERR_CONTENTS_MISMATCH = "ERR_ARRAY_CONTENTS_TYPE_MISMATCH";
+    /************************* Input not a map ***********************************************/
+    public static final String ERR_MAP = "ERR_MAP";
+    /************************* Map is missing one or more of the requested keys **************/
+    public static final String ERR_MAP_MISSING_KEYS = "ERR_MAP_MISSING_KEYS";
+    /*************************** Map does not contain any keys *******************************/
+    public static final String ERR_MAP_NO_KEYS = "ERR_MAP_NO_KEYS";
      /**
      *
      */
