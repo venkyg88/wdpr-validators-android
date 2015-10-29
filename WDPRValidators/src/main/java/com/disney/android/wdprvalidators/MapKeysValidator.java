@@ -16,7 +16,7 @@ public class MapKeysValidator
      * @param keys
      * @return boolean
      */
-    public boolean hasMapKeys(Map<String, ?> map, String []keys){
+    public boolean hasMapKeys(final Map<String, ?> map, final String []keys){
         boolean result = false;
         if ( map != null && keys != null)
         {
@@ -43,7 +43,7 @@ public class MapKeysValidator
      * @param keys
      * @return List<String>
      */
-    public List<String> checkForMapKeys(Map<String,?> map, String []keys)
+    public List<String> checkForMapKeys(final Map<String,?> map, final String []keys)
     {
         List<String> list = new ArrayList<>();
         if (map != null && keys != null)

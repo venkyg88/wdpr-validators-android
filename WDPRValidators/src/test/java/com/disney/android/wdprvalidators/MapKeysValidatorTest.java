@@ -27,6 +27,7 @@ public class MapKeysValidatorTest extends TestCase {
     public void testForMapKeys(){
         String []stringArray = {"key1", "key2", "key3"};
         String []stringMatchingArray = {"Amit", "Naren", "KK"};
+        String []stringEmptyArray = null;
 
         assertEquals(ValidatorConstant.ERR_MAP_MISSING_KEYS,
                 mMapKeysValidator.checkForMapKeys(map, stringArray).get(0));
@@ -42,6 +43,8 @@ public class MapKeysValidatorTest extends TestCase {
         assertEquals(true, mMapKeysValidator.hasMapKeys(map, stringMatchingArray));
 
         assertEquals(false, mMapKeysValidator.hasMapKeys(emptyMap, stringMatchingArray));
+
+        assertEquals(false, mMapKeysValidator.hasMapKeys(map, stringEmptyArray));
 
     }
 
