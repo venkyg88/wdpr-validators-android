@@ -46,7 +46,7 @@ public class MapKeysValidator
     public List<String> checkForMapKeys(final Map<String,?> map, final String []keys)
     {
         List<String> list = new ArrayList<>();
-        if (map != null && keys != null)
+        if (map != null && keys != null && keys.length != 0)
         {
             if(map.size() > 0)
             {

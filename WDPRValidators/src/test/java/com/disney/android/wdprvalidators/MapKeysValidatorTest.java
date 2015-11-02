@@ -59,6 +59,12 @@ public class MapKeysValidatorTest extends TestCase {
                 mMapKeysValidator.checkForMapKeys(map, nullArray).get(0));
     }
 
+    public void testForEmptyArray(){
+        String[] stringArray = {};
+        assertEquals(ValidatorConstant.ERR_EMPTY_INPUT,
+                mMapKeysValidator.checkForMapKeys(map, stringArray).get(0));
+    }
+
 
 
     @Override

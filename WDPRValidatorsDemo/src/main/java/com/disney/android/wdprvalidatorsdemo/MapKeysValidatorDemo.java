@@ -49,7 +49,7 @@ public class MapKeysValidatorDemo extends Activity {
 
     public void checkMapKeysFunctionOne(View view) {
 
-        String[] string = {"Amit", "Naren", "KK"};
+        String[] string = {};
         List<String> result = mMapKeysValidator.checkForMapKeys(map, string);
 
         String errorCode="";
